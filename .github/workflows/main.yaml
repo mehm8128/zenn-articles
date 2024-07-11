@@ -1,0 +1,15 @@
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  zenn-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Zenn Preview
+        uses: mehm8128/zenn-article-preview@main
+        with:
+          dockerhub_username: ${{ secrets.DOCKERHUB_USERNAME }}
+          dockerhub_password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          image_name: zenn-preview
