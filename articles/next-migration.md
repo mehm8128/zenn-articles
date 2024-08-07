@@ -4,6 +4,7 @@ emoji: "🎉"
 type: "tech"
 topics: ["nextjs", "storybook", "chromatic", "connect", "frontend"]
 published: false
+publication_name: "no9_dev"
 ---
 
 こんにちは。ナンバーナインで学生インターンとして働いている、東京工業大学工学院 情報通信系 4 年の mehm8128 です。
