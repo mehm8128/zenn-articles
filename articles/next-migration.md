@@ -3,7 +3,7 @@ title: "ナンバーナインのフロントエンドをNext.jsに移行した"
 emoji: "🎉"
 type: "tech"
 topics: ["nextjs", "storybook", "chromatic", "connect", "frontend"]
-published: false
+published: true
 publication_name: "no9_dev"
 ---
 
