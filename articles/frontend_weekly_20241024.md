@@ -59,7 +59,7 @@ https://lists.w3.org/Archives/Public/ietf-http-wg/2024JulSep/0316.html
 
 HTTP ヘッダの値を構造化する RFC が更新されました。
 現在 HTTP ヘッダの各値のフォーマットはフィールドによってバラバラですが、それを標準化する RFC です。
-[RFC 8941 Structured Field Values for HTTP](https://www.rfc-editor.org/rfc/rfc8941.html) で Structured Field Values (SFV)について既に定義されていたのですが、新たに Date 型と UTF8 型が追加されたようです。
+[RFC 8941 Structured Field Values for HTTP](https://www.rfc-editor.org/rfc/rfc8941.html) で Structured Field Values (SFV) について既に定義されていたのですが、新たに Date 型と UTF8 型が追加されたようです。
 
 SFV についての詳細は少し前の記事ですが、jxck さんの記事が参考になります。
 
@@ -77,7 +77,7 @@ React Compiler が React v17 と v18 でも利用できるようになりまし�
 https://www.debugbear.com/blog/google-crux-vis
 
 Google から新しく、 CrUX Vis という Core Web Vitals ツールがリリースされました。
-Google がユーザーから収集している CrUX(Chrome UX report) のデータから、指定したサイトの CWV などのメトリクスを時系列で閲覧することができます。
+Google がユーザーから収集している CrUX (Chrome UX report) のデータから、指定したサイトの CWV などのメトリクスを時系列で閲覧することができます。
 
 関連して、Chrome 129 から DevTools の Performance パネルで同様に CWV のスコアが閲覧できるようになっています。
 
@@ -106,14 +106,14 @@ Next.js 15 がリリースされました。一部アップデート内容を抜
   - `fetch`リクエストや`GET`ルートハンドラーなどがデフォルトでキャッシュされなくなりました
 - React 19 のサポート
 - `instrumentation.js` (Stable)
-  - OpenTelemetry などでのエラー監視の初期化に使うことができる`instrumentation.js`が stable になりました
+  - OpenTelemetry などを用いたエラー監視の初期化に使うことができる`instrumentation.js`が stable になりました
 - `<Form>` Component
   - HTML の`<form>`タグを拡張した`<Form>`コンポーネントが導入されました
   - フォームの送信時に client navigation ができたりと、パフォーマンスなどの向上が見込めます
 - Support for `next.config.ts`
   - `NextConfig`という型を用いて nextConfig に型をつけることができるようになりました
 - Improvements for self-hosting
-  - `Cache-Control`ヘッダーの細かい制御が可能になりました
+  - `Cache-Control`ヘッダの細かい制御が可能になりました
 
 ## あとがき
 
