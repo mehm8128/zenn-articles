@@ -24,17 +24,16 @@ https://deno.com/blog/v2.0
 Deno v2.0 がリリースされました。
 主な変更点は以下です。
 
+- Node.js と npm との後方互換性がサポートされ、Node 製の Web アプリケーションフレームワークのシームレスな利用が可能に
 - `package.json`と`node_modules`のネイティブサポート
-- Next.js や SvelteKit、Remix など各フレームワークのサポート
 - その他既存の`deno`コマンドの改善
 - ロゴの変更
   - 以下のように変わりました！
   - 変更理由はリリース記事の FAQs で説明されています
 
-旧ロゴ
-![](/images/frontend_weekly_20241024/Deno_logo_old.png)
-新ロゴ
-![](/images/frontend_weekly_20241024/Deno_logo_new.png)
+| 旧ロゴ                                                  | 新ロゴ                                                  |
+| ------------------------------------------------------- | ------------------------------------------------------- |
+| ![](/images/frontend_weekly_20241024/Deno_logo_old.png) | ![](/images/frontend_weekly_20241024/Deno_logo_new.png) |
 
 ### Announcing TypeScript 5.7 Beta
 
