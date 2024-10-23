@@ -1,5 +1,5 @@
 ---
-title: "Next.js 15 のリリースなど: Cybozu Frontend Weekly (2024-10-24号)"
+title: "Next.js 15 のリリースなど: Cybozu Frontend Weekly (2024-10-22号)"
 emoji: "🍮"
 type: "tech"
 topics: ["frontend", "cybozufrontendweek"]
@@ -79,9 +79,9 @@ https://www.debugbear.com/blog/google-crux-vis
 Google から新しく、 CrUX Vis という Core Web Vitals ツールがリリースされました。
 Google がユーザーから収集している CrUX (Chrome UX report) のデータから、指定したサイトの CWV などのメトリクスを時系列で閲覧することができます。
 
-関連して、Chrome 129 から DevTools の Performance パネルで同様に CWV のスコアが閲覧できるようになっています。
+関連して、Chrome 129 から DevTools の Performance パネルで同様に CrUX が閲覧できるようになっています。ローカル環境でのパフォーマンスを実際のユーザー体験と比較でき、より詳細にチューニングするのに役立てることができます。
 
-https://developer.chrome.com/blog/devtools-realtime-cwv
+https://developer.chrome.com/blog/devtools-realtime-cwv#field-data
 
 ### Zustand v5 release
 
