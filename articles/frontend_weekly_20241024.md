@@ -22,7 +22,7 @@ publication_name: "cybozu_frontend"
 https://deno.com/blog/v2.0
 
 Deno v2.0 がリリースされました。
-v2 には次の内容が含まれます。
+v2.0 には次の内容が含まれます。
 
 - Node.js および npm との後方互換性
   - `package.json`と`node_modules`をネイティブでサポート
