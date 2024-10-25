@@ -15,7 +15,7 @@ https://trap.jp/author/mehm8128
 
 ## 調査背景
 
-数日前からほぼ毎日 React Aria のドキュメントとソースコードを読んでいるのですが、[useSelect – React Aria](https://react-spectrum.adobe.com/react-aria/useSelect.html)を用いた実装例を眺めていたところ、あることに気づきました。
+数日前からほぼ毎日 React Aria のドキュメントとソースコードを読んでいるのですが、[useSelect – React Aria](https://react-spectrum.adobe.com/react-aria/useSelect.html) を用いた実装例を眺めていたところ、あることに気づきました。
 `useSelect`は以下の画像のようなセレクトボックスを実装することができるのですが、このセレクトボックスで一番下のオプションにフォーカスしているときに、さらに ↓ キーを押しても一番上のオプションにフォーカスしないのです(逆に、一番上のオプションにフォーカスしているときに ↑ キーを押しても一番下のオプションにフォーカスしません)(以降この動作を「フォーカスが折り返される」と表現します)。
 
 ![Select Boxが開かれていて一番上の"Red"の選択肢にフォーカスが当たっている](/images/react-aria-combobox/selectBox.png)
