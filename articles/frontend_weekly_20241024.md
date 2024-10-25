@@ -22,14 +22,16 @@ publication_name: "cybozu_frontend"
 https://deno.com/blog/v2.0
 
 Deno v2.0 がリリースされました。
-主な変更点は以下です。
+v2.0 には次の内容が含まれます。
 
-- Node.js と npm との後方互換性がサポートされ、Node 製の Web アプリケーションフレームワークのシームレスな利用が可能に
-- `package.json`と`node_modules`のネイティブサポート
-- その他既存の`deno`コマンドの改善
+- Node.js および npm との後方互換性
+  - `package.json`と`node_modules`をネイティブでサポート
+  - Next.js、Astro、Remix、SvelteKit など多くのフレームワークをサポート
+- `deno fmt`で HTML、CSS、YAML をフォーマットできるように
+- ワークスペースとモノレポのサポート
+- プライベートな npm レジストリのサポート
 - ロゴの変更
-  - 以下のように変わりました！
-  - 変更理由はリリース記事の FAQs で説明されています
+  - 種類が多く統一したかったことと、小さいサイズで雨の背景が見づらくなるなどといった理由でリニューアルされたようです
 
 | 旧ロゴ                                                  | 新ロゴ                                                  |
 | ------------------------------------------------------- | ------------------------------------------------------- |
@@ -42,13 +44,13 @@ https://devblogs.microsoft.com/typescript/announcing-typescript-5-7-beta/
 TypeScript v5.7 Beta が利用可能になりました。
 主な変更点は以下の通りです。
 
-- Checks for Never-Initialized Variables
-  - 初期化されていない変数を使用するときに、別の関数として分離されていると型エラーが表示されなかったのが、明らかに初期化されていないと分かるときのみ型エラーが表示されるようになりました
-  - 一方、条件分岐などを含むときは依然としてエラーを表示できないようです
-- Path Rewriting for Relative Paths
+- [Checks for Never-Initialized Variables](https://devblogs.microsoft.com/typescript/announcing-typescript-5-7-beta/#checks-for-never-initialized-variables)
+  - 今までは、初期化されていない変数が別の関数内で使用される場合に型エラーになっていませんでしたが、今回改善されました
+  - 具体的には、条件分岐などで変数が初期化される可能性がある場合には今まで通り型エラーにならないのですが、変数の初期化が全く行われない状況では型エラーになるようになりました
+- [Path Rewriting for Relative Paths](https://devblogs.microsoft.com/typescript/announcing-typescript-5-7-beta/#path-rewriting-for-relative-paths)
   - 今までは相対パスで ts ファイルを import するときには拡張子を`.js`にしなければならなかったのが、`--rewriteRelativeImportExtensions`オプションを使うことで`.ts`で書けるようになります
   - ただし、uhyo さんの[TS 5.7 の --rewriteRelativeImportExtensions オプションを使う前に読む記事](https://zenn.dev/uhyo/articles/rewrite-relative-import-extensions-read-before-use)で利用上の注意事項が解説されています
-- Support for `--target es2024` and `--lib es2024`
+- [Support for `--target es2024` and `--lib es2024`](https://devblogs.microsoft.com/typescript/announcing-typescript-5-7-beta/#support-for---target-es2024-and---lib-es2024)
   - ECMAScript 2024 をサポートするようになりました
   - `Object.groupBy`や`Promise.withResolvers`など
 
