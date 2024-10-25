@@ -3,7 +3,7 @@ title: "Next.js 15 のリリースなど: Cybozu Frontend Weekly (2024-10-22号)
 emoji: "🍮"
 type: "tech"
 topics: ["frontend", "cybozufrontendweek"]
-published: false
+published: true
 publication_name: "cybozu_frontend"
 ---
 
@@ -71,7 +71,7 @@ https://blog.jxck.io/entries/2021-01-31/structured-field-values.html
 https://react.dev/learn/react-compiler#using-react-compiler-with-react-17-or-18
 
 React Compiler が React v17 と v18 でも利用できるようになりました。
-利用するには追加で`react-compiler-runtime@beta`をインストールし、complier の設定を変える必要があります。
+利用するには追加で`react-compiler-runtime@beta`をインストールし、compiler の設定を変える必要があります。
 
 ### Google's New CrUX Vis Tool: Explore Core Web Vitals Data
 
