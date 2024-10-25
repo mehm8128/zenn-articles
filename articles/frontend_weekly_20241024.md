@@ -43,8 +43,8 @@ TypeScript v5.7 Beta が利用可能になりました。
 主な変更点は以下の通りです。
 
 - Checks for Never-Initialized Variables
-  - 初期化されていない変数を使用するときに、別の関数として分離されていると型エラーが表示されなかったのが、明らかに初期化されていないと分かるときのみ型エラーが表示されるようになりました
-  - 一方、条件分岐などを含むときは依然としてエラーを表示できないようです
+  - 初期化されていない変数が別の関数内で使用される場合に型エラーになっていませんでしたが、今回改善されました
+  - 具体的には、条件分岐などで変数が初期化される可能性がある場合には今まで通り型エラーにならないのですが、変数の初期化が全く行われない状況では型エラーになります
 - Path Rewriting for Relative Paths
   - 今までは相対パスで ts ファイルを import するときには拡張子を`.js`にしなければならなかったのが、`--rewriteRelativeImportExtensions`オプションを使うことで`.ts`で書けるようになります
   - ただし、uhyo さんの[TS 5.7 の --rewriteRelativeImportExtensions オプションを使う前に読む記事](https://zenn.dev/uhyo/articles/rewrite-relative-import-extensions-read-before-use)で利用上の注意事項が解説されています
