@@ -1,5 +1,5 @@
 ---
-title: "Comboboxのフォーカス移動について調査してみた"
+title: "Comboboxのフォーカス折り返しについて調査してみた"
 emoji: "🎃"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["frontend", "react", "a11y", "reactaria"]
@@ -16,25 +16,28 @@ https://trap.jp/author/mehm8128
 ## 調査背景
 
 数日前からほぼ毎日 React Aria のドキュメントとソースコードを読んでいるのですが、[useSelect – React Aria](https://react-spectrum.adobe.com/react-aria/useSelect.html) を用いた実装例を眺めていたところ、あることに気づきました。
-`useSelect`は以下の画像のようなセレクトボックスを実装することができるのですが、このセレクトボックスで一番下のオプションにフォーカスしているときに、さらに ↓ キーを押しても一番上のオプションにフォーカスしないのです(逆に、一番上のオプションにフォーカスしているときに ↑ キーを押しても一番下のオプションにフォーカスしません)(以降この動作を「フォーカスが折り返される」と表現します)。
+`useSelect`は以下の画像のような Select を実装することができるのですが、この Select で一番下のオプションにフォーカスしているときに、さらに ↓ キーを押しても一番上のオプションにフォーカスしないのです(逆に、一番上のオプションにフォーカスしているときに ↑ キーを押しても一番下のオプションにフォーカスしません)(以降この動作を「フォーカスが折り返される」と表現します)。
 
-![Select Boxが開かれていて一番上の"Red"の選択肢にフォーカスが当たっている](/images/react-aria-combobox/selectBox.png)
+![Selectが開かれていて、一番上の"Red"の選択肢にフォーカスが当たっている](/images/react-aria-combobox/selectBox.png)
 
 しないのが当たり前、と感じる人もいるかもしれませんが、僕は当たり前にするものだと思っていたので「あれ？」となりました。そして、React Aria の実装から調査を始め、React Aria のドキュメントにも情報源として書かれている、W3C の APG を見に行きました。その流れを書いていきます。
+
+ちなみに、フォーカスが折り返される例はこちらの Gif です。デモへのリンクは後で書きます。
+![Menuが開かれていて、↓キーや↑キーを押し続けるとフォーカスが折り返される様子](/images/react-aria-combobox/menu.gif)
 
 ## React Aria
 
 `useSelect`を用いた実装例では、今回見ているリストの部分は [useListBox – React Aria](https://react-spectrum.adobe.com/react-aria/useListBox.html) を用いて実装されています。この hooks 自体の実装例を見ても、フォーカスは折り返されていません。また、同様に`useListBox`を用いて作られている [useComboBox – React Aria](https://react-spectrum.adobe.com/react-aria/useComboBox.html) の実装例も同じような動作です(最近見ているのが components ではなくて hooks のドキュメント・ソースコードなので hooks 中心の説明になってしまい分かりづらくてすみません)。
 
 しかし、似たような UI でも異なる動作をする hooks がありました。[useMenu – React Aria](https://react-spectrum.adobe.com/react-aria/useMenu.html) です。Select や Combobox はフォームに入力するオプションを選ぶ要素なのに対して、Menu はクリックすると何らかのアクションを起こしたいときに使うものです(と思っていたのですが今見てみたらそうでないときも使えそうで分からなくなってます)。
-`useMenu`のページの実装例を見てみると、こちらはフォーカスが折り返されるようになっています。
+`useMenu`のページの実装例を見てみると、こちらはフォーカスが折り返されるようになっています。最初の Gif がこれです。
 
 ## ARIA Authoring Practices Guide
 
 ARIA Authoring Practices Guide (APG) とは、W3C が公開している、Web サイトの実装者がアクセシブルな Web サイトを作るためのパターンを紹介しているサイトです。必要に応じて実装例や [Accessible Rich Internet Applications (WAI-ARIA)](https://w3c.github.io/aria/) へのリンクも掲載されています。
 React Aria のドキュメントには必要に応じて APG へのリンクが提示されているので、今回はこちらを確認していきました。
 
-まず`useSelect`では、内部で`useListBox`を使ってセレクトボックスを実装していることから、ドキュメントには情報源として [Listbox Pattern | APG | WAI | W3C](https://www.w3.org/WAI/ARIA/apg/patterns/listbox/) へのリンクが提示されています。
+まず`useSelect`では、内部で`useListBox`を使って Select を実装していることから、ドキュメントには情報源として [Listbox Pattern | APG | WAI | W3C](https://www.w3.org/WAI/ARIA/apg/patterns/listbox/) へのリンクが提示されています。
 `Keyboard Interaction`のセクションの`Down Arrow`というところが今回関係あるものです。
 
 > Moves focus to the next option. Optionally, in a single-select listbox, selection may also move with focus.
@@ -115,4 +118,4 @@ https://github.com/w3c/aria-practices/issues/3061
 
 ということで、Combobox はフォーカスが折り返されなくて Menu は折り返されるようになっている理由について考えていたのですが、結論としては a11y 的にはどっちでもよさそうということになりました。
 いつかドキュメントがいい感じになるといいですね。
-APG はちゃんと読んだことがあまりなかったので、React Aria を読むのと一緒にもっと読んでいこうと思いました。
+APG はちゃんと読んだことがあまりなかったので、React Aria と一緒にもっと読んでいこうと思いました。
