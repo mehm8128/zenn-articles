@@ -1,12 +1,12 @@
 {
 	"name": "zenn-articles",
 	"scripts": {
-		"dev": "npm run open && zenn preview",
+		"dev": "zenn preview",
 		"open": "wslview http://localhost:8000",
 		"new": "zenn new:article",
 		"new:book": "zenn new:book"
 	},
 	"devDependencies": {
-		"zenn-cli": "^0.1.157"
+		"zenn-cli": "^0.1.158"
 	}
 }
