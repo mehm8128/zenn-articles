@@ -3,7 +3,7 @@ title: "Tailwind CSS v4.0 Beta のリリースなど: Cybozu Frontend Weekly (20
 emoji: "❄️"
 type: "tech"
 topics: ["frontend", "cybozufrontendweek"]
-published: true
+published: false
 publication_name: "cybozu_frontend"
 ---
 
