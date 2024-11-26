@@ -99,4 +99,10 @@ WAI-ARIA role にはそれぞれ `nameFrom`というプロパティがあり、a
 
 text alternative の計算ステップについてまとめます。が、難しそうなので重要そうなところを雰囲気でまとめてます。
 
+## おまけ
+
+React Aria のソースコード上でも参照されていました。
+
+https://github.com/adobe/react-spectrum/blob/main/packages/react-aria-components/src/Button.tsx#L137-L138
+
 ## まとめ
