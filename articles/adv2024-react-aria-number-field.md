@@ -23,36 +23,37 @@ https://react-spectrum.adobe.com/react-aria/useNumberField.html
 
 https://www.w3.org/WAI/ARIA/apg/patterns/spinbutton/
 
-- `textbox`role
+- role
 - 様々な format
-- spin button
 
 ## いくつかピックアップ
 
-### `textbox`role
+### role
 
-`input`の`type`を`number`ではなくて`text`にしているので、`spinbutton`role にはなりません。これは後述する色々なフォーマットに対応するためです。
+`input`の`type`を`number`ではなくて`text`にしているので、`spinbutton`role ではなくて`textbox`role になっています。これは後述する色々なフォーマットに対応するためです。
+その代わりに、要素の役割についてスクリーンリーダーの読み上げ用に補足説明を入れる[`aria-roledescription`](https://developer.mozilla.org/ja/docs/Web/Accessibility/ARIA/Roles/application_role#aria-roledescription)が利用されています。今回の場合、日本語では「数値フィールド」と読み上げられるようになっています。
 
 https://github.com/adobe/react-spectrum/blob/b3a4d6c1134aae882aa1dcfce64efba1d8f4308d/packages/%40react-aria/numberfield/src/useNumberField.ts#L212
 
+https://github.com/adobe/react-spectrum/blob/b3a4d6c1134aae882aa1dcfce64efba1d8f4308d/packages/%40react-aria/numberfield/src/useNumberField.ts#L234
+
+また、`useSpinButton`という hooks から返される`spinButtonProps`によって`spinbutton`role に上書きすることも可能なのですが、React Aria の実装ではさらにそれを`role: null`で上書きしてデフォルトの`textbox`role にしています。これは、Voice Over 利用時に`spinbutton`role にフォーカスできなくなってしまっていることが理由らしいです。
+ちなみに、+/-ボタンはキーボードの矢印キーでインクリメント・デクリメントの操作が可能なことから Tab フォーカスされないようになっています。
+
+https://github.com/adobe/react-spectrum/blob/b3a4d6c1134aae882aa1dcfce64efba1d8f4308d/packages/%40react-aria/numberfield/src/useNumberField.ts#L231-L238
+
+さらに、`spinbutton`role ではないので、`spinButtonProps`から返される`aria-valuemax`などの`aria-`属性も`null`に上書きしています。
+
+https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-valuemax
+
 ### 様々な format
 
-format するために stately 必要だよねとか
-`aria-roledescription`
+ドキュメントにもあるように、小数点やパーセント表記、通貨、その他の単位のフォーマットがサポートされています。この変換を行ったり、+/-ボタンによるインクリメント・デクリメントをサポートしたりするために、`useNumberFieldState`という hook が提供されています。
 
-### spin button
+https://github.com/adobe/react-spectrum/blob/main/packages/%40react-stately/numberfield/src/useNumberFieldState.ts
 
-> Determine the label for the increment and decrement buttons
-
-の話とか APG とか`aria-valuenow`とか role とか input にしかフォーカスしないとか
-
-> override the spinbutton role, we can't focus a spin button with VO
-
-VO=Voice Over
-
-## その他
-
-## 疑問点
+数値フィールド内の値は`numberValue`と`inputValue`という 2 つの state で管理されています。`numberValue`は内部で持つ用の`number`型の値、`inputValue`は表示用の`string`型の値で、後者は単位がついたりしているものです。
+どちらも`useNumberFieldState`内で`useState`を用いて管理されています。`numberValue`は`useSpinButton`に渡されて`spinButtonProps`の`aria-valuenow`に用いられ、`inputValue`は`inputProps`として`useNumberField`から返されて`input`要素に渡されます。
 
 ## まとめ
 
