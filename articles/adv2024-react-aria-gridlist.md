@@ -113,7 +113,9 @@ React Aria の`useGridList`は主にこちらをサポートしていそうな�
 
 https://www.w3.org/WAI/ARIA/apg/patterns/grid/examples/layout-grids/
 
-こちらは React Aria だと`useTagGroup`などが該当すると思います。また後日紹介します。
+こちらは React Aria だと`useTagGroup`などが該当します。
+
+https://react-spectrum.adobe.com/react-aria/useTagGroup.html
 
 #### `aria-`でなんかあれば
 
