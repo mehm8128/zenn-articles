@@ -52,6 +52,15 @@ https://github.com/adobe/react-spectrum/blob/b3a4d6c1134aae882aa1dcfce64efba1d8f
 縦に配置する場合は`aria-orientation="vertical"`をつけ、上下矢印キーでタブを移動できるようにします。
 また、右から左に読む言語を利用している場合、最初のタブが一番右、最後のタブが一番左に配置されるようにする必要があり、さらにキーボード操作も左右逆にします。ドキュメントのデモ部分で devtools から`dir="ltr"`を`dir="rtl"`にすると体験できます。
 
+### Pointer Cancellation
+
+過去に こんな issue がありました。
+
+https://github.com/adobe/react-spectrum/issues/4336
+
+WCAG の [Success Criterion 2.5.2 Pointer Cancellation](https://www.w3.org/TR/WCAG22/#pointer-cancellation)に準拠せず、pointerdown のタイミングでしかタブの選択ができなかった時期があったようです。今回のケースは 4 つ挙げられているパターンのうちの「Abort or Undo」に当たると思います。
+そこで、[useTab: adds support for shouldSelectOnPressUp #4342](https://github.com/adobe/react-spectrum/pull/4342)で`shouldSelectOnPressUp`props がサポートされ、間違えてタブをクリック（pointerdown）してしまったときでも pointerup する前にタブからカーソルを移動すればタブの選択をキャンセルすることができるようになりました。
+
 ## まとめ
 
 明日は の話です。お楽しみにー
