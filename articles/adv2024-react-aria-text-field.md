@@ -65,14 +65,8 @@ React Aria ではフィールド系のコンポーネントにはラベルに加
 
 https://react-spectrum.adobe.com/react-aria/forms.html
 
-ここで 1 つ、少し前に面白い記事があったので紹介しておきます。
-uhyo さんの記事で、React Aria の実装について解説されているのでタイトルに惹かれた人は是非読んでみてください。
-
-https://zenn.dev/uhyo/articles/aria-label-and-labelledby
-
-また、accessible name や accessible description の計算方法についてのドキュメントを自分が雑に調査した Zenn Scrap もあるので暇な人はこちらもご覧ください。
-
-https://zenn.dev/mehm8128/scraps/a66a7f7fb6a6aa
+TODO: aria-errormessage について
+safari で読み上げられないみたいな話
 
 ### `aria-multiline`
 
@@ -83,6 +77,10 @@ https://www.w3.org/TR/wai-aria-1.2/#textbox
 `textbox`role についてのセクションで、NOTE の欄には、1 行のテキストフィールドである`input`タグは Enter キーを押すとデフォルトではフォームが送信されるけど、複数行である`textarea`タグは改行されるだけなので、それを区別するために`aria-multiline`があるという話が書かれています。
 `aria-multiline`を`true`にするとスクリーンリーダーでは「複数行」という読み上げがされるので、それによって Enter を押したときにすぐに送信されてしまうか、改行されるだけかという判断がつく、という話だと理解しました。
 ただ、複数行のときにはちゃんと`textarea`タグを使っていれば自動で`aria-multiline='true'`の挙動になってくれるので、RTE を触るときなどに気にすることになりそうです。React Aria の`useTextfield`では[`input`か`textarea`タグのみをサポートしている](https://github.com/adobe/react-spectrum/blob/93c26d8bd2dfe48a815f08c58925a977b94d6fdd/packages/%40react-aria/textfield/src/useTextField.ts#L50)ので、実装に明示的に含まれてはいませんでした。
+
+## inputMode
+
+書く
 
 ## まとめ
 
