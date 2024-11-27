@@ -47,7 +47,7 @@ https://zenn.dev/cybozu_frontend/articles/react-aria-component-design
 - [ARIA Authoring Practices Guide (APG)](https://www.w3.org/WAI/ARIA/apg/)
 - [Accessible Rich Internet Applications (WAI-ARIA) 1.2](https://www.w3.org/TR/wai-aria-1.2/)
 
-なども読みつつ、ソースコードを読んで実際にどのような a11y 対応がサポートされているか見ていき、深掘りたいところは深掘ったり、深掘りたくないところはスルーしたりしながら進めていきます。
+なども読みつつ、ソースコードを読んで実際にどのような a11y 対応がサポートされているかを見ていき、深掘りたいところは深掘ったり、深掘りたくないところはスルーしたりしながら進めていきます。
 解説というよりは自分の勉強メモという感じになると思いますがよろしくお願いします。
 
 ### 書かないこと
