@@ -30,25 +30,27 @@ https://www.w3.org/WAI/ARIA/apg/patterns/listbox/
 
 ## いくつかピックアップ
 
+### role と`aria-`属性
+
+1 つ 1 つのタブボタンは`tab`role、それらを囲っているものが`tablist`role、タブ選択時にコンテンツが表示される領域が`tabpanel`role です。
+全ての`tab`role にはそれぞれに対応する`tabpanel`の id を`aria-controls`に指定し、さらにアクティブは`tab`role には`aria-selected="true"`をつけます。
+
 ### キーボード操作
 
+Tab キーで現在アクティブなタブにフォーカスが当たり、矢印キーでタブの移動ができます。
+
+また、タブにフォーカスが当たっているときに Tab キーを押した場合、タブパネルがその中にフォーカス可能な要素を含んでいればその要素にフォーカスが当たります。フォーカス可能な要素を含んでいなければタブパネル自体が`tabindex="0"`になってタブパネル全体にフォーカスが当たります。
+
 https://github.com/adobe/react-spectrum/blob/b3a4d6c1134aae882aa1dcfce64efba1d8f4308d/packages/%40react-aria/tabs/src/useTabPanel.ts#L31-L34
-の`tabbable`はコンポーネントの tab のことではなくて、tab キーでフォーカスできる要素のこと
-↑ に関連して、tabpanel 内に tabbable なものがなければ、panel 全体が tabindex=0 になる
 
-矢印キーとかは`TabsKeyboardDelegate.ts`にある
+（注意: `tabbale`、`tabbing`は Tab キーでフォーカスできる、Tab キーを押す、などの意味で、`tab`はタブコンポーネントを意味しています）
 
-### `aria-`
+### タブの配置方向
 
-controls とか selected とか
+縦に配置する場合と、左右反対に配置するパターンがあります。
 
-### i18n
-
-tab がひっくりかえるよ
-
-## その他
-
-## 疑問点
+縦に配置する場合は`aria-orientation="vertical"`をつけ、上下矢印キーでタブを移動できるようにします。
+また、右から左に読む言語を利用している場合、最初のタブが一番右、最後のタブが一番左に配置されるようにする必要があり、さらにキーボード操作も左右逆にします。ドキュメントのデモ部分で devtools から`dir="ltr"`を`dir="rtl"`にすると体験できます。
 
 ## まとめ
 
