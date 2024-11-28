@@ -82,6 +82,11 @@ https://www.w3.org/TR/wai-aria-1.2/#textbox
 
 書く
 
+## id と labelledby
+
+uhyo さんが書いてたやつを簡単にまとめる
+https://github.com/adobe/react-spectrum/discussions/3362
+
 ## まとめ
 
 明日は Number Field の話です。お楽しみにー
