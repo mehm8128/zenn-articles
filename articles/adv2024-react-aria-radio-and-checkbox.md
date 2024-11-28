@@ -73,6 +73,11 @@ https://github.com/adobe/react-spectrum/blob/10a43de887ffc28913c770a33573aebf3df
 
 これを用いて、「一番下のラジオボタンにフォーカスされているときに下矢印キーが押されたら一番上のラジオボタンにフォーカスする」などといった動作が実現されています。
 
+### 読むやつ
+
+https://github.com/adobe/react-spectrum/issues/3799
+https://github.com/adobe/react-spectrum/issues/2196
+
 ## まとめ
 
 明日は の話です。お楽しみにー
