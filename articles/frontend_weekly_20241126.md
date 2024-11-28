@@ -3,7 +3,7 @@ title: "Tailwind CSS v4.0 Beta のリリースなど: Cybozu Frontend Weekly (20
 emoji: "❄️"
 type: "tech"
 topics: ["frontend", "cybozufrontendweek"]
-published: false
+published: true
 publication_name: "cybozu_frontend"
 ---
 
@@ -43,7 +43,7 @@ Chrome Devtools 上の Performance パネル で、 AI と対話してパフォ�
 
 https://bloomberg.github.io/ts-blank-space/
 
-TypeScript と JavaScript に変換するトランスパイラです。
+ts-blank-space は TypeScript と JavaScript に変換するトランスパイラです。
 型チェックや複雑なコード変換をするわけではなく、ただ型情報をそれと同じ文字数のスペースに置き換えるだけのものです。
 
 JavaScript に変換したときにコードの位置がほとんどずれないのでソースマップを生成する必要がなくなり、エラースタックの座標からそのままエラー箇所を特定することができます。
