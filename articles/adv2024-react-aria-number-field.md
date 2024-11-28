@@ -55,6 +55,16 @@ https://github.com/adobe/react-spectrum/blob/main/packages/%40react-stately/numb
 数値フィールド内の値は`numberValue`と`inputValue`という 2 つの state で管理されています。`numberValue`は内部で持つ用の`number`型の値、`inputValue`は表示用の`string`型の値で、後者は単位がついたりしているものです。
 どちらも`useNumberFieldState`内で`useState`を用いて管理されています。`numberValue`は`useSpinButton`に渡されて`spinButtonProps`の`aria-valuenow`に用いられ、`inputValue`は`inputProps`として`useNumberField`から返されて`input`要素に渡されます。
 
+#### label
+
+Determine the label for the increment and decrement buttons.を頑張って読む
+
+name プロパティは使えないですよ。number 型を送信したいので、そのままじゃなくて hidden の input を別で用意する
+https://github.com/adobe/react-spectrum/issues/2745
+
+まだ読んでない
+https://github.com/adobe/react-spectrum/issues/5474
+
 ## まとめ
 
 明日は の話です。お楽しみにー
