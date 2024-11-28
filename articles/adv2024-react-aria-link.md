@@ -36,6 +36,13 @@ https://www.w3.org/WAI/ARIA/apg/patterns/link/
 
 ## その他
 
+### リンクを disabled にする方法
+
+`useLink`内部で、`useButton`に出てきた`usePress`を利用しているのですが、`useLink`に`isDisabled`を渡すと`usePress`内で`e.preventDefault()`してくれて、ナビゲーションが発火しません。
+これによって disabled が実現されています。
+
+https://github.com/adobe/react-spectrum/blob/12920fc91afa90d54ae769db45a1cff4b823e1bb/packages/%40react-aria/interactions/src/usePress.ts#L334-L336
+
 ### client side navigation
 
 `useLink`を用いると、例えば Next.js の`router.push()`などの client side navigation が `a` タグをクリックしたときに実行されるようになります。つまり、Next.js の`Link`コンポーネントのような動きをすることになります。
@@ -55,13 +62,6 @@ https://github.com/adobe/react-spectrum/blob/12920fc91afa90d54ae769db45a1cff4b82
 
 https://github.com/adobe/react-spectrum/blob/12920fc91afa90d54ae769db45a1cff4b823e1bb/packages/%40react-aria/utils/src/openLink.tsx#L45-L53
 
-### リンクを disabled にする方法
-
-`useLink`内部で、`useButton`に出てきた`usePress`を利用しているのですが、`useLink`に`isDisabled`を渡すと`usePress`内で`e.preventDefault()`してくれて、ナビゲーションが発火しません。
-これによって disabled が実現されています。
-
-https://github.com/adobe/react-spectrum/blob/12920fc91afa90d54ae769db45a1cff4b823e1bb/packages/%40react-aria/interactions/src/usePress.ts#L334-L336
-
 ### `useLink`で足りないもの
 
 色々と面倒を見てくれる`useLink`ですが、どうしても実現できないものもあります。
@@ -80,12 +80,6 @@ https://www.w3.org/WAI/ARIA/apg/patterns/link/
 https://www.w3.org/WAI/ARIA/apg/patterns/link/examples/link/#ex_label
 
 よって、リンクはできるだけ`a`タグで実装するのが好ましいです。
-
-## 疑問点
-
-disabled にしたとき、focusable かどうかが HTML 要素の種類によって決まっていて、`a`タグを使っている場合は focusable だけど`span`タグの場合は focusable でない、みたいになっていて一貫していないのは問題ないのか気になりました。
-
-https://github.com/adobe/react-spectrum/blob/12920fc91afa90d54ae769db45a1cff4b823e1bb/packages/%40react-aria/link/src/useLink.ts#L55-L60
 
 ## まとめ
 
