@@ -62,6 +62,10 @@ React Aria のポップオーバーで特徴的なのはこれです。
 
 https://github.com/adobe/react-spectrum/blob/10a43de887ffc28913c770a33573aebf3df786fc/packages/%40react-aria/dialog/src/useDialog.ts#L66-L70
 
+### Focus Management API
+
+まとめる
+
 ## まとめ
 
 明日は の話です。お楽しみにー
