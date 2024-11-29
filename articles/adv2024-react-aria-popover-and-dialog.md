@@ -62,9 +62,18 @@ React Aria のポップオーバーで特徴的なのはこれです。
 
 https://github.com/adobe/react-spectrum/blob/10a43de887ffc28913c770a33573aebf3df786fc/packages/%40react-aria/dialog/src/useDialog.ts#L66-L70
 
-### Focus Management API
+### todo
 
-まとめる
+overlays 以下を見て面白そうなコメントあれば
+
+https://github.com/adobe/react-spectrum/issues/4130
+https://github.com/adobe/react-spectrum/issues/4922
+原因同じらしい
+
+`usePreventScroll`の`overscroll-behavior should prevent scroll chaining, but currently does not`
+同じく`fixes a firefox issue that starts text selection`
+
+useOverlayTrigger の`Aria 1.1 supports multiple values for aria-haspopup other than just menus.`
 
 ## まとめ
 
