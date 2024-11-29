@@ -9,10 +9,6 @@ published: false
 こんにちは、フロントエンドエンジニアの mehm8128 です。
 前に Zenn Scrap で調査した、Accessible Name and Description Computation 1.2 の内容を改めて記事としてまとめます。
 
-Scrap はこちら（この記事でまとめ直しているので Scrap は読む必要ありません）。
-
-https://zenn.dev/mehm8128/scraps/a66a7f7fb6a6aa
-
 ## Accessible Name and Description Computation とは
 
 Accessible Name and Description Computation とは、user agent が accessible name や accessible description をどのように計算するかを定義しているドキュメントです。
@@ -73,8 +69,6 @@ Accessible Name and Description Computation とは、user agent が accessible n
 
 [4.3 Accessible Name and Description Computation (1.1)](https://www.w3.org/TR/accname/#mapping_additional_nd_te) で説明されていた text alternative の計算ステップの順番が変更されたことにより、説明が簡素化＆バグも修正されました（[4.3.2 Computation steps (1.2)](https://www.w3.org/TR/accname-1.2/#computation-steps)）。
 
-この計算ステップについては後ほど説明します。
-
 ### add name from prohibited
 
 [add name from prohibited by billybonks · Pull Request #71 · w3c/accname](https://github.com/w3c/accname/pull/71)
@@ -97,12 +91,19 @@ WAI-ARIA role にはそれぞれ `nameFrom`というプロパティがあり、a
 
 ## 計算ステップの詳細
 
-text alternative の計算ステップについてまとめます。が、難しそうなので重要そうなところを雰囲気でまとめてます。
+text alternative の計算ステップについてまとめます。
+と思ったのですが、上手くまとめられなさそうだったので省略します。
 
 ## おまけ
 
 React Aria のソースコード上でも参照されていました。
 
-https://github.com/adobe/react-spectrum/blob/main/packages/react-aria-components/src/Button.tsx#L137-L138
+https://github.com/adobe/react-spectrum/blob/b0f15697245de74ebc99ab3d687f5eb3733d3a34/packages/react-aria-components/src/Button.tsx#L140-L141
+
+uhyo さんの記事でも参照されました。
+https://zenn.dev/uhyo/articles/aria-label-and-labelledby#%E4%BB%95%E6%A7%98%E6%9B%B8%E3%81%A7%E7%A2%BA%E3%81%8B%E3%82%81%E3%82%8B
 
 ## まとめ
+
+accessible name などの計算方法はもちろんですが、`nameFrom`という概念も知らなかったので知ることができてよかったです。
+ちょうど最近「`caption`要素には accessible name をつけられない」みたいな話が出ている issue を見たのですが、どれだか忘れてしまいました...。
