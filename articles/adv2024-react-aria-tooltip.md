@@ -98,6 +98,32 @@ https://github.com/adobe/react-spectrum/blob/5ed06068ee2742f32e066ffa8eb55fd93a0
 
 フォーカス中に tooltip が表示され、Esc キーで tooltip が閉じられるようになっています。
 
+### chrome のバグ
+
+https://github.com/adobe/react-spectrum/blob/b0f15697245de74ebc99ab3d687f5eb3733d3a34/packages/%40react-aria/tooltip/src/useTooltipTrigger.ts#L83-L91
+
+```
+export const Default: TooltipTriggerStory = {
+  render: (args) => {
+    const [isFocused, setIsFocused] = useState(false);
+
+    return (
+      <div style={{ position: 'relative' }}>
+        <TooltipTrigger {...args} />
+        {isFocused && <div style={{ backgroundColor: 'red', height: 100, width: 100, left: 0, top: 0, position: 'absolute' }} />}
+        <button onClick={() => setIsFocused(!isFocused)}>aaa</button>
+      </div>
+    );
+  }
+};
+```
+
+で再現可能
+
+現状は隠してる要素が消えたタイミングでは再表示されないけど、modality をチェックしないと再表示されてしまうってことらしい
+
+元々の issue としては、ツールチップが開いてるときにそれ以外の場所をクリックすると閉じたいとか、キーボードフォーカスで開いた状態でさらにマウスでホバーしてホバーを解除したときに閉じたいとかだった
+
 ## その他
 
 ### tooltip 自体へのホバー
@@ -105,11 +131,6 @@ https://github.com/adobe/react-spectrum/blob/5ed06068ee2742f32e066ffa8eb55fd93a0
 トリガーとなるボタンからホバーが外れたとしても、tooltip 自体をホバーしていれば消えないようになっています。
 [Web アプリケーションアクセシビリティ本](https://amzn.asia/d/erlHCpO)では、「画面拡大時に tooltip が画面外にはみ出てしまったときでも、tooltip をホバーしながら画面移動することで tooltip を表示したまま内容を全て読めるようにするため」にこの機能が必要だと書かれています。
 また、tooltip とトリガーとなるボタンとの間に隙間があるときにカーソルを移動させると tooltip が消えてしまわないように、tooltip が消えるまで数秒の遅延を挟んでいます。
-
-## 疑問点
-
-`useButton`ではモバイルでも`isPressing`が対応されていましたが、今回はモバイルで触っても tooltip が表示されないのがちょっと気になりました。
-ただ、ボタンと違って tooltip は基本的には補助的なコンテンツに用いるものなので、そんなに問題ないのかなと思いました。
 
 ## まとめ
 
