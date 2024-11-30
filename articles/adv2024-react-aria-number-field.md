@@ -55,15 +55,26 @@ https://github.com/adobe/react-spectrum/blob/main/packages/%40react-stately/numb
 数値フィールド内の値は`numberValue`と`inputValue`という 2 つの state で管理されています。`numberValue`は内部で持つ用の`number`型の値、`inputValue`は表示用の`string`型の値で、後者は単位がついたりしているものです。
 どちらも`useNumberFieldState`内で`useState`を用いて管理されています。`numberValue`は`useSpinButton`に渡されて`spinButtonProps`の`aria-valuenow`に用いられ、`inputValue`は`inputProps`として`useNumberField`から返されて`input`要素に渡されます。
 
-#### label
+### タッチパッド の `onWheel`
 
-Determine the label for the increment and decrement buttons.を頑張って読む
+マウスホイールを上下に動かすことで increment/decrement ができますが、タッチパッドのスクロール操作（一般的に指 2 本でやるやつ）でももちろんできます。
+しかし、タッチパッドだと上下以外にも横方向へのスクロールや、斜め方向へのスクロールもできるので、誤って操作してしまうのを防ぐために、横方向のスクロール（`e.deltaX`）が縦方向のスクロール（`e.deltaY`）より大きい場合は increment/decrement されないようになっています。
 
-name プロパティは使えないですよ。number 型を送信したいので、そのままじゃなくて hidden の input を別で用意する
-https://github.com/adobe/react-spectrum/issues/2745
+https://github.com/adobe/react-spectrum/blob/b0f15697245de74ebc99ab3d687f5eb3733d3a34/packages/%40react-aria/numberfield/src/useNumberField.ts#L134-L147
 
-まだ読んでない
-https://github.com/adobe/react-spectrum/issues/5474
+### `inputMode`
+
+昨日紹介した `inputMode` です。
+今回は数値に特化しているので hook 内部で指定しています。
+しかし、ブラウザや OS によって同じ `inputMode` でも表示されるキーボードが異なってしまうので、負の値を許容する NumberField のときは`-`ボタンが表示されるキーボードを表示する、とかをちゃんと条件分岐して設定しています。
+
+具体的に説明します。
+iPhone では`inputMode`が`numeric`でも`decimal`でも`-`ボタンが表示されないので、負の値を許容する場合は`inputMode`を`text`にします。
+Android では`inputMode`が`numeric`の場合に`-`ボタンがあり、`decimal`のときにはないので、負の値を許容する場合は`inputMode`を`numeric`にします。
+
+細かいところですがしっかり各端末の挙動が調査されて適切な設定がされていることが分かります。
+
+https://github.com/adobe/react-spectrum/blob/b0f15697245de74ebc99ab3d687f5eb3733d3a34/packages/%40react-aria/numberfield/src/useNumberField.ts#L152-L176
 
 ## まとめ
 
