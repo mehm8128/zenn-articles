@@ -3,7 +3,7 @@ title: "イントロダクション - React Ariaの実装読むぞ"
 emoji: "🎄"
 type: "idea" # tech: 技術記事 / idea: アイデア
 topics: ["frontend", "react", "a11y", "reactaria"]
-published: false
+published: true
 ---
 
 :::message
@@ -22,7 +22,7 @@ Qiita の方でカレンダーを作っていて（完走賞ほしい）、購�
 https://qiita.com/advent-calendar/2024/react-aria
 
 また、Adventar の方にアクセシビリティのカレンダーがあったので、そちらにも参加させていただいています。
-[Accessible Name and Description Computation 1.2](https://www.w3.org/TR/accname-1.2/) についてまとめて、既に記事は完成しているので、お楽しみに。
+[Accessible Name and Description Computation 1.2](https://www.w3.org/TR/accname-1.2/) についてまとめていて、既に記事は完成しているので、お楽しみに。
 
 https://adventar.org/calendars/9957
 
