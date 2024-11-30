@@ -60,13 +60,16 @@ https://www.w3.org/TR/wai-aria-1.2/#textbox
 ### フィールドの a11y とバリデーション
 
 React Aria ではフィールド系のコンポーネントにはラベルに加えて説明文とエラーメッセージを紐づけることができます。
-説明文を入れている要素には`descriptionProps`を、エラーメッセージを入れている要素には`errorMessageProps`を渡すことで、[`useField`](https://github.com/adobe/react-spectrum/blob/93c26d8bd2dfe48a815f08c58925a977b94d6fdd/packages/%40react-aria/label/src/useField.ts#L31)によって生成されている id を用いてテキストフィールドに紐づけることができます。
+説明文を入れている要素には`descriptionProps`を、エラーメッセージを入れている要素には`errorMessageProps`を渡すことで、[`useField`](https://github.com/adobe/react-spectrum/blob/93c26d8bd2dfe48a815f08c58925a977b94d6fdd/packages/%40react-aria/label/src/useField.ts#L31)によって生成されている id を用いて`aria-describedby`でテキストフィールドに紐づけることができます。
 また、 React Hook Form などのライブラリと一緒に使うこともでき、そのバリデーション結果のエラーメッセージを、`errorMessageProps`を渡している要素に入れることで紐づけます。
 
 https://react-spectrum.adobe.com/react-aria/forms.html
 
-TODO: aria-errormessage について
-safari で読み上げられないみたいな話
+エラーメッセージには`aria-errormessage`が使われることもありますが、`aria-errormessage`は現状スクリーンリーダーによって上手く読み上げられないため、用いられていないようです。
+
+https://github.com/adobe/react-spectrum/issues/7425
+
+https://a11ysupport.io/tech/aria/aria-errormessage_attribute
 
 ### `aria-multiline`
 
@@ -81,11 +84,6 @@ https://www.w3.org/TR/wai-aria-1.2/#textbox
 ## inputMode
 
 書く
-
-## id と labelledby
-
-uhyo さんが書いてたやつを簡単にまとめる
-https://github.com/adobe/react-spectrum/discussions/3362
 
 ## まとめ
 
