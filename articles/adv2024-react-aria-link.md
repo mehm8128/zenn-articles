@@ -7,9 +7,14 @@ published: false
 ---
 
 こんにちは、フロントエンドエンジニアの mehm8128 です。
+
 今日は Link について書いていきます。
 
 https://react-spectrum.adobe.com/react-aria/useLink.html
+
+## `useLink`とは
+
+`a`タグのようなリンクを作るための hook です。
 
 ## 使用例
 
@@ -28,13 +33,11 @@ function Link(props) {
 }
 ```
 
-## 主な a11y 考慮事項
+## 本題
+
+APG はこちらです。
 
 https://www.w3.org/WAI/ARIA/apg/patterns/link/
-
-- `link`role
-
-## その他
 
 ### リンクを disabled にする方法
 
@@ -80,6 +83,18 @@ https://www.w3.org/WAI/ARIA/apg/patterns/link/
 https://www.w3.org/WAI/ARIA/apg/patterns/link/examples/link/#ex_label
 
 よって、リンクはできるだけ`a`タグで実装するのが好ましいです。
+
+## リンクがドラッグできないバグ
+
+こんな issue がありました。
+https://github.com/adobe/react-spectrum/issues/6618
+
+普通`a`タグは`draggable="false"`がついていない限りドラッグすることができて、ブラウザ上部に持っていくことで別タブで開いたり、テキスト入力欄に持っていくと URL をそのままペースト（？）できたりするのですが、`useLink`を使っているとなぜかドラッグできなくなってしまうというバグらしいです。
+
+そこで僕が調査して、一応修正 PR を出すところまでいったのですがまだ見てもらえていません。直ってはいるけど修正のしかたに自信がないので、レビューとかもらえると助かります。
+原因としては`usePress`で`e.preventDefault()`したくないところでもされてしまっていたのでそこをいい感じに直しました。
+
+https://github.com/adobe/react-spectrum/pull/7448
 
 ## まとめ
 
