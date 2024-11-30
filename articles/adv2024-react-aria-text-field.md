@@ -84,6 +84,7 @@ https://www.w3.org/TR/wai-aria-1.2/#textbox
 ## inputMode
 
 書く
+https://html.spec.whatwg.org/multipage/interaction.html#input-modalities:-the-inputmode-attribute
 
 ## まとめ
 
