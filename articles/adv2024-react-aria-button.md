@@ -6,19 +6,19 @@ topics: ["frontend", "react", "a11y", "reactaria"]
 published: false
 ---
 
+:::message
+この記事は [React Aria の実装読むぞ - Qiita Advent Calendar 2024](https://qiita.com/advent-calendar/2024/react-aria) の 2 日目の記事です。
+:::
+
 こんにちは、フロントエンドエンジニアの mehm8128 です。
-これから 25 日間、1 人アドベントカレンダーとして React Aria を読んでいきます。
-主に React Aria の提供している hooks について解説していくのですが、最初に軽く hooks 自体の説明をした後、内部実装を読んで気になったところの解説や疑問に思って調査した点の説明をしていこうと思います。内部実装は全てちゃんと読んでいるわけではなく、主に a11y 的な観点に絞って読んでいます。
-また、解説とは書きましたが、解説というよりは自分の勉強メモのような感じになっていくと思います。
 
 それでは今日は Button について書いていきます。
 
 https://react-spectrum.adobe.com/react-aria/useButton.html
 
-## `useButton` が提供しているもの
+## `useButton` とは
 
-- マウスやタッチ、キーボードによるインタラクション
-- ARIA を用いて、`button` タグ以外の HTML 要素もボタンにできる
+ボタンを作るための hook で、マウスやタッチ、キーボードによるインタラクションをサポートします。
 
 ## 使用例
 
@@ -38,19 +38,14 @@ function Button(props) {
 }
 ```
 
-## 主な a11y 考慮事項
+## 本題
 
+APG はこちらです。
 https://www.w3.org/WAI/ARIA/apg/patterns/button/
 
-- `usePress`
-- `aria-pressed`
-- `isPending`
+### `usePress`について
 
-## いくつかピックアップ
-
-### `usePress`
-
-usePress では様々な a11y 対応がされているのですが、ブログ記事にまとめられています。
+usePress では様々な a11y 対応がされていて、ブログ記事にまとめられています。
 https://react-spectrum.adobe.com/blog/building-a-button-part-1.html
 
 簡単に概要をまとめます。
@@ -60,15 +55,15 @@ https://react-spectrum.adobe.com/blog/building-a-button-part-1.html
 そこで React Aria では[Pointer events API](https://developer.mozilla.org/ja/docs/Web/API/Pointer_events) を利用されています。この API はマウス、タッチ、ペンによる操作に対応していて、[`pointerType`](https://developer.mozilla.org/ja/docs/Web/API/PointerEvent/pointerType)プロパティによってどの機器によってイベントが発火されたのかも知ることができます。
 その他`usePress`ではタッチキャンセルやテキスト選択、キーボード操作時にキーを押しっぱなしにすることによるイベントの複数発火防止などにも対応していて、`useButton`以外にもいくつかの hooks で用いられています。
 
-実装を読みたい人はこちらから。実装を読むとかいうタイトルのアドベントカレンダーですが、僕は読んでいません。
+実装を読みたい人はこちらから。実装を読むとかいうタイトルのアドベントカレンダーですが、僕はほんのちょっとしか読んでいません（多分明日書きます）。
 
 https://github.com/adobe/react-spectrum/blob/main/packages/%40react-aria/interactions/src/usePress.ts
 
-### `isPending`
+### `isPending`について
 
-こちらは hooks にはないのですが、React Aria Components にのみ含まれる props です。
+こちらは hooks にはないのですが、React Aria Components に含まれている props です。
 データの送信中などにボタンを一時的に pending にしておくことができます。
-`isPending=true`のときはボタンに`aria-disabled="true"`がつき、また、即座に ProgressBar（`role="progressbar`のもの）をアクセシビリティツリーに含める必要があります。
+`isPending={true}`のときはボタンに`aria-disabled="true"`がつき、また、即座に ProgressBar（`role="progressbar"`のもの）をアクセシビリティツリーに含める必要があります。
 
 [https://react-spectrum.adobe.com/react-aria/Button.html#accessibility](https://react-spectrum.adobe.com/react-aria/Button.html#accessibility)
 
@@ -76,12 +71,32 @@ https://github.com/adobe/react-spectrum/blob/main/packages/%40react-aria/interac
 
 https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions#roles_with_implicit_live_region_attributes
 
-### バグ修正
+と思っていたのですが、読み上げられなさそうで React Aria では手動で読み上げが実装されていました...。
 
-ソースコード読んでたら軽微なバグを見つけたので、修正 PR を出して無事マージされました。
+https://github.com/adobe/react-spectrum/blob/b0f15697245de74ebc99ab3d687f5eb3733d3a34/packages/react-aria-components/src/Button.tsx#L150-L158
 
-https://github.com/adobe/react-spectrum/pull/7239
+ローディング状態になったときに 1 つ目のブロックが実行され、ローディング状態が解除されたときに`else if`のブロックが実行されます。
+`announce`関数では`LiveAnnouncer`という独自の class が利用されていて、visually hidden な`div`要素を用意しておいて、そこに`aria-live`などをつけた要素を入れておきます。さらにその中に読み上げさせたいテキストを`div`要素で追加する、もしくは`aria-labelledby`でテキストを指定したければ、`aria-labelledby`でテキストへの参照をつけた`img`role（おそらく`aria-labelledby`がつけられる role ならなんでも OK）の`div`要素を追加する、という実装になっています。
+
+https://github.com/adobe/react-spectrum/blob/main/packages/%40react-aria/live-announcer/src/LiveAnnouncer.tsx
+
+実際にレンダリングされる HTML を見た方が分かりやすいと思うので、大体こんな感じのコードです。
+実際の HTML が見たい方はドキュメントのデモとか開発用 Storybook とかで HTML 内を`data-live-announce`で検索かけると出てきます。
+
+```html
+<div data-live-announcer="true" style="visually hiddenにするstyle">
+  <div role="log" aria-live="assertive" aria-relevant="additions">
+    <!--`announce`関数発火時にここに要素が追加される-->
+  </div>
+  <div role="log" aria-live="assertive" aria-relevant="additions">
+    <!--例えばこんな感じ-->
+    <div>読み上げたいテキスト</div>
+    <!--もしくはこう-->
+    <div role="img" aria-labelledby="読み上げたいテキストの要素のid"></div>
+  </div>
+</div>
+```
 
 ## まとめ
 
-明日は Text Field の話です。お楽しみにー
+明日の担当は [@mehm8128](https://zenn.dev/mehm8128) さんで、 TextField についての記事です。お楽しみにー
