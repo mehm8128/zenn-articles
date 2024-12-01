@@ -57,23 +57,55 @@ https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 React Aria のポップオーバーで特徴的なのはこれです。
 ダイアログがモーダルになっているのは自然なのですが、ポップオーバーでもモーダルなのはあまり見たことがありませんでした。ポップオーバーを開くとポップオーバー外の要素へのインタラクションができなくなり、背景のスクロールもできなくなります。
 これは意図せずポップオーバーが閉じてしまったりポップオーバー外の要素にアクセスしてしまったりするのを防いでいます。
+その他詳細な理由がこの discussion で述べられています。
 
-モーダルにするときは`aria-modal="true"`にするとよいのですが、Safari でフォーカス制御が上手くいかないことがあることから、React Aria では代わりに外側の要素に`aria-hidden="true"`をつけています。
+https://github.com/adobe/react-spectrum/discussions/3802
+
+また、モーダルにするときは`aria-modal="true"`にするとよいのですが、Safari でフォーカス制御が上手くいかないことがあることから、React Aria では代わりに外側の要素に`aria-hidden="true"`をつけています。
 
 https://github.com/adobe/react-spectrum/blob/10a43de887ffc28913c770a33573aebf3df786fc/packages/%40react-aria/dialog/src/useDialog.ts#L66-L70
 
-### todo
+### VoiceOver on Chrome のバグ
 
-overlays 以下を見て面白そうなコメントあれば
+VoiceOver で以下の 2 つのパターンでダイアログが閉じてしまうというバグがありました。
 
-https://github.com/adobe/react-spectrum/issues/4130
-https://github.com/adobe/react-spectrum/issues/4922
-原因同じらしい
+- [別タブに移動して戻ってきたとき](https://github.com/adobe/react-spectrum/issues/4130)
+- [DatePicker でショートカットキーでフォーカスを移動したとき](https://github.com/adobe/react-spectrum/issues/4922)
 
-`usePreventScroll`の`overscroll-behavior should prevent scroll chaining, but currently does not`
-同じく`fixes a firefox issue that starts text selection`
+これらは VoiceOver on Chrome のバグとして報告されました。
 
-useOverlayTrigger の`Aria 1.1 supports multiple values for aria-haspopup other than just menus.`
+https://issues.chromium.org/issues/40069860
+
+その上で、React Aria でも workaround な対応がされたので、それを見ていきます。
+
+https://github.com/adobe/react-spectrum/pull/4931
+
+`e.relatedTarget`とは、今回は`onBlur`イベントを見ているので、`e.target`がフォーカスを失う要素を表しているのに対して、`e.relatedTarget`は逆にこのタイミングで新たにフォーカスを受け取る要素を表します。
+
+https://developer.mozilla.org/ja/docs/Web/API/MouseEvent/relatedTarget
+
+試したい人は以下のような HTML で、`aaa`ボタンから`bbb`にフォーカスを移動すると、`e.target`が`aaa`ボタン、`e.relatedTarget`が`bbb`ボタンになることが確認できます。
+
+```html
+<button id="button">aaa</button>
+<button>bbb</button>
+
+<script>
+  const ele = document.getElementById("button");
+  ele.addEventListener("blur", (e) => console.log(e.target, e.relatedTarget));
+</script>
+```
+
+条件式が変わっただけなのですが、if 文が`true`になる条件をまとめました。
+
+| 条件式                                                               | 修正前 | 修正後 |
+| -------------------------------------------------------------------- | ------ | ------ |
+| `e.relatedTarget` = truthy & `isElementInChildOfActiveScope` = true  | true   | true   |
+| `e.relatedTarget` = truthy & `isElementInChildOfActiveScope` = false | false  | false  |
+| `e.relatedTarget` = falsy & `isElementInChildOfActiveScope` = true   | false  | true   |
+| `e.relatedTarget` = falsy & `isElementInChildOfActiveScope` = false  | false  | true   |
+
+よって、`e.relatedTarget`が falsy (`null`) になるときにも結果が`true`になって、ダイアログが閉じられないようになったことが分かります。
 
 ## まとめ
 
