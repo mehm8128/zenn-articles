@@ -77,13 +77,21 @@ https://a11ysupport.io/tech/aria/aria-errormessage_attribute
 
 https://www.w3.org/TR/wai-aria-1.2/#textbox
 
-`textbox`role についてのセクションで、NOTE の欄には、1 行のテキストフィールドである`input`タグは Enter キーを押すとデフォルトではフォームが送信されるけど、複数行である`textarea`タグは改行されるだけなので、それを区別するために`aria-multiline`があるという話が書かれています。
+`textbox`role についてのセクションで、NOTE の欄には、1 行のテキストフィールドである`input`要素は Enter キーを押すとデフォルトではフォームが送信されるけど、複数行である`textarea`要素は改行されるだけなので、それを区別するために`aria-multiline`があるという話が書かれています。
 `aria-multiline`を`true`にするとスクリーンリーダーでは「複数行」という読み上げがされるので、それによって Enter を押したときにすぐに送信されてしまうか、改行されるだけかという判断がつく、という話だと理解しました。
-ただ、複数行のときにはちゃんと`textarea`タグを使っていれば自動で`aria-multiline='true'`の挙動になってくれるので、RTE を触るときなどに気にすることになりそうです。React Aria の`useTextfield`では[`input`か`textarea`タグのみをサポートしている](https://github.com/adobe/react-spectrum/blob/93c26d8bd2dfe48a815f08c58925a977b94d6fdd/packages/%40react-aria/textfield/src/useTextField.ts#L50)ので、実装に明示的に含まれてはいませんでした。
+ただ、複数行のときにはちゃんと`textarea`要素を使っていれば自動で`aria-multiline='true'`の挙動になってくれるので、RTE を触るときなどに気にすることになりそうです。React Aria の`useTextfield`では[`input`か`textarea`要素のみをサポートしている](https://github.com/adobe/react-spectrum/blob/93c26d8bd2dfe48a815f08c58925a977b94d6fdd/packages/%40react-aria/textfield/src/useTextField.ts#L50)ので、実装に明示的に含まれてはいませんでした。
 
-## inputMode
+## `inputMode`
 
-書く
+`input`要素には`type`属性があり、単純な TextField なら`type="text"`、チェックボックスなら`type="checkbox"`、数値なら`type="number"`など、用途に応じて指定することで入力フィールドの見た目や機能が変わったり、モバイル時に仮想キーボードが変化したりします。例えば`type="number"`だと、数字（と一部の記号）だけの仮想キーボードになります。スマホでロック画面解除のパスワードを入力するような画面を想像してもらうと分かりやすいと思います。
+
+しかし、例えば郵便番号は数字だから数字を入力しやすいように`type="number"`にしよう、というのは間違いです。デフォルトで`type="number"`には+/-ボタンのスピナーがつくのですが、郵便番号は数字を増減させて操作するタイプのものではないからです。また、ハイフンを含めて入力しようとした場合に上手く入力できません。
+
+こういう場合に、`type`属性ではなくて`inputMode`を利用します。
+`inputMode`は、入力フィールドの見た目や機能を変えずに、仮想キーボードのみを変化させるためのものです。例えば`type="number"`のときに表示される仮想キーボードと同じものを表示させるには、`inputMode="numeric"`を指定します。つまり、郵便番号の場合には`type="text"`で`inputMode="numeric"`を指定するのが適切だと考えられます。
+それ以外にも`type="email"`のときに出てくるものは`inputMode="email"`など、いくつかの種類があります。詳しくは下のリンクの HTML Standard をご覧ください。
+ちなみに`inputMode`は明日の記事でも登場します。
+
 https://html.spec.whatwg.org/multipage/interaction.html#input-modalities:-the-inputmode-attribute
 
 ## まとめ
