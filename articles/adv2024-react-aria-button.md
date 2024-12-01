@@ -54,9 +54,9 @@ https://react-spectrum.adobe.com/blog/building-a-button-part-1.html
 主にタッチデバイスへの対応の話が書かれていて、マウスでできる操作がタッチイベントだと難しかったり、`:active`や`:hover`の動作がユーザーの期待と一致しない場合があって UX が悪くなりがちだったりといった問題が挙げられています。
 
 そこで React Aria では [Pointer Events API](https://developer.mozilla.org/ja/docs/Web/API/Pointer_events) が利用されています。この API はマウス、タッチ、ペンによる操作に対応していて、[`pointerType`](https://developer.mozilla.org/ja/docs/Web/API/PointerEvent/pointerType)プロパティによってどの機器によってイベントが発火されたのかも知ることができます。
-その他`usePress`ではタッチキャンセルやテキスト選択、キーボード操作時にキーを押しっぱなしにすることによるイベントの複数発火防止などにも対応していて、`useButton`以外にもいくつかの hooks で用いられています。
+`usePress`ではこれを用いて上記の問題の解決や、その他タッチキャンセルやテキスト選択、キーボード操作時にキーを押しっぱなしにすることによるイベントの複数発火防止などにも対応しています。`usePress`は`useButton`以外にもいくつかの hooks で用いられています。
 
-実装を読みたい人はこちらから。実装を読むとかいうタイトルのアドベントカレンダーですが、僕はほんのちょっとしか読んでいません（多分明日書きます）。
+実装を読みたい人はこちらから。実装を読むとかいうタイトルのアドベントカレンダーですが、僕はほんのちょっとしか読んでいません（読んだ部分については明日書きます）。
 
 https://github.com/adobe/react-spectrum/blob/main/packages/%40react-aria/interactions/src/usePress.ts
 
