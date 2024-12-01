@@ -119,6 +119,15 @@ https://react-spectrum.adobe.com/react-aria/useTagGroup.html
 
 #### `aria-`でなんかあれば
 
+`aria-rowcount`
+`aria-colcount`
+`aria-level`
+
+### キーボード操作
+
+`onKeyDown`をちゃんと読む
+treewalker とか、rtl だったら逆方向とか
+
 ## まとめ
 
 明日は Number Field の話です。お楽しみにー
