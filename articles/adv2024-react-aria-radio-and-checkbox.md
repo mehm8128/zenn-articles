@@ -73,10 +73,11 @@ https://github.com/adobe/react-spectrum/blob/10a43de887ffc28913c770a33573aebf3df
 
 これを用いて、「一番下のラジオボタンにフォーカスされているときに下矢印キーが押されたら一番上のラジオボタンにフォーカスする」などといった動作が実現されています。
 
-### 読むやつ
+TODO: getFocusableTreeWalker 読む
 
-https://github.com/adobe/react-spectrum/issues/3799
-https://github.com/adobe/react-spectrum/issues/2196
+### グループ化
+
+group 化を a11y 本と照らし合わせて確認
 
 ## まとめ
 
