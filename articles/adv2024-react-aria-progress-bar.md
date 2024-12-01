@@ -64,11 +64,6 @@ https://www.w3.org/TR/wai-aria-1.2/#progressbar
 
 ## いくつかピックアップ
 
-### live region
-
-暗黙的についているので
-button の記事参照
-
 ### `aria-`属性
 
 React Aria の実装では 4 つの`aria-`属性がつけられています。
@@ -95,6 +90,10 @@ https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-
 Cybozu Inside Out でも関連記事を見つけたので貼っておきます。
 
 https://blog.cybozu.io/entry/2023/12/01/080000#Poca11y-%E3%83%81%E3%83%BC%E3%83%A0%E3%81%A8%E3%81%AE%E5%8D%94%E5%8A%9B
+
+### ボタンの isPending で使ってたみたいな
+
+書くことあれば
 
 ## まとめ
 
