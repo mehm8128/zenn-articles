@@ -40,6 +40,8 @@ https://react-spectrum.adobe.com/react-aria/Menu.html のコンポーネント�
 フォーカス移動、useSafelyMouseToSubmenu など
 state の組み合わせ方は RAC を読む
 
+https://react-spectrum.adobe.com/blog/creating-a-pointer-friendly-submenu-experience.html
+
 keyboard shortcut の実装見る。これなに
 
 ## まとめ
