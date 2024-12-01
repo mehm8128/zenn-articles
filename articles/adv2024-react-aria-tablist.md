@@ -61,6 +61,10 @@ https://github.com/adobe/react-spectrum/issues/4336
 WCAG の [Success Criterion 2.5.2 Pointer Cancellation](https://www.w3.org/TR/WCAG22/#pointer-cancellation)に準拠せず、pointerdown のタイミングでしかタブの選択ができなかった時期があったようです。今回のケースは 4 つ挙げられているパターンのうちの「Abort or Undo」に当たると思います。
 そこで、[useTab: adds support for shouldSelectOnPressUp #4342](https://github.com/adobe/react-spectrum/pull/4342)で`shouldSelectOnPressUp`props がサポートされ、間違えてタブをクリック（pointerdown）してしまったときでも pointerup する前にタブからカーソルを移動すればタブの選択をキャンセルすることができるようになりました。
 
+### keyboard delegate
+
+このタイミングでちゃんと確認するとよさそう
+
 ## まとめ
 
 明日は の話です。お楽しみにー
