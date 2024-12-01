@@ -76,6 +76,9 @@ Android では`inputMode`が`numeric`の場合に`-`ボタンがあり、`decima
 
 https://github.com/adobe/react-spectrum/blob/b0f15697245de74ebc99ab3d687f5eb3733d3a34/packages/%40react-aria/numberfield/src/useNumberField.ts#L152-L176
 
+TODO: 後で読む
+https://react-spectrum.adobe.com/blog/how-we-internationalized-our-numberfield.html
+
 ## まとめ
 
 明日は の話です。お楽しみにー
