@@ -92,6 +92,11 @@ https://github.com/adobe/react-spectrum/blob/3f44370de69e48ee56cbf2bbd8664cee829
 
 https://developer.mozilla.org/ja/docs/Web/HTML/Global_attributes/hidden#hidden_until_found_%E7%8A%B6%E6%85%8B
 
+TODO: beforematch 確認
+
+React 側がまだ対応していないみたいな話も
+https://github.com/facebook/react/pull/24741
+
 ## まとめ
 
 明日は の話です。お楽しみにー
