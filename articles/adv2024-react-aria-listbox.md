@@ -144,6 +144,10 @@ https://github.com/adobe/react-spectrum/blob/5ed06068ee2742f32e066ffa8eb55fd93a0
 
 `By default, selection occurs on pointer down`
 
+### useSelectableCollection
+
+https://github.com/adobe/react-spectrum/issues/2407
+
 ## まとめ
 
 明日は Number Field の話です。お楽しみにー
