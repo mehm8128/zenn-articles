@@ -46,7 +46,7 @@ https://www.w3.org/WAI/ARIA/apg/patterns/button/
 
 ### `usePress`について
 
-usePress では様々な a11y 対応がされていて、ブログ記事にまとめられています。
+`useButton`で利用されている`usePress`hook では様々な a11y 対応がされていて、ブログ記事にまとめられています。
 https://react-spectrum.adobe.com/blog/building-a-button-part-1.html
 
 簡単に概要をまとめます。
