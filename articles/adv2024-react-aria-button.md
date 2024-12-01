@@ -95,7 +95,7 @@ https://github.com/adobe/react-spectrum/blob/main/packages/%40react-aria/live-an
   <div role="log" aria-live="assertive" aria-relevant="additions">
     <!--`announce`関数発火時にここに要素が追加される-->
   </div>
-  <div role="log" aria-live="assertive" aria-relevant="additions">
+  <div role="log" aria-live="polite" aria-relevant="additions">
     <!--例えばこんな感じ-->
     <div>読み上げたいテキスト</div>
     <!--もしくはこう-->
