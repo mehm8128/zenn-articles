@@ -31,13 +31,14 @@ https://www.w3.org/WAI/ARIA/apg/patterns/menubar/
 
 ### キーボード操作
 
+大体 listbox とかと同じ
+
 ### サブメニュー
 
 https://react-spectrum.adobe.com/react-aria/Menu.html のコンポーネントの方参照するのがよさそう
 
-## その他
-
-## 疑問点
+フォーカス移動、useSafelyMouseToSubmenu など
+state の組み合わせ方は RAC を読む
 
 keyboard shortcut の実装見る。これなに
 
