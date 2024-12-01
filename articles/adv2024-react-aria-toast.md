@@ -114,6 +114,25 @@ https://github.com/adobe/react-spectrum/discussions/6686
 
 しかし、`F6`を用いて操作できることをスクリーンリーダー利用者や日常的にキーボード操作をする人が知ってるのかどうかは微妙な気がしているので、他に何か情報があれば教えていただきたいです。
 
+### フォーカス操作
+
+状況に応じて色々フォーカスを操作しているので、簡単にまとめます。
+
+フォーカスしているトーストが消えたら（消されたら）、その次のトーストか、なければ前のトーストにフォーカスが移動します。
+
+https://github.com/adobe/react-spectrum/blob/b0f15697245de74ebc99ab3d687f5eb3733d3a34/packages/%40react-aria/toast/src/useToastRegion.ts#L41
+
+https://github.com/adobe/react-spectrum/blob/b0f15697245de74ebc99ab3d687f5eb3733d3a34/packages/%40react-aria/toast/src/useToastRegion.ts#L71-L104
+
+また、トーストが 1 つもなくなったら`F6`を用いて移動してきたときの、元々フォーカスしていた要素にフォーカスを戻します。
+昨日の記事で紹介した`FocusScope`の focus restore が効かないからここで実装しているとのことなのですが、なんで効かないのか分かりませんでした...。誰か教えてください。
+
+https://github.com/adobe/react-spectrum/blob/b0f15697245de74ebc99ab3d687f5eb3733d3a34/packages/%40react-aria/toast/src/useToastRegion.ts#L118-L132
+
+ちなみに`lastFocused`は`useFocusWithin`で、一昨日紹介した`e.relatedTarget`を用いて取得しています。
+
+https://github.com/adobe/react-spectrum/blob/b0f15697245de74ebc99ab3d687f5eb3733d3a34/packages/%40react-aria/toast/src/useToastRegion.ts#L106-L116
+
 ## まとめ
 
 明日は の話です。お楽しみにー
