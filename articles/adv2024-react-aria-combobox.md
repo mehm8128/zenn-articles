@@ -41,6 +41,9 @@ https://github.com/adobe/react-spectrum/issues/3900
 https://github.com/adobe/react-spectrum/issues/3306
 から面白そうなのを取り上げる
 
+https://adventar.org/calendars/10293
+で select の話出てたら引用するとか
+
 ## その他
 
 ## 疑問点
