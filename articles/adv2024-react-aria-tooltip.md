@@ -98,31 +98,80 @@ https://github.com/adobe/react-spectrum/blob/5ed06068ee2742f32e066ffa8eb55fd93a0
 
 フォーカス中に tooltip が表示され、Esc キーで tooltip が閉じられるようになっています。
 
-### chrome のバグ
+### Chrome のバグ
+
+Chrome において、以下の 2 つのパターンでツールチップが閉じてほしいという issue を解消するために PR が出されました。
+
+- ツールチップが開いているときにツールチップの外側をクリックしたとき
+- キーボードフォーカスでツールチップを開いた状態で、さらにマウスでホバーしてホバーを解除したとき
+
+https://github.com/adobe/react-spectrum/pull/1087
+
+そして、このタイミングで Chrome のバグへの対応もなされました。
 
 https://github.com/adobe/react-spectrum/blob/b0f15697245de74ebc99ab3d687f5eb3733d3a34/packages/%40react-aria/tooltip/src/useTooltipTrigger.ts#L83-L91
 
-```
-export const Default: TooltipTriggerStory = {
-  render: (args) => {
-    const [isFocused, setIsFocused] = useState(false);
+ツールチップのトリガーにホバーしてツールチップを表示しているときに、それ以外の要素がツールチップのトリガーを隠してしまい、マウスカーソルがその要素に当たってしまうという状況を考えています。この場合に、一旦ツールチップが消えるのですが、ツールチップを隠していた要素が消えると再度ツールチップが表示されてしまうというバグです。分かりづらいので動画をご覧ください。
 
-    return (
-      <div style={{ position: 'relative' }}>
-        <TooltipTrigger {...args} />
-        {isFocused && <div style={{ backgroundColor: 'red', height: 100, width: 100, left: 0, top: 0, position: 'absolute' }} />}
-        <button onClick={() => setIsFocused(!isFocused)}>aaa</button>
-      </div>
-    );
-  }
+こちらがバグが解消されている、現在の状態です。赤い四角が消えてもツールチップは再度表示されません。
+![](/images/adv2024-react-aria/tooltip-bug-fixed.gif)
+
+こちらがバグが発生している状態です。赤い四角が消えると、再度ツールチップが表示されてしまいます。
+![](/images/adv2024-react-aria/tooltip-bug-fixed.gif)
+
+また、React Aria Components の Storybook で `TooltipExample` の story を以下のようなコードに置き換えることで再現可能です。マウスでツールチップのトリガーにホバーした状態でボタンに Tab フォーカスし、Enter を押すとツールチップのトリガーを隠す要素を表示したり消したりできます。
+バグが発生している状態を再現するには、上で引用したソースコードで条件分岐せずに常に`isHovered.current = true`するように変更してください（分からなければ PR の差分を見てください）。
+
+```tsx
+export const TooltipExample = () => {
+  const [isShown, setIsShown] = useState(false);
+
+  return (
+    <div style={{ position: "relative" }}>
+      <TooltipTrigger>
+        <Button>Tooltip trigger</Button>
+        <Tooltip
+          offset={5}
+          style={{
+            background: "Canvas",
+            color: "CanvasText",
+            border: "1px solid gray",
+            padding: 5,
+            borderRadius: 4,
+          }}
+        >
+          <OverlayArrow style={{ transform: "translateX(-50%)" }}>
+            <svg width="8" height="8" style={{ display: "block" }}>
+              <path
+                d="M0 0L4 4L8 0"
+                fill="white"
+                strokeWidth={1}
+                stroke="gray"
+              />
+            </svg>
+          </OverlayArrow>
+          I am a tooltip
+        </Tooltip>
+      </TooltipTrigger>
+      {isShown && (
+        <div
+          style={{
+            backgroundColor: "red",
+            height: 100,
+            width: 100,
+            left: 0,
+            top: 0,
+            position: "absolute",
+          }}
+        />
+      )}
+      <button onClick={() => setIsShown(!isShown)}>aaa</button>
+    </div>
+  );
 };
 ```
 
-で再現可能
-
-現状は隠してる要素が消えたタイミングでは再表示されないけど、modality をチェックしないと再表示されてしまうってことらしい
-
-元々の issue としては、ツールチップが開いてるときにそれ以外の場所をクリックすると閉じたいとか、キーボードフォーカスで開いた状態でさらにマウスでホバーしてホバーを解除したときに閉じたいとかだった
+これを解消するために、`onHoverStart`内で`getInteractionModality`という関数を用いて、何によってインタラクションが行われたのかを確認しています。マウスの移動によってホバーされた場合は`getInteractionModality() === 'pointer'`ですが、赤い四角が消えて再度ホバー状態になった場合には`getInteractionModality() === 'virtual'`になっているので、上で引用した if 文の`else`の方が実行されます。
 
 ## その他
 
