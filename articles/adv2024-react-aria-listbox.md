@@ -101,10 +101,6 @@ Ranch  選択なし  9の9
 
 グループに入ったタイミングで一度だけグループ名が読み上げられます。
 
-### `aria-multiselectable`
-
-複数選択な ListBox の場合に`true`にするのですが、NVDA だと特に「複数選択」みたいに読み上げられたりしてなくて、どう判別されるのかが気になりました。キーボード操作に影響するので認識できないとまずい気がします。
-
 ### `aria-setsize`と`aria-posinset`
 
 Virtual Scroll する場合に利用します。`aria-setsize`が ListBox 全体のオプションの数、`aria-posinset`がそのオプションが全体の何番目のオプションなのかを表すものです。
@@ -116,13 +112,6 @@ https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-
 実装はこのあたりです。
 
 https://github.com/adobe/react-spectrum/blob/main/packages/%40react-aria/listbox/src/useOption.ts#L121-L125
-
-### キーボード操作
-
-Tab でフォーカスした後、矢印キーで移動するのが主な操作です。単一選択の場合は、フォーカスの移動とともに自動で選択されることがあります。これを"selection follows focus"と呼ぶらしいです（[APG](https://www.w3.org/WAI/ARIA/apg/patterns/listbox/#:~:text=%22selection%20follows%20focus%22.)を参照）。
-その他のキーボード操作も APG に詳細が記載されています。
-
-## その他
 
 ### オプションのラベル
 
@@ -141,13 +130,6 @@ https://www.w3.org/WAI/ARIA/apg/patterns/listbox/
 
 後者は例えば「日本 東京都」という選択肢と「日本 大阪府」という選択肢があると、「日本」までは同じなのでこれが毎回読み上げられると目当てのものを探すのが大変、という話ですね。こういう場合は国名と都市名で別で ListBox を用意するのがよい、とのことです。
 
-### `label`要素について
-
-ソースコードに以下のようなコメントがありました。
-https://github.com/adobe/react-spectrum/blob/694fc853ea6cbecb1a72d0a95ef460aaede65171/packages/%40react-aria/listbox/src/useListBox.ts#L115-L116
-
-知らなかったのですが、確かに[HTML Standard の category-label の項目](https://html.spec.whatwg.org/multipage/forms.html#category-label:~:text=Some%20elements%2C%20not%20all%20of%20them%20form%2Dassociated%2C%20are%20categorized%20as%20labelable%20elements.%20These%20are%20elements%20that%20can%20be%20associated%20with%20a%20label%20element.)にあるように、基本的には role 関係なくタグ名だけで`label`要素でラベル付け可能かどうかが決まるようです。
-
 ### Typeahead
 
 `useListBox`の中で使われている`useSelectableList`の中で使われている`useSelectableCollection`の中で使われている`useTypeSelect`で、Typeahead が実装されています。
@@ -157,6 +139,10 @@ https://github.com/adobe/react-spectrum/blob/5ed06068ee2742f32e066ffa8eb55fd93a0
 またこのために、`useSelectableList`内で`useCollator`を用いて i18n 対応がされています。`useCollator`内では[Intl.Collator - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator)が用いられているようです。
 
 https://github.com/adobe/react-spectrum/blob/5ed06068ee2742f32e066ffa8eb55fd93a083123/packages/%40react-aria/selection/src/useSelectableList.ts#L62
+
+### useSelectableItem
+
+`By default, selection occurs on pointer down`
 
 ## まとめ
 
