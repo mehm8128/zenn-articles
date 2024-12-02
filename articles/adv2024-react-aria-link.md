@@ -3,7 +3,7 @@ title: "Linkについて - React Ariaの実装読むぞ"
 emoji: "🐕"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["frontend", "react", "a11y", "reactaria"]
-published: false
+published: true
 ---
 
 こんにちは、フロントエンドエンジニアの mehm8128 です。
@@ -14,7 +14,7 @@ https://react-spectrum.adobe.com/react-aria/useLink.html
 
 ## `useLink`とは
 
-`a`タグのようなリンクを作るための hook です。
+リンクを作るための hook です。
 
 ## 使用例
 
@@ -41,7 +41,7 @@ https://www.w3.org/WAI/ARIA/apg/patterns/link/
 
 ### リンクを disabled にする方法
 
-`useLink`内部で、`useButton`に出てきた`usePress`を利用しているのですが、`useLink`に`isDisabled`を渡すと`usePress`内で`e.preventDefault()`してくれて、ナビゲーションが発火しません。
+`useLink`内部で昨日紹介した`usePress`を利用しているのですが、`useLink`に`isDisabled`を渡すと`usePress`内で`e.preventDefault()`してくれて、ナビゲーションが発火しないようになります。
 これによって disabled が実現されています。
 
 https://github.com/adobe/react-spectrum/blob/12920fc91afa90d54ae769db45a1cff4b823e1bb/packages/%40react-aria/interactions/src/usePress.ts#L334-L336
@@ -53,11 +53,9 @@ https://github.com/adobe/react-spectrum/blob/12920fc91afa90d54ae769db45a1cff4b82
 こちらのページに詳細が書かれています。
 https://react-spectrum.adobe.com/react-aria/routing.html
 
-実現方法としては上記のページに書かれているような方法で`RouterProvider`の`navigate`props に`router.push`などのナビゲーション関数を登録すると、`useLink`内部で以下のようにして`RouterProvider`の context から`router`を取得しています（この`useRouter`は React Aria 独自のものです）。
+実現方法としては上記のページに書かれているような方法で`RouterProvider`の`navigate`props に`router.push`などのナビゲーション関数を登録すると、`useLink`内部で以下のように`RouterProvider`の context から`router`を取得しています（この`useRouter`は React Aria 独自のものです）。
 
-```ts
-let router = useRouter();
-```
+https://github.com/adobe/react-spectrum/blob/b0f15697245de74ebc99ab3d687f5eb3733d3a34/packages/%40react-aria/link/src/useLink.ts#L65
 
 そして、`useLink`の `linkProps` を渡した要素の`onClick`で`e.preventDefault()`して、`router.open()`（`navigate`関数の発火などが含まれているメソッド）が実行され、無事 client side navigation が実現されています。
 
@@ -92,10 +90,10 @@ https://github.com/adobe/react-spectrum/issues/6618
 普通`a`タグは`draggable="false"`がついていない限りドラッグすることができて、ブラウザ上部に持っていくことで別タブで開いたり、テキスト入力欄に持っていくと URL をそのままペースト（？）できたりするのですが、`useLink`を使っているとなぜかドラッグできなくなってしまうというバグらしいです。
 
 そこで僕が調査して、一応修正 PR を出すところまでいったのですがまだ見てもらえていません。直ってはいるけど修正のしかたに自信がないので、レビューとかもらえると助かります。
-原因としては`usePress`で`e.preventDefault()`したくないところでもされてしまっていたのでそこをいい感じに直しました。
+原因としては`usePress`で`e.preventDefault()`したくないところでもされてしまっていたので、そこをいい感じに直しました。
 
 https://github.com/adobe/react-spectrum/pull/7448
 
 ## まとめ
 
-明日は Text Field の話です。お楽しみにー
+明日の担当は [@mehm8128](https://zenn.dev/mehm8128) さんで、 Text Field についての記事です。お楽しみにー
