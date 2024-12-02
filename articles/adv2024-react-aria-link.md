@@ -6,6 +6,10 @@ topics: ["frontend", "react", "a11y", "reactaria"]
 published: true
 ---
 
+:::message
+この記事は [React Aria の実装読むぞ - Qiita Advent Calendar 2024](https://qiita.com/advent-calendar/2024/react-aria) の 3 日目の記事です。
+:::
+
 こんにちは、フロントエンドエンジニアの mehm8128 です。
 
 今日は Link について書いていきます。
