@@ -11,7 +11,7 @@ published: false
 
 ## Focus Management API とは
 
-Focus Management API とは、こちらの React の RFC で提案されている API です。提案者が React Spectrum のメンテナーということと、後述する理由により、今回紹介することにしました。
+Focus Management API とは、こちらの React の RFC で提案されている API です。提案者が React Spectrum のメンテナーということと、React Aria で同様の API が実装されていることから、今回紹介することにしました。
 
 https://github.com/reactjs/rfcs/pull/109
 
@@ -22,7 +22,7 @@ https://github.com/devongovett/rfcs-1/blob/patch-1/text/2019-focus-management.md
 簡単に言うと、`FocusScope`コンポーネントと`FocusManager`という API を `react-dom` にビルトインで導入したいという提案です。
 [React の `createPortal`](https://ja.react.dev/reference/react-dom/createPortal)が抱えている問題の改善や、その他フォーカス制御をいい感じにしたいというのが主な目的です。
 
-まだ`react-dom`には入っていないのですが、実は`FocusScope`も`FocusManager`も React Aria には導入済みです。
+まだ`react-dom`には入っていないのですが、前述のように`FocusScope`も`FocusManager`も React Aria には導入済みです。
 
 https://react-spectrum.adobe.com/react-aria/FocusScope.html
 
@@ -46,7 +46,7 @@ https://react-spectrum.adobe.com/react-aria/FocusScope.html
 
 ### Focus containment
 
-Focus containment とは、ダイアログやその他ポップアップでフォーカスが外に出てしまわないようにするためのものです。ダイアログで最後の要素にフォーカスしている状態で Tab キーを押したらダイアログ内の一番上にフォーカスが戻るようにしたりします。これは現状、手動で命令的にフォーカスを制御しなければ実装できません。
+Focus containment（mehm8128: 日本語だとフォーカス封じ込め？）とは、ダイアログやその他ポップアップでフォーカスが外に出てしまわないようにするためのものです。ダイアログで最後の要素にフォーカスしている状態で Tab キーを押したらダイアログ内の一番上にフォーカスが戻るようにしたりします。これは現状、手動で命令的にフォーカスを制御しなければ実装できません。
 
 ### Restoring focus
 
@@ -81,29 +81,30 @@ TODO: In addition, portals make implementing focus containment in user space dif
 
 ### Definitions
 
-focusable: tabindex がマイナスのものを含む
-tabbable: tab で到達できるものなので、tabindex>=0 のみ
+用語の定義がされています。Radio button の回（TODO: リンク貼る）でも出てきましたが一応確認します。
+
+focusable: デフォルトでフォーカス可能な`input`や`button`要素に加えて、`tabindex`属性がついている要素
+tabbable: デフォルトでフォーカス可能な`input`や`button`要素に加えて、値が 0 以上の`tabindex`属性がついている要素（mehm8128: つまり、Tab キーでフォーカスできないマイナスの`tabindex`を持つ要素は含まない）
 
 ### The focus tree
 
-ルートに暗黙的な`FocusScope`を用意しておく
-各 focus scope 内で最後にフォーカスされた要素を記憶する
-ダイアログ閉じたときにトリガーボタンに戻れるのは、ルートの`FocusScope`のスコープ内にどちらも入っているから
+React ルートに暗黙の`FocusScope`を用意しておき、`FocusScope`はその中にあるフォーカス可能要素で順序付きリストを作成します。Tab キーを押したときに、この順序通りにフォーカスが移動していきます。
+各`FocusScope`はその中で最後にフォーカスされた要素を記憶しておき、他の`FocusScope`からフォーカスが移動してきたときにその位置にフォーカスを戻すことができます。また、現在フォーカスされている要素を持っている`FocusScope`がアンマウントした場合、最後にフォーカスを持っていた要素にフォーカスが移動します。
+TODO: よく分かってない。全部の FocusScope の中で最後にフォーカスを持っていた要素にフォーカスできる？ルートが持ってるからか？: ダイアログ閉じたときにトリガーボタンに戻れるのは、ルートの`FocusScope`のスコープ内にどちらも入っているから
+
+また、Focus containment にも用いることができます。`contain`prop を渡した場合、`FocusScope`内のフォーカス可能要素の中でフォーカスがループします。そして、`autoFocus`prop を渡すと`FocusScope`内で最初のフォーカス可能要素に自動でフォーカスします。
 
 ### FocusManager
 
-特定の要素にフォーカスするのは、引き続き ref を使えば OK
-
-React に実装する必要性が薄そう
-portal のやつも単体でできそうだし
+矢印キーを押したときのフォーカス移動など、Programmatically にフォーカスを移動するための API で、next, previous, first, last の focusable 及び tabbable な要素への移動をサポートしています。特定の要素へのフォーカスは引き続き React の`ref`を使って OK とのことです。
 
 ## その他
 
-残りの部分は例とかが書いてありますみたいな
+残りのセクションでは、具体的な実装方針やこのように使えるという例がソースコードとともに紹介されています。
 
 ## React Aria の`FocusScope`
 
-ほぼ同じだねとか色んなコンポーネントで使われてるとか
+最後に、React Aria で実装されている`FocusScope`について紹介します。
 
 ## まとめ
 
