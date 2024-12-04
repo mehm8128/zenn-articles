@@ -83,7 +83,7 @@ NOTE の欄には、1 行のテキストフィールドである`input`要素は
 
 https://github.com/adobe/react-spectrum/blob/93c26d8bd2dfe48a815f08c58925a977b94d6fdd/packages/%40react-aria/textfield/src/useTextField.ts#L50
 
-## `inputMode`
+### `inputMode`
 
 `input`要素には`type`属性があり、単純な TextField なら`type="text"`、チェックボックスなら`type="checkbox"`、数値なら`type="number"`など、用途に応じて指定することで入力フィールドの見た目や機能が変わったり、モバイル時に仮想キーボードが変化したりします。例えば`type="number"`だと、数字（と一部の記号）だけの仮想キーボードになります。スマホでロック画面解除のパスワードを入力するような画面を想像してもらうと分かりやすいと思います。
 
