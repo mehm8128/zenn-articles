@@ -1,9 +1,9 @@
 ---
 title: "NumberFieldについて - React Ariaの実装読むぞ"
-emoji: "🐕"
+emoji: "🔢"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["frontend", "react", "a11y", "reactaria"]
-published: false
+published: true
 ---
 
 :::message
@@ -71,13 +71,11 @@ https://github.com/adobe/react-spectrum/blob/b3a4d6c1134aae882aa1dcfce64efba1d8f
 
 https://github.com/adobe/react-spectrum/blob/b3a4d6c1134aae882aa1dcfce64efba1d8f4308d/packages/%40react-aria/numberfield/src/useNumberField.ts#L231-L238
 
-さらに、`spinbutton`role ではないので、`spinButtonProps`から返される`aria-valuemax`などの`aria-`属性も`null`に上書きしています。
-
-https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-valuemax
+さらに、`spinbutton`role ではないので、`spinButtonProps`から返される[`aria-valuemax`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-valuemax)などの`aria-`属性も`null`に上書きしています。
 
 ### 様々な format
 
-ドキュメントにもあるように、小数点やパーセント表記、通貨、その他の単位のフォーマットがサポートされています。この変換を行ったり、+/-ボタンによるインクリメント・デクリメントをサポートしたりするために、`useNumberFieldState`という hook が提供されています。
+ドキュメントにもあるように、小数点やパーセント表記、通貨、その他の単位のフォーマットがサポートされています。この変換を行ったり、+/-ボタンによるインクリメント・デクリメントをサポートしたりするために、`useNumberFieldState`という hook が用意されています。
 
 https://github.com/adobe/react-spectrum/blob/main/packages/%40react-stately/numberfield/src/useNumberFieldState.ts
 
@@ -105,10 +103,9 @@ Android では`inputMode`が`numeric`の場合に`-`ボタンがあり、`decima
 
 https://github.com/adobe/react-spectrum/blob/b0f15697245de74ebc99ab3d687f5eb3733d3a34/packages/%40react-aria/numberfield/src/useNumberField.ts#L152-L176
 
-TODO: 後で読む
-https://react-spectrum.adobe.com/blog/how-we-internationalized-our-numberfield.html
+公式のブログ記事にもまとめられていました（`Mobile`セクション以外は i18n の回で解説予定です）。
 
-https://w3c.github.io/aria/#spinbutton
+https://react-spectrum.adobe.com/blog/how-we-internationalized-our-numberfield.html#mobile
 
 ## まとめ
 
