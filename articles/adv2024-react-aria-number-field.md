@@ -6,6 +6,10 @@ topics: ["frontend", "react", "a11y", "reactaria"]
 published: false
 ---
 
+:::message
+この記事は [React Aria の実装読むぞ - Qiita Advent Calendar 2024](https://qiita.com/advent-calendar/2024/react-aria) の 5 日目の記事です。
+:::
+
 こんにちは、フロントエンドエンジニアの mehm8128 です。
 今日は NumberField について書いていきます。
 
@@ -16,17 +20,42 @@ https://react-spectrum.adobe.com/react-aria/useNumberField.html
 ドキュメントからそのまま取ってきています。
 
 ```tsx
+import { useNumberFieldState } from "react-stately";
+import { useLocale, useNumberField } from "react-aria";
 
+// Reuse the Button from your component library. See below for details.
+import { Button } from "your-component-library";
+
+function NumberField(props) {
+  let { locale } = useLocale();
+  let state = useNumberFieldState({ ...props, locale });
+  let inputRef = React.useRef(null);
+  let {
+    labelProps,
+    groupProps,
+    inputProps,
+    incrementButtonProps,
+    decrementButtonProps,
+  } = useNumberField(props, state, inputRef);
+
+  return (
+    <div>
+      <label {...labelProps}>{props.label}</label>
+      <div {...groupProps}>
+        <Button {...decrementButtonProps}>-</Button>
+        <input {...inputProps} ref={inputRef} />
+        <Button {...incrementButtonProps}>+</Button>
+      </div>
+    </div>
+  );
+}
 ```
 
-## 主な a11y 考慮事項
+## 本題
+
+APG はこちらです。
 
 https://www.w3.org/WAI/ARIA/apg/patterns/spinbutton/
-
-- role
-- 様々な format
-
-## いくつかピックアップ
 
 ### role
 
@@ -79,6 +108,8 @@ https://github.com/adobe/react-spectrum/blob/b0f15697245de74ebc99ab3d687f5eb3733
 TODO: 後で読む
 https://react-spectrum.adobe.com/blog/how-we-internationalized-our-numberfield.html
 
+https://w3c.github.io/aria/#spinbutton
+
 ## まとめ
 
-明日は の話です。お楽しみにー
+明日の担当は [@mehm8128](https://zenn.dev/mehm8128) さんで、 Radio と Checkbox についての記事です。お楽しみにー
