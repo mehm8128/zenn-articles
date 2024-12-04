@@ -1,10 +1,14 @@
 ---
 title: "RadioとCheckboxについて - React Ariaの実装読むぞ"
-emoji: "🐕"
+emoji: "📻"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["frontend", "react", "a11y", "reactaria"]
 published: false
 ---
+
+:::message
+この記事は [React Aria の実装読むぞ - Qiita Advent Calendar 2024](https://qiita.com/advent-calendar/2024/react-aria) の 6 日目の記事です。
+:::
 
 こんにちは、フロントエンドエンジニアの mehm8128 です。
 今日は Radio と Checkbox について書いていきます。
@@ -18,28 +22,60 @@ https://react-spectrum.adobe.com/react-aria/useCheckboxGroup.html
 ドキュメントからそのまま取ってきています。
 
 ```tsx
+let RadioContext = React.createContext(null);
 
+function RadioGroup(props) {
+  let { children, label, description, errorMessage } = props;
+  let state = useRadioGroupState(props);
+  let { radioGroupProps, labelProps, descriptionProps, errorMessageProps } =
+    useRadioGroup(props, state);
+
+  return (
+    <div {...radioGroupProps}>
+      <span {...labelProps}>{label}</span>
+      <RadioContext.Provider value={state}>{children}</RadioContext.Provider>
+      {description && (
+        <div {...descriptionProps} style={{ fontSize: 12 }}>
+          {description}
+        </div>
+      )}
+      {errorMessage && state.isInvalid && (
+        <div {...errorMessageProps} style={{ color: "red", fontSize: 12 }}>
+          {errorMessage}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function Radio(props) {
+  let { children } = props;
+  let state = React.useContext(RadioContext);
+  let ref = React.useRef(null);
+  let { inputProps } = useRadio(props, state, ref);
+
+  return (
+    <label style={{ display: "block" }}>
+      <input {...inputProps} ref={ref} />
+      {children}
+    </label>
+  );
+}
 ```
 
-## 主な a11y 考慮事項
+## 本題
+
+APG はこちらです。
 
 https://www.w3.org/WAI/ARIA/apg/patterns/radio/
 https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/
-
-- `radiogroup`, `checkbox`roles
-- styling
-- フォーカス制御
-
-## いくつかピックアップ
 
 ### styling
 
 スタイリングしやすいように、visually hidden で`input`要素を隠します。
 [VisuallyHidden](https://react-spectrum.adobe.com/react-aria/VisuallyHidden.html) コンポーネントがあるので、これで`input`要素を wrap するだけで OK です。
 
-### フォーカス制御
-
-#### Tab フォーカス
+### Tab フォーカス
 
 ラジオグループの場合、Tab フォーカスはグループの中で選択されているラジオボタンか、選択されているラジオボタンがなければ最後にフォーカスされたラジオボタンにあたり、それ以外は Tab ではなくて矢印キーで移動します。
 
@@ -49,11 +85,11 @@ https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/
 
 https://github.com/adobe/react-spectrum/blob/10a43de887ffc28913c770a33573aebf3df786fc/packages/%40react-aria/radio/src/useRadio.ts#L83-L93
 
-#### 2 種類のフォーカス移動
+### 2 種類のフォーカス移動
 
 APG の例では 2 種類の方法でグループ内のラジオボタンのフォーカスを移動する方法が紹介されています。
 
-1 つは`tabindex`を変化させる方法です。これは React Aria で用いられている方法です。選択されている要素を`tabindex="0"`にし、選択されていない要素を`tabindex="-1"`にします。矢印キーが押されるたびにこれを変化させていくことで、選択されている要素にフォーカスを当てていくことができます。
+1 つは`tabindex`を変化させる方法です。これは React Aria で用いられている方法です。選択されている要素を`tabindex="0"`にし、選択されていない要素を`tabindex="-1"`にします。矢印キーが押されるたびにこれを変化させていくことで、選択されている要素にフォーカスを当てていくことができます。この方法を`Roving tab index`と呼びます。
 
 https://www.w3.org/WAI/ARIA/apg/patterns/radio/examples/radio/
 
@@ -61,7 +97,7 @@ https://www.w3.org/WAI/ARIA/apg/patterns/radio/examples/radio/
 
 https://www.w3.org/WAI/ARIA/apg/patterns/radio/examples/radio-activedescendant/
 
-#### TreeWalker
+### TreeWalker API
 
 矢印キーが押されたときに次にフォーカスするべき要素を特定するために、`getFocusableTreeWalker`関数が用いられています。
 
@@ -89,10 +125,6 @@ let selector = opts?.tabbable
 
 これを用いて「一番下のラジオボタンにフォーカスされているときに下矢印キーが押されたら一番上のラジオボタンにフォーカスする」などといった動作が実現されています。
 
-### グループ化
-
-group 化を a11y 本と照らし合わせて確認
-
 ## まとめ
 
-明日は の話です。お楽しみにー
+明日の担当は [@mehm8128](https://zenn.dev/mehm8128) さんで、 Tooltip についての記事です。お楽しみにー
