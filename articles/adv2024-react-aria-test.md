@@ -23,6 +23,7 @@ role を確かめてるとかなんとか
 
 packages/dev/test-utils
 
+いろんなスクリーンリーダーで手動テストされていることも書く。ドキュメントのどこかに書いてあった
 playwright の aria snapshots についてもちょっと書く
 
 ## まとめ
