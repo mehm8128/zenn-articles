@@ -6,6 +6,10 @@ topics: ["frontend", "react", "a11y", "reactaria"]
 published: false
 ---
 
+:::message
+この記事は [React Aria の実装読むぞ - Qiita Advent Calendar 2024](https://qiita.com/advent-calendar/2024/react-aria) の 9 日目の記事です。
+:::
+
 こんにちは、フロントエンドエンジニアの mehm8128 です。
 今日は Focus Management API について書いていきます。初めての番外編です。枠稼ぎではないです。
 
@@ -33,7 +37,7 @@ https://react-spectrum.adobe.com/react-aria/FocusScope.html
 
 ### Refs everywhere
 
-宣言的な React で、命令的な処理を書くことになる ref を使うのはエスケープハッチとされています。特にフォーカス制御などで ref を使わざるを得ないときがありますが、ref は React っぽくない（un-reacty）ので使いたくないとのことです。
+宣言的な React で、命令的な処理を書くことになる ref を使うのはエスケープハッチとされています。特にフォーカス制御などで ref を使わざるを得ないときがありますが、ref は React っぽくないので使いたくないとのことです。
 
 ### Global focus state
 
@@ -75,7 +79,7 @@ function App() {
 
 TODO: In addition, portals make implementing focus containment in user space difficult の段落が分からん
 
-## 解決へ
+## 解決方法
 
 上記の辛さを踏まえて、`Detailed design` のセクションでは今回の提案でどのように問題を解決していくかが述べられています。
 
@@ -102,10 +106,8 @@ TODO: よく分かってない。全部の FocusScope の中で最後にフォ�
 
 残りのセクションでは、具体的な実装方針やこのように使えるという例がソースコードとともに紹介されています。
 
-## React Aria の`FocusScope`
-
-最後に、React Aria で実装されている`FocusScope`について紹介します。
-
 ## まとめ
 
-明日は の話です。お楽しみにー
+React Aria に実装されている`Focus Scope`の実装を読もうと思ったのですが、長くなりそうなので別の回で書きます。
+
+明日の担当は [@mehm8128](https://zenn.dev/mehm8128) さんで、 Toast についての記事です。お楽しみにー
