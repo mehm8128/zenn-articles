@@ -1,17 +1,19 @@
 ---
-title: "DateFieldとTimeFieldについて - React Ariaの実装読むぞ"
+title: "DateFieldについて - React Ariaの実装読むぞ"
 emoji: "🐕"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["frontend", "react", "a11y", "reactaria"]
 published: false
 ---
 
+:::message
+この記事は [React Aria の実装読むぞ - Qiita Advent Calendar 2024](https://qiita.com/advent-calendar/2024/react-aria) の 1 日目の記事です。
+:::
+
 こんにちは、フロントエンドエンジニアの mehm8128 です。
-今日は DateField と TimeField について書いていきます。
+今日は DateField について書いていきます。
 
 https://react-spectrum.adobe.com/react-aria/useDateField.html
-
-https://react-spectrum.adobe.com/react-aria/useTimeField.html
 
 ## 使用例
 
@@ -21,18 +23,29 @@ https://react-spectrum.adobe.com/react-aria/useTimeField.html
 
 ```
 
-## 主な a11y 考慮事項
+## 本題
 
+こちらが APG です。
 https://www.w3.org/WAI/ARIA/apg/patterns/listbox/
 
-- ``role
+### i18n
 
-## いくつかピックアップ
+i18 記事出したあとになるので書く
+https://react-spectrum.adobe.com/blog/date-and-time-pickers-for-all.html
 
-## その他
+### `useDateSegment`
 
-## 疑問点
+`backspace`関数気になる
+Only apply aria-describedby to the first segment
+contenteditable
+enterkeyhint
+他に読み上げ関連のとかあれば
+
+### date picker で使うときの注意点みたいな
+
+If within a date picker or date range picker, the date field will have role="presentation"
+When used within a date picker or date range picker, the field gets role="presentation"
 
 ## まとめ
 
-明日は の話です。お楽しみにー
+明日の担当は [@mehm8128](https://zenn.dev/mehm8128) さんで、 Text Field についての記事です。お楽しみにー
