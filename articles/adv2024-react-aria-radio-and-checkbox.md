@@ -3,7 +3,7 @@ title: "RadioとCheckboxについて - React Ariaの実装読むぞ"
 emoji: "📻"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["frontend", "react", "a11y", "reactaria"]
-published: false
+published: true
 ---
 
 :::message
@@ -11,7 +11,7 @@ published: false
 :::
 
 こんにちは、フロントエンドエンジニアの mehm8128 です。
-今日は Radio と Checkbox について書いていきます。
+今日は Radio と Checkbox について書いていきます。そろそろしんどいです。
 
 https://react-spectrum.adobe.com/react-aria/useRadioGroup.html
 https://react-spectrum.adobe.com/react-aria/useCheckbox.html
@@ -93,6 +93,10 @@ APG の例では 2 種類の方法でグループ内のラジオボタンのフ�
 
 https://www.w3.org/WAI/ARIA/apg/patterns/radio/examples/radio/
 
+こちらはついさっき見つけたページなのでページ全体を読めているわけではないですが、
+参考になりそうなので貼っておきます。
+https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#kbd_roving_tabindex
+
 もう 1 つの方法は、`aria-activedescendant`を用いる方法です。フォーカスは常に`group`role（ラジオなら`radiogroup`role）を持つ要素に当てておき、そのグループ内でアクティブな要素（選択されているラジオボタン）の id を`aria-activedescendant`に渡すことで、アクティブな要素をスクリーンリーダーが読み上げてくれます。
 
 https://www.w3.org/WAI/ARIA/apg/patterns/radio/examples/radio-activedescendant/
@@ -106,7 +110,7 @@ https://github.com/adobe/react-spectrum/blob/10a43de887ffc28913c770a33573aebf3df
 https://github.com/adobe/react-spectrum/blob/10a43de887ffc28913c770a33573aebf3df786fc/packages/%40react-aria/focus/src/FocusScope.tsx#L744-L774
 
 `getFocusableTreeWalker` について簡単に説明していきます。
-この関数では、HTML のノードを探索するために利用できる TreeWalker という API が使われています。
+この関数では、HTML のノードを探索するために利用できる `TreeWalker` という API が使われています。
 
 https://developer.mozilla.org/ja/docs/Web/API/TreeWalker
 
