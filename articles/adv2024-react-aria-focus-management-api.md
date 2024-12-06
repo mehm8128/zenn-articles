@@ -11,7 +11,7 @@ published: false
 :::
 
 こんにちは、フロントエンドエンジニアの mehm8128 です。
-今日は Focus Management API について書いていきます。初めての番外編です。枠稼ぎではないです。
+今日は Focus Management API について書いていきます。初めての番外編です。
 
 ## Focus Management API とは
 
