@@ -6,6 +6,10 @@ topics: ["frontend", "react", "a11y", "reactaria"]
 published: false
 ---
 
+:::message
+この記事は [React Aria の実装読むぞ - Qiita Advent Calendar 2024](https://qiita.com/advent-calendar/2024/react-aria) の 9 日目の記事です。
+:::
+
 こんにちは、フロントエンドエンジニアの mehm8128 です。
 今日は ListBox について書いていきます。
 
@@ -56,31 +60,23 @@ function Option({ item, state }) {
 }
 ```
 
-## 主な a11y 考慮事項
+## 本題
 
+APG はこちらです。
 https://www.w3.org/WAI/ARIA/apg/patterns/listbox/
-
-- `listbox`role
-- 各オプションが`option`role
-- グルーピングされている場合、`group`role の利用
-- 複数選択可能な場合、`aria-multiselectable`を付与
-- 選択されているオプションは`aria-selected`などを付与
-- 必要に応じて`aria-setsize`と`aria-posinset`を設定
-- オプションが水平に配置されている場合、`aria-orientation`を`horizontal`に設定
-- キーボード操作
-
-## いくつかピックアップ
 
 ### オプションのグルーピング
 
 https://react-spectrum.adobe.com/react-aria/useListBox.html#sections
 
 にあるように、`useListBoxSection`でグループ化ができます。
-実装的には`group`role でグループ化して、`presentation`role にした header で`group`role の要素に accessible name を与えています。
+実装的には`group`role でグループ化して、`presentation`role にした heading で`group`role の要素に accessible name を与えています。
 
 https://github.com/adobe/react-spectrum/blob/5ed06068ee2742f32e066ffa8eb55fd93a083123/packages/%40react-aria/listbox/src/useListBoxSection.ts#L45-L59
 
-そうすることで、`Static items`の例だと以下のように読み上げられます。
+`Techincally, listbox cannot contain headings according to ARIA.`については、[WAI-ARIA の `listbox`role の項目](https://w3c.github.io/aria/#listbox)の`Allowed Accessibility Child Roles`を見てください。単純なオプションとなる`option`role か、オプションをグルーピングするための`group`role しか許可されていないので、グルーピングしたセクションの見出しに`heading`role を用いることができないという意味です。
+
+グルーピングすることで、`Static items`の例だと以下のように読み上げられます。
 
 ```
 Choose sandwich contents  リスト
@@ -134,20 +130,19 @@ https://www.w3.org/WAI/ARIA/apg/patterns/listbox/
 
 `useListBox`の中で使われている`useSelectableList`の中で使われている`useSelectableCollection`の中で使われている`useTypeSelect`で、Typeahead が実装されています。
 
-https://github.com/adobe/react-spectrum/blob/5ed06068ee2742f32e066ffa8eb55fd93a083123/packages/%40react-aria/selection/src/useTypeSelect.ts#L47
+https://github.com/adobe/react-spectrum/blob/5ed06068ee2742f32e066ffa8eb55fd93a083123/packages/%40react-aria/selection/src/useTypeSelect.ts#L44-L47
 
-またこのために、`useSelectableList`内で`useCollator`を用いて i18n 対応がされています。`useCollator`内では[Intl.Collator - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator)が用いられているようです。
+またこのために、`useSelectableList`内で`useCollator`を用いて i18n 対応もされています。これについては i18n の回で説明します。
 
 https://github.com/adobe/react-spectrum/blob/5ed06068ee2742f32e066ffa8eb55fd93a083123/packages/%40react-aria/selection/src/useSelectableList.ts#L62
 
-### useSelectableItem
+### `shouldSelectOnPressUp`
 
-`By default, selection occurs on pointer down`
+props として`allowsDifferentPressOrigin`と`shouldSelectOnPressUp`を`true`で渡すと、「メニューのトリガーボタン上で pointer down し、そのままメニュー内のボタンにカーソルを移動して pointer up する」というような、一回のクリックでメニューを開いてそのままメニュー内のボタンを発火させる操作ができるようになっています。以下のコードだと、273 行目の`onSelect`が発火します。
+[2 日目の記事で説明した Pointer Events API](https://zenn.dev/mehm8128/articles/adv2024-react-aria-button#usepress%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)が役に立っています。
 
-### useSelectableCollection
-
-https://github.com/adobe/react-spectrum/issues/2407
+https://github.com/adobe/react-spectrum/blob/8228e4efd9be99973058a1f90fc7f7377e673f78/packages/%40react-aria/selection/src/useSelectableItem.ts#L237-L298
 
 ## まとめ
 
-明日は Number Field の話です。お楽しみにー
+明日の担当は [@mehm8128](https://zenn.dev/mehm8128) さんで、 GridList についての記事です。お楽しみにー
