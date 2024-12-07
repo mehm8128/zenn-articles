@@ -6,6 +6,10 @@ topics: ["frontend", "react", "a11y", "reactaria"]
 published: false
 ---
 
+:::message
+この記事は [React Aria の実装読むぞ - Qiita Advent Calendar 2024](https://qiita.com/advent-calendar/2024/react-aria) の 10 日目の記事です。
+:::
+
 こんにちは、フロントエンドエンジニアの mehm8128 です。
 今日は GridList について書いていきます。
 
@@ -60,19 +64,11 @@ function ListItem({ item, state }) {
 }
 ```
 
-## 主な a11y 考慮事項
+## 本題
 
 https://www.w3.org/WAI/ARIA/apg/patterns/grid/
 
-- `grid`role
-- 各行コンテナが`row`role
-- グルーピングされている場合、`rowgroup`role の利用
-- 選択されているオプションは`aria-selected`などを付与
-- キーボード操作
-
-## いくつかピックアップ
-
-#### GridList は 2 種類ある
+### GridList は 2 種類ある
 
 APG によると、Grid パターンは大きく 2 種類に分かれます。
 
@@ -80,7 +76,7 @@ https://www.w3.org/WAI/ARIA/apg/patterns/grid/
 
 それぞれ説明していきます。
 
-##### データグリッド
+#### データグリッド
 
 表形式でデータを表示するためのパターンです。
 インタラクティブで、フォーカス可能な要素を含みます。完全に静的な場合はテーブルパターンや ListBox パターンを使うとよさそうです。
@@ -104,9 +100,11 @@ Tab キーを押していくと、「Open In CodePen」の次に「01-Jan-16」�
 
 > If focus is on the right-most cell in the row, focus does not move.
 
-React Aria の`useGridList`は主にこちらをサポートしていそうなのと、別の日に紹介しますが`useTable`もこちらになります。
+React Aria の`useGridList`は主にこちらをサポートしていそうというのと、今回のアドベントカレンダーでは見送ったのですが`useTable`もこちらになります。
 
-##### レイアウトグリッド
+https://react-spectrum.adobe.com/react-aria/useTable.html
+
+#### レイアウトグリッド
 
 インタラクティブ要素をグループ化するために用いられるものです。
 こちらも Tab キーを押していったときの挙動がデータグリッドと同様で、矢印キーでレイアウトグリッド内を移動できるようになっています。
@@ -117,17 +115,15 @@ https://www.w3.org/WAI/ARIA/apg/patterns/grid/examples/layout-grids/
 
 https://react-spectrum.adobe.com/react-aria/useTagGroup.html
 
-#### `aria-`でなんかあれば
-
-`aria-rowcount`
-`aria-colcount`
-`aria-level`
-
 ### キーボード操作
 
-`onKeyDown`をちゃんと読む
-treewalker とか、rtl だったら逆方向とか
+`useGridList`で使っている`useSelectableList`で使っている`useSelectableCollection`の`onKeyDown`をちゃんと読む。treewalker とか
+
+### 読み上げ
+
+useGridSelectionAnnouncement
+選択された・解除されたときに読み上げるらしい
 
 ## まとめ
 
-明日は Number Field の話です。お楽しみにー
+明日の担当は [@mehm8128](https://zenn.dev/mehm8128) さんで、 GridList についての記事です。お楽しみにー
