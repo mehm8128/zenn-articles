@@ -1,10 +1,14 @@
 ---
 title: "PopoverとDialogについて - React Ariaの実装読むぞ"
-emoji: "🐕"
+emoji: "🗣️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["frontend", "react", "a11y", "reactaria"]
-published: false
+published: true
 ---
+
+:::message
+この記事は [React Aria の実装読むぞ - Qiita Advent Calendar 2024](https://qiita.com/advent-calendar/2024/react-aria) の 8 日目の記事です。
+:::
 
 こんにちは、フロントエンドエンジニアの mehm8128 です。
 今日は Popover と Dialog について書いていきます。
@@ -17,25 +21,64 @@ https://react-spectrum.adobe.com/react-aria/useDialog.html
 ドキュメントからそのまま取ってきています。
 
 ```tsx
+function Popover({ children, state, offset = 8, ...props }: PopoverProps) {
+  let popoverRef = React.useRef(null);
+  let { popoverProps, underlayProps, arrowProps, placement } = usePopover(
+    {
+      ...props,
+      offset,
+      popoverRef,
+    },
+    state
+  );
 
+  return (
+    <Overlay>
+      <div {...underlayProps} className="underlay" />
+      <div {...popoverProps} ref={popoverRef} className="popover">
+        <svg
+          {...arrowProps}
+          className="arrow"
+          data-placement={placement}
+          viewBox="0 0 12 12"
+        >
+          <path d="M0 0 L6 6 L12 0" />
+        </svg>
+        <DismissButton onDismiss={state.close} />
+        {children}
+        <DismissButton onDismiss={state.close} />
+      </div>
+    </Overlay>
+  );
+}
 ```
 
-## 主な a11y 考慮事項
+```tsx
+function Dialog({ title, children, ...props }: DialogProps) {
+  let ref = React.useRef(null);
+  let { dialogProps, titleProps } = useDialog(props, ref);
 
+  return (
+    <div {...dialogProps} ref={ref} style={{ padding: 30 }}>
+      {title && (
+        <h3 {...titleProps} style={{ marginTop: 0 }}>
+          {title}
+        </h3>
+      )}
+      {children}
+    </div>
+  );
+}
+```
+
+## 本題
+
+APG はこちらです。
 https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 
-- `dialog`role
-- フォーカス制御
-- モーダル化
+### ダイアログを開いたときに最初にフォーカスする要素
 
-## いくつかピックアップ
-
-### フォーカス制御
-
-ダイアログを開いたときと閉じたときのフォーカス制御について、APG に書いてあることを説明します。
-
-#### 開いたときに最初にフォーカスする要素
-
+APG の 1 つ目の Note の 1 に書いてあることを要約します。
 基本的にダイアログ内の最初のフォーカス可能要素にフォーカスされますが、以下のような場合には例外となります。
 
 - リスト、表、複数の段落など複雑なものの場合、先頭に`tabindex="-1"`な要素を追加してそこに最初にフォーカスする
@@ -43,8 +86,9 @@ https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 - ダイアログ内に破壊的なアクションボタンが含まれている場合、最も破壊的でないボタンにフォーカスを設定する
 - 情報を提供したり処理を続行したりするインタラクションボタンに限られている場合、「OK」など最もよく使われるボタンにフォーカスする
 
-#### 閉じたときにフォーカスする要素
+### 閉じたときにフォーカスする要素
 
+APG の 1 つ目の Note の 2 に書いてあることを要約します。
 基本的にはダイアログを開くトリガーとなったボタンにフォーカスを戻しますが、以下の場合にはワークフロー上の別の要素にフォーカスするとよいです。
 
 - トリガーボタンが消えたとき
@@ -55,7 +99,7 @@ https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 ### モーダル化
 
 React Aria のポップオーバーで特徴的なのはこれです。
-ダイアログがモーダルになっているのは自然なのですが、ポップオーバーでもモーダルなのはあまり見たことがありませんでした。ポップオーバーを開くとポップオーバー外の要素へのインタラクションができなくなり、背景のスクロールもできなくなります。
+ダイアログがモーダルになっているのは自然なのですが、ポップオーバーでもモーダルなのはあまり見たことがありませんでした。ポップオーバーを開くとポップオーバー外の要素へのインタラクションができなくなり、背景のスクロールもできなくなります。最近気づいたのですが、Notion のポップオーバーはこれですね。
 これは意図せずポップオーバーが閉じてしまったりポップオーバー外の要素にアクセスしてしまったりするのを防いでいます。
 その他詳細な理由がこの discussion で述べられています。
 
@@ -67,7 +111,7 @@ https://github.com/adobe/react-spectrum/blob/10a43de887ffc28913c770a33573aebf3df
 
 ### VoiceOver on Chrome のバグ
 
-VoiceOver で以下の 2 つのパターンでダイアログが閉じてしまうというバグがありました。
+VoiceOver で以下の 2 つのパターンでダイアログ（ポップオーバー）が閉じてしまうというバグがありました。
 
 - [別タブに移動して戻ってきたとき](https://github.com/adobe/react-spectrum/issues/4130)
 - [DatePicker でショートカットキーでフォーカスを移動したとき](https://github.com/adobe/react-spectrum/issues/4922)
@@ -96,7 +140,7 @@ https://developer.mozilla.org/ja/docs/Web/API/MouseEvent/relatedTarget
 </script>
 ```
 
-条件式が変わっただけなのですが、if 文が`true`になる条件をまとめました。
+修正 PR では条件式が変更されただけなのですが、if 文が`true`になる条件をまとめました。
 
 | 条件式                                                               | 修正前 | 修正後 |
 | -------------------------------------------------------------------- | ------ | ------ |
@@ -105,8 +149,8 @@ https://developer.mozilla.org/ja/docs/Web/API/MouseEvent/relatedTarget
 | `e.relatedTarget` = falsy & `isElementInChildOfActiveScope` = true   | false  | true   |
 | `e.relatedTarget` = falsy & `isElementInChildOfActiveScope` = false  | false  | true   |
 
-よって、`e.relatedTarget`が falsy (`null`) になるときにも結果が`true`になって、ダイアログが閉じられないようになったことが分かります。
+よって、`e.relatedTarget`が falsy (`null`) になるときにも結果が`true`になって、ダイアログ（ポップオーバー）が閉じられないようになったことが分かります。
 
 ## まとめ
 
-明日は の話です。お楽しみにー
+明日の担当は [@mehm8128](https://zenn.dev/mehm8128) さんで、 Listbox についての記事です。お楽しみにー
