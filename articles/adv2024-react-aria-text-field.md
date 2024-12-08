@@ -15,6 +15,10 @@ published: true
 
 https://react-spectrum.adobe.com/react-aria/useTextField.html
 
+## `useTextField` とは
+
+テキストの入力欄を作るための hook です。
+
 ## 使用例
 
 ドキュメントからそのまま取ってきています。

@@ -15,6 +15,10 @@ published: true
 
 https://react-spectrum.adobe.com/react-aria/useTooltipTrigger.html
 
+## `useTooltip` とは
+
+ツールチップを作るための hook です。
+
 ## 使用例
 
 ドキュメントからそのまま取ってきています。

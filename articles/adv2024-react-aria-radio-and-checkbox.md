@@ -17,6 +17,10 @@ https://react-spectrum.adobe.com/react-aria/useRadioGroup.html
 https://react-spectrum.adobe.com/react-aria/useCheckbox.html
 https://react-spectrum.adobe.com/react-aria/useCheckboxGroup.html
 
+## `useRadioGroup`と`useCheckbox` とは
+
+ラジオボタンやチェックボックス、またそれらのグループを作るための hooks です。
+
 ## 使用例
 
 ドキュメントからそのまま取ってきています。

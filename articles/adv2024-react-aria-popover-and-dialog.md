@@ -16,6 +16,10 @@ published: true
 https://react-spectrum.adobe.com/react-aria/usePopover.html
 https://react-spectrum.adobe.com/react-aria/useDialog.html
 
+## `usePopover`と`useDialog` とは
+
+ポップオーバーやダイアログを作るための hooks です。
+
 ## 使用例
 
 ドキュメントからそのまま取ってきています。
