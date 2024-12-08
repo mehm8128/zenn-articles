@@ -15,6 +15,10 @@ published: true
 
 https://react-spectrum.adobe.com/react-aria/useListBox.html
 
+## `useListBox` とは
+
+`select`要素のようなセレクトボックスを作るための hook です。
+
 ## 使用例
 
 ドキュメントからそのまま取ってきています。

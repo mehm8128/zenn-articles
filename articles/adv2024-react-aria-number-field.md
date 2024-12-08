@@ -15,6 +15,10 @@ published: true
 
 https://react-spectrum.adobe.com/react-aria/useNumberField.html
 
+## `useNumberField` とは
+
+数値の入力欄を作るための hook で、様々な format や i18n をサポートしています。
+
 ## 使用例
 
 ドキュメントからそのまま取ってきています。
