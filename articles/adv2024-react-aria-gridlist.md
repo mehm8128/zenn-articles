@@ -115,15 +115,12 @@ https://www.w3.org/WAI/ARIA/apg/patterns/grid/examples/layout-grids/
 
 https://react-spectrum.adobe.com/react-aria/useTagGroup.html
 
-### キーボード操作
+### その他
 
-`useGridList`で使っている`useSelectableList`で使っている`useSelectableCollection`の`onKeyDown`をちゃんと読む。treewalker とか
+`useGridList`で使っている`useSelectableList`で使っている`useSelectableCollection`の`onKeyDown`にフォーカス関連で色々書かれているところがあったので読もうと思ったのですが、挙動確認してもよく分かりませんでした...というか手元で起動したときの挙動がおかしかったので環境の問題かもしれません。誰か教えてください。
 
-### 読み上げ
-
-useGridSelectionAnnouncement
-選択された・解除されたときに読み上げるらしい
+https://github.com/adobe/react-spectrum/blob/8228e4efd9be99973058a1f90fc7f7377e673f78/packages/%40react-aria/selection/src/useSelectableCollection.ts#L288-L315
 
 ## まとめ
 
-明日の担当は [@mehm8128](https://zenn.dev/mehm8128) さんで、 GridList についての記事です。お楽しみにー
+明日の担当は [@mehm8128](https://zenn.dev/mehm8128) さんで、番外編の Focus Management API についての記事です。お楽しみにー
