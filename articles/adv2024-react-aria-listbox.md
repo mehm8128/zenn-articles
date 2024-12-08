@@ -3,7 +3,7 @@ title: "ListBoxについて - React Ariaの実装読むぞ"
 emoji: "📜"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["frontend", "react", "a11y", "reactaria"]
-published: false
+published: true
 ---
 
 :::message
@@ -74,7 +74,7 @@ https://react-spectrum.adobe.com/react-aria/useListBox.html#sections
 
 https://github.com/adobe/react-spectrum/blob/5ed06068ee2742f32e066ffa8eb55fd93a083123/packages/%40react-aria/listbox/src/useListBoxSection.ts#L45-L59
 
-`Techincally, listbox cannot contain headings according to ARIA.`については、[WAI-ARIA の `listbox`role の項目](https://w3c.github.io/aria/#listbox)の`Allowed Accessibility Child Roles`を見てください。単純なオプションとなる`option`role か、オプションをグルーピングするための`group`role しか許可されていないので、グルーピングしたセクションの見出しに`heading`role を用いることができないという意味です。
+`Techincally, listbox cannot contain headings according to ARIA.`については、[WAI-ARIA の `listbox`role の項目](https://w3c.github.io/aria/#listbox)の`Allowed Accessibility Child Roles`を見てください。子要素の role として単純なオプションとなる`option`role か、オプションをグルーピングするための`group`role しか許可されていないので、グルーピングしたセクションの見出しに`heading`role を用いることができないという意味です。
 
 グルーピングすることで、`Static items`の例だと以下のように読み上げられます。
 
@@ -138,7 +138,7 @@ https://github.com/adobe/react-spectrum/blob/5ed06068ee2742f32e066ffa8eb55fd93a0
 
 ### `shouldSelectOnPressUp`
 
-props として`allowsDifferentPressOrigin`と`shouldSelectOnPressUp`を`true`で渡すと、「メニューのトリガーボタン上で pointer down し、そのままメニュー内のボタンにカーソルを移動して pointer up する」というような、一回のクリックでメニューを開いてそのままメニュー内のボタンを発火させる操作ができるようになっています。以下のコードだと、273 行目の`onSelect`が発火します。
+props として`allowsDifferentPressOrigin`と`shouldSelectOnPressUp`を`true`で渡すと、「メニューのトリガーボタン上で pointer down し、そのままメニュー内のボタンにカーソルを移動して pointer up する」というような、一回のクリックでメニューを開いてそのままメニュー内のボタンを発火させる操作ができるようになっています。以下のコードだと、271 行目の`onSelect`が発火します。
 [2 日目の記事で説明した Pointer Events API](https://zenn.dev/mehm8128/articles/adv2024-react-aria-button#usepress%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)が役に立っています。
 
 https://github.com/adobe/react-spectrum/blob/8228e4efd9be99973058a1f90fc7f7377e673f78/packages/%40react-aria/selection/src/useSelectableItem.ts#L237-L298
