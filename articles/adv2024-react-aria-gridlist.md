@@ -1,9 +1,9 @@
 ---
 title: "GridListについて - React Ariaの実装読むぞ"
-emoji: "🐕"
+emoji: "🪟"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["frontend", "react", "a11y", "reactaria"]
-published: false
+published: true
 ---
 
 :::message
@@ -14,6 +14,10 @@ published: false
 今日は GridList について書いていきます。
 
 https://react-spectrum.adobe.com/react-aria/useGridList.html
+
+## `useGridList` とは
+
+インタラクティブなアイテムを持つリストを作成するための hook です。
 
 ## 使用例
 
@@ -66,13 +70,12 @@ function ListItem({ item, state }) {
 
 ## 本題
 
+APG はこちらです。
 https://www.w3.org/WAI/ARIA/apg/patterns/grid/
 
 ### GridList は 2 種類ある
 
 APG によると、Grid パターンは大きく 2 種類に分かれます。
-
-https://www.w3.org/WAI/ARIA/apg/patterns/grid/
 
 それぞれ説明していきます。
 
@@ -96,7 +99,7 @@ Tab キーを押していくと、「Open In CodePen」の次に「01-Jan-16」�
 
 なので、データグリッド内では矢印キーでセルの移動ができるようになっています。
 
-ただ、フォーカスが端にいったときに折り返すようにしてしまうと今どこにいるかが分かりづらくなってしまうので、折り返しはしないらしいです。
+ただ、フォーカスが端にいったときに折り返すようにしてしまうと、スクリーンリーダーのユーザーなどは今どこにいるかが分かりづらくなってしまう場合があるので、折り返しはしないらしいです。
 
 > If focus is on the right-most cell in the row, focus does not move.
 
@@ -117,10 +120,10 @@ https://react-spectrum.adobe.com/react-aria/useTagGroup.html
 
 ### その他
 
-`useGridList`で使っている`useSelectableList`で使っている`useSelectableCollection`の`onKeyDown`にフォーカス関連で色々書かれているところがあったので読もうと思ったのですが、挙動確認してもよく分かりませんでした...というか手元で起動したときの挙動がおかしかったので環境の問題かもしれません。誰か教えてください。
+`useGridList`で使っている`useSelectableList`で使っている`useSelectableCollection`の`onKeyDown`にフォーカス関連で色々書かれているところがあったので読もうと思ったのですが、挙動確認してもよく分かりませんでした...。手元で起動したときの挙動がおかしかったので、環境の問題かもしれません。誰か教えてください。
 
 https://github.com/adobe/react-spectrum/blob/8228e4efd9be99973058a1f90fc7f7377e673f78/packages/%40react-aria/selection/src/useSelectableCollection.ts#L288-L315
 
 ## まとめ
 
-明日の担当は [@mehm8128](https://zenn.dev/mehm8128) さんで、番外編の Focus Management API についての記事です。お楽しみにー
+明日の担当は [@mehm8128](https://zenn.dev/mehm8128) さんで、Toast についての記事です。お楽しみにー
