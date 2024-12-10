@@ -6,6 +6,10 @@ topics: ["frontend", "react", "a11y", "reactaria"]
 published: false
 ---
 
+:::message
+この記事は [React Aria の実装読むぞ - Qiita Advent Calendar 2024](https://qiita.com/advent-calendar/2024/react-aria) の 1 日目の記事です。
+:::
+
 こんにちは、フロントエンドエンジニアの mehm8128 です。
 今日は Menu について書いていきます。
 
@@ -19,15 +23,10 @@ https://react-spectrum.adobe.com/react-aria/useMenu.html
 
 ```
 
-## 主な a11y 考慮事項
+## 本題
 
+WAI-ARIA はこちらです。
 https://www.w3.org/WAI/ARIA/apg/patterns/menubar/
-
-- `menu`role
-- キーボード操作
-- サブメニュー
-
-## いくつかピックアップ
 
 ### キーボード操作
 
@@ -40,10 +39,11 @@ https://react-spectrum.adobe.com/react-aria/Menu.html のコンポーネント�
 フォーカス移動、useSafelyMouseToSubmenu など
 state の組み合わせ方は RAC を読む
 
-https://react-spectrum.adobe.com/blog/creating-a-pointer-friendly-submenu-experience.html
+safepolygon
+https://floating-ui.com/docs/useHover#safepolygon
 
-keyboard shortcut の実装見る。これなに
+https://react-spectrum.adobe.com/blog/creating-a-pointer-friendly-submenu-experience.html
 
 ## まとめ
 
-明日は の話です。お楽しみにー
+明日の担当は [@mehm8128](https://zenn.dev/mehm8128) さんで、 Text Field についての記事です。お楽しみにー
