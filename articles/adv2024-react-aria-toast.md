@@ -1,15 +1,23 @@
 ---
 title: "Toastについて - React Ariaの実装読むぞ"
-emoji: "🐕"
+emoji: "🍞"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["frontend", "react", "a11y", "reactaria"]
 published: false
 ---
 
+:::message
+この記事は [React Aria の実装読むぞ - Qiita Advent Calendar 2024](https://qiita.com/advent-calendar/2024/react-aria) の 11 日目の記事です。
+:::
+
 こんにちは、フロントエンドエンジニアの mehm8128 です。
 今日は Toast について書いていきます。
 
 https://react-spectrum.adobe.com/react-aria/useToast.html
+
+## `useToast`とは
+
+トーストを表示するための hook です。
 
 ## 使用例
 
@@ -48,22 +56,17 @@ function ToastRegion<T extends React.ReactNode>({
 }
 ```
 
-## 主な a11y 考慮事項
+## 本題
 
-https://w3c.github.io/aria/#alert
-
-- `alert`role
-- live region
-- キーボード操作
-
-## いくつかピックアップ
+APG はこちらです。
+https://www.w3.org/WAI/ARIA/apg/patterns/alert/
 
 ### role について
 
 React Aria ではどんなトーストでも`alert`role になり、さらにそれを`alertdialog`のコンテナーで囲うような形になっているのですが、これは実装がよくないと思っています。
 以下の画像が、ドキュメントのページでトーストを表示したときの DOM の画像です。
 
-![](/images/adv2024-react-aria/toast-role.png)
+![一番外側の`role="alertdialog"`がついた`div`要素の中に、`role="alert"`の`div`要素と、`button`要素が入っている](/images/adv2024-react-aria/toast-role.png)
 
 MDN の`alertdialog`のページでは以下のような記載があります。
 
@@ -94,25 +97,27 @@ https://vercel.com/geist/toast
 
 他にも調べたのがちょっと前なのでどのデザインシステムだったか忘れてしまったのですが、error toast だけ`alert`role、それ以外は`status`role、と分けているデザインシステムもありました。
 
-これについては issue を立ててみたのですが、まだ反応がありません。
+ここらへんの PR が部分的に関係していそうなのですが、~~時間がなくて~~調査しきれませんでした。
 
-https://github.com/adobe/react-spectrum/issues/7318
+https://github.com/adobe/react-spectrum/pull/6011
 
-とはいえ`useToast`はまだ beta 版なので、気長に待つか、PR を立てるなりしてもよさそうです。
+https://github.com/adobe/react-spectrum/pull/6223
 
 ### live region
 
-`alert`role を使うと、暗黙的に`aria-live="assertive`がつくので更新が通知されます。`polite`とは違い、現在のタスクを中断してでも緊急で情報を伝えてきます。
+`alert`role を使うと、暗黙的に`aria-live="assertive"`がつくので更新が通知されます。`polite`とは違い、現在のタスクを中断してでも緊急で情報を伝えてきます。
 
 ### キーボード操作
 
-`useToastRegion`でトースト全体のコンテナーに`region`role をつけて landmark にしていて、そこで使っている`useLandmark`によって`Shift + F6`でトーストにフォーカスできるようになっています。
+`useToastRegion`でトースト全体のコンテナーに`region`role をつけて landmark にしていて、そこで使っている`useLandmark`によって`F6`でトーストにフォーカスできるようになっています。
+
+https://github.com/adobe/react-spectrum/blob/8228e4efd9be99973058a1f90fc7f7377e673f78/packages/%40react-aria/toast/src/useToastRegion.ts#L30-L33
 
 `F6`がどこからきているのか分からなかったのですが、discussion にありました。
 
 https://github.com/adobe/react-spectrum/discussions/6686
 
-しかし、`F6`を用いて操作できることをスクリーンリーダー利用者や日常的にキーボード操作をする人が知ってるのかどうかは微妙な気がしているので、他に何か情報があれば教えていただきたいです。
+`F6`を用いてこのような操作ができることってスクリーンリーダー利用者や日常的にキーボード操作をする人の間では有名なんですかね。
 
 ### フォーカス操作
 
@@ -125,14 +130,14 @@ https://github.com/adobe/react-spectrum/blob/b0f15697245de74ebc99ab3d687f5eb3733
 https://github.com/adobe/react-spectrum/blob/b0f15697245de74ebc99ab3d687f5eb3733d3a34/packages/%40react-aria/toast/src/useToastRegion.ts#L71-L104
 
 また、トーストが 1 つもなくなったら`F6`を用いて移動してきたときの、元々フォーカスしていた要素にフォーカスを戻します。
-昨日の記事で紹介した`FocusScope`の focus restore が効かないからここで実装しているとのことなのですが、なんで効かないのか分かりませんでした...。誰か教えてください。
+数日後の記事で紹介する（本当は今日紹介する予定だったけど延期にした）`FocusScope`の focus restore が効かないからここで実装しているとのことなのですが、なんで効かないのか分かりませんでした...。まだ`FocusScope`の実装を読めていないので、読んだら分かるかもです。
 
 https://github.com/adobe/react-spectrum/blob/b0f15697245de74ebc99ab3d687f5eb3733d3a34/packages/%40react-aria/toast/src/useToastRegion.ts#L118-L132
 
-ちなみに`lastFocused`は`useFocusWithin`で、一昨日紹介した`e.relatedTarget`を用いて取得しています。
+ちなみに`lastFocused`は`useFocusWithin`で、この前紹介した`e.relatedTarget`を用いて取得しています。
 
 https://github.com/adobe/react-spectrum/blob/b0f15697245de74ebc99ab3d687f5eb3733d3a34/packages/%40react-aria/toast/src/useToastRegion.ts#L106-L116
 
 ## まとめ
 
-明日は の話です。お楽しみにー
+明日の担当は [@mehm8128](https://zenn.dev/mehm8128) さんで、 Menu についての記事です。お楽しみにー
