@@ -1,18 +1,21 @@
 ---
 title: "Disclosureについて - React Ariaの実装読むぞ"
-emoji: "🐕"
+emoji: "🪗"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["frontend", "react", "a11y", "reactaria"]
 published: false
 ---
 
+:::message
+この記事は [React Aria の実装読むぞ - Qiita Advent Calendar 2024](https://qiita.com/advent-calendar/2024/react-aria) の 13 日目の記事です。
+:::
+
 こんにちは、フロントエンドエンジニアの mehm8128 です。
 今日は Disclosure について書いていきます。
 
-alpha 版なので、残念ながらまだ本番環境のドキュメントにはありません。
-手元で https://github.com/adobe/react-spectrum を clone して、`npm run start:docs`して見てください。
+最初にちょっと記事書いていたときはまだ本番環境のドキュメントに存在していなくて、`http://localhost:1234/react-aria/useDisclosure.html`を貼ろうとしていたのですが、11 月のリリースで入ったようなので見れるようになっていました。
 
-http://localhost:1234/react-aria/useDisclosure.html
+https://react-spectrum.adobe.com/react-aria/useDisclosure.html
 
 ## 使用例
 
@@ -54,15 +57,10 @@ function Disclosure(props) {
 }
 ```
 
-## 主な a11y 考慮事項
+## 本題
 
+WAI-ARIA はこちらです。
 https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/
-
-- `group`role
-- `aria-`属性
-- `hidden="until-found"`
-
-## いくつかピックアップ
 
 ### `group`role と`aria-`属性
 
@@ -92,11 +90,15 @@ https://github.com/adobe/react-spectrum/blob/3f44370de69e48ee56cbf2bbd8664cee829
 
 https://developer.mozilla.org/ja/docs/Web/HTML/Global_attributes/hidden#hidden_until_found_%E7%8A%B6%E6%85%8B
 
-TODO: beforematch 確認
+`beforematch`イベントが発火されたときに以下のコードの箇所で処理を行っています。
 
-React 側がまだ対応していないみたいな話も
+https://github.com/adobe/react-spectrum/blob/993de98adad65e48bcebad8ac835f5c9e0c94c85/packages/%40react-aria/disclosure/src/useDisclosure.ts#L55-L69
+
+なお、React 側がまだ対応していないので先ほどのコードのように`useLayoutEffect`内で無理やり属性をつけていたり、Firefox と Safari がまだ`beforematch`サポートしていないので対応しているブラウザのみで処理を行うようなロジックになっています。
 https://github.com/facebook/react/pull/24741
+https://caniuse.com/mdn-html_global_attributes_hidden_until-found_value
+https://caniuse.com/mdn-api_element_beforematch_event
 
 ## まとめ
 
-明日は の話です。お楽しみにー
+明日の担当は [@mehm8128](https://zenn.dev/mehm8128) さんで、番外編 テストについての記事です。お楽しみにー
