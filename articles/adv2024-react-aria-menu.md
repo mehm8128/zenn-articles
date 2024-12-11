@@ -3,7 +3,7 @@ title: "Menuについて - React Ariaの実装読むぞ"
 emoji: "📖"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["frontend", "react", "a11y", "reactaria"]
-published: false
+published: true
 ---
 
 :::message
@@ -52,7 +52,7 @@ function MenuButton<T extends object>(props: MenuButtonProps<T>) {
 
 ## 本題
 
-WAI-ARIA はこちらです。
+APG はこちらです。
 https://www.w3.org/WAI/ARIA/apg/patterns/menubar/
 
 ### サブメニュー
@@ -80,7 +80,7 @@ https://github.com/adobe/react-spectrum/blob/993de98adad65e48bcebad8ac835f5c9e0c
 https://react-spectrum.adobe.com/blog/creating-a-pointer-friendly-submenu-experience.html
 
 React Aria では、トリガー起動時のカーソル位置と、サブメニューの上端と下端（のトリガー起動時のカーソル位置側の各頂点）の 3 点を結ぶ三角形のエリアを想定し、この中をカーソルが移動しているときにはサブメニューを閉じないようにしています（ただ、記事内で書かれているようにこのエリア内でも一定時間カーソル移動がなかった場合には閉じます）。
-この判定には[Math.atan2() - JavaScript | MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math/atan2)という関数が用いられています。これは[`tan`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math/tan)の逆関数である[`atan`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math/atan)を少し改善したものになっていて、違いは上記の MDN か、記事内でも参照されている[atan2 - Wikipedia](https://ja.wikipedia.org/wiki/Atan2)をご覧ください。
+この判定には[`Math.atan2`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math/atan2)という関数が用いられています。これは[`tan`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math/tan)の逆関数である[`atan`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math/atan)を少し改善したものになっていて、違いは上記の MDN か、記事内でも参照されている[atan2 - Wikipedia](https://ja.wikipedia.org/wiki/Atan2)をご覧ください。
 
 $\operatorname{atan2}$を用いて、以下の画像の直角三角形で緑（水平方向）の辺の長さを$x$、紫（垂直方向）の辺の長さを$y$として、この 2 つから赤く（三角形の内側に）印をつけた角度$\theta$を求めます。
 ![三角形を形成する各点に対して、角度の求め方が記された図](/images/adv2024-react-aria/menu-submenu-calc.png)
