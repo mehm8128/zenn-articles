@@ -90,7 +90,7 @@ https://github.com/adobe/react-spectrum/blob/3f44370de69e48ee56cbf2bbd8664cee829
 
 https://developer.mozilla.org/ja/docs/Web/HTML/Global_attributes/hidden#hidden_until_found_%E7%8A%B6%E6%85%8B
 
-`beforematch`イベントが発火されたときに以下のコードの箇所で処理を行っています。
+ページ内検索やフラグメントナビゲーション（URL の後ろに`#`をつけるやつ）で対象のコンテンツを表示しようとしたときに[`beforematch`](https://developer.mozilla.org/ja/docs/Web/API/Element/beforematch_event)イベントが発火され、それを購読して以下のコードの箇所で処理を行っています。
 
 https://github.com/adobe/react-spectrum/blob/993de98adad65e48bcebad8ac835f5c9e0c94c85/packages/%40react-aria/disclosure/src/useDisclosure.ts#L55-L69
 
