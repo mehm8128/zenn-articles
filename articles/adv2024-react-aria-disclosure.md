@@ -3,7 +3,7 @@ title: "Disclosureについて - React Ariaの実装読むぞ"
 emoji: "🪗"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["frontend", "react", "a11y", "reactaria"]
-published: false
+published: true
 ---
 
 :::message
@@ -59,7 +59,7 @@ function Disclosure(props) {
 
 ## 本題
 
-WAI-ARIA はこちらです。
+APG はこちらです。
 https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/
 
 ### `group`role と`aria-`属性
