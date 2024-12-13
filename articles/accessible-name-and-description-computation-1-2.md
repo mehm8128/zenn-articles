@@ -59,10 +59,10 @@ https://www.w3.org/TR/accname-1.2/
 
 ここで、1.1 と 1.2 での accessible name と accessible description の計算方法及びそれらと text alternative の関係についてまとめます。
 
-|     | name                        | description                                                       |
-| --- | --------------------------- | ----------------------------------------------------------------- |
-| 1.1 | その要素の text alternative | `aria-describedby`が参照する要素の text alternative               |
-| 1.2 | その要素の text alternative | 表を上から順に計算。適用できなかったら 1 つ下の行の計算をしていく |
+|     | name                        | description                                                             |
+| --- | --------------------------- | ----------------------------------------------------------------------- |
+| 1.1 | その要素の text alternative | `aria-describedby`が参照する要素の text alternative                     |
+| 1.2 | その要素の text alternative | 下記の表を上から順に計算。適用できなかったら 1 つ下の行の計算をしていく |
 
 ついでに 1.2 で追加された accessible description の計算方法の表も翻訳＆簡略化して載せておきます（下 2 つはおそらく HTML に限らない説明になっていましたが、分かりやすく HTML の例で書きます）。
 
