@@ -2,8 +2,8 @@
 title: "【番外編】テストについて - React Ariaの実装読むぞ"
 emoji: "🧪"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["frontend", "react", "a11y", "reactaria"]
-published: false
+topics: ["frontend", "react", "a11y", "reactaria", "test"]
+published: true
 ---
 
 :::message
@@ -25,7 +25,7 @@ React Aria では主に 3 種類のテストが導入されています。
 
 https://react-spectrum.adobe.com/react-aria/accessibility.html#testing
 
-時々 issue や PR などで`audit`という言葉を見かけますが、おそらく手動試験がその一部として行われているのではないかなと思っています（説明されているページは見つけられませんでした）。
+時々 issue や PR などで`audit`という言葉を見かけますが、おそらくこの手動試験がその一部として行われているのではないかなと思っています（説明されているページは見つけられませんでした）。
 
 ## Testing Library & Jest
 
@@ -36,7 +36,7 @@ https://github.com/adobe/react-spectrum/blob/main/packages/%40react-aria/link/te
 
 `handles defaults`のテストでは`role`や`tabIndex`が明示的に渡されていないことと、`onKeyDown`に関数が与えられていることをテストしています。
 次の`handles custom element type`のテストでは、`elementType: 'div'`で`useLink`を使用したときに`role`として`link`が明示的に渡されることや`tabIndex`が`0`で渡されることがテストされています。また、`handles isDisabled`のテストでは`aria-hidden`の値もチェックされています。
-このように、最低限の a11y が保証されているかどうかを hook の返り値で 1 つずつ確認しています。このくらいの hook であれば基本的に単純に返り値を見ればよく、DOM としてレンダリングした要素を取得して属性値を調べたりする必要がないのは、hook に切り出していることの 1 つのメリットだと思います。
+このように、最低限の a11y が保証されているかどうかを hook の返り値で 1 つずつ確認しています。
 
 次に、`useDisclosure`を見てみます。
 https://github.com/adobe/react-spectrum/blob/main/packages/%40react-aria/disclosure/test/useDisclosure.test.ts
