@@ -6,6 +6,10 @@ topics: ["frontend", "react", "a11y", "reactaria"]
 published: false
 ---
 
+:::message
+この記事は [React Aria の実装読むぞ - Qiita Advent Calendar 2024](https://qiita.com/advent-calendar/2024/react-aria) の 19 日目の記事です。
+:::
+
 こんにちは、フロントエンドエンジニアの mehm8128 です。
 今日は ProgressBar について書いていきます。
 
@@ -55,14 +59,10 @@ function ProgressBar(props) {
 }
 ```
 
-## 主な a11y 考慮事項
+## 本題
 
+WAI-ARIA はこちらです。
 https://www.w3.org/TR/wai-aria-1.2/#progressbar
-
-- `progressbar`role
-- `aria-`属性
-
-## いくつかピックアップ
 
 ### `aria-`属性
 
@@ -83,7 +83,7 @@ progressbar がページ内のどこかがローディング中であること�
 
 `aria-busy="true"`は、要素の更新中に live region の通知が行われるのを防ぐためのものらしいです。
 
-> https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-busy
+> the global `aria-busy` state indicates an element is being modified and that assistive technologies may want to wait until the changes are complete before informing the user about the update.
 
 https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-busy
 
@@ -91,10 +91,12 @@ Cybozu Inside Out でも関連記事を見つけたので貼っておきます�
 
 https://blog.cybozu.io/entry/2023/12/01/080000#Poca11y-%E3%83%81%E3%83%BC%E3%83%A0%E3%81%A8%E3%81%AE%E5%8D%94%E5%8A%9B
 
-### ボタンの isPending で使ってたみたいな
+### button の`isPending`について
 
-書くことあれば
+progressbar は、実は 2 日目の記事でも登場していました。
+
+https://zenn.dev/mehm8128/articles/adv2024-react-aria-button#ispending%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6
 
 ## まとめ
 
-明日は の話です。お楽しみにー
+明日の担当は [@mehm8128](https://zenn.dev/mehm8128) さんで、Combobox についての記事です。お楽しみにー
