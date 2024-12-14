@@ -79,7 +79,7 @@ https://github.com/adobe/react-spectrum/blob/5ed06068ee2742f32e066ffa8eb55fd93a0
 ### `aria-`属性 2
 
 `useProgressBar`自体にはついていないですが説明したい`aria-`属性がまだあります。
-progressbar がページ内のどこかがローディング中であることを表している場合、そのローディング中の要素で`aria-describedby`によって progressbar を参照し、さらに`aria-busy`を`true`にする必要があります。
+ProgressBar がページ内のどこかがローディング中であることを表している場合、そのローディング中の要素で`aria-describedby`によって ProgressBar を参照し、さらに`aria-busy`を`true`にする必要があります。
 
 `aria-busy="true"`は、要素の更新中に live region の通知が行われるのを防ぐためのものらしいです。
 
