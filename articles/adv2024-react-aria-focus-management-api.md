@@ -1,5 +1,5 @@
 ---
-title: "【番外編】Focus Management APIについて - React Ariaの実装読むぞ"
+title: "【番外編】Focus Management APIについて（概要編） - React Ariaの実装読むぞ"
 emoji: "🔍"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["frontend", "react", "a11y", "reactaria"]
@@ -7,11 +7,11 @@ published: false
 ---
 
 :::message
-この記事は [React Aria の実装読むぞ - Qiita Advent Calendar 2024](https://qiita.com/advent-calendar/2024/react-aria) の 11 日目の記事です。
+この記事は [React Aria の実装読むぞ - Qiita Advent Calendar 2024](https://qiita.com/advent-calendar/2024/react-aria) の 17 日目の記事です。
 :::
 
 こんにちは、フロントエンドエンジニアの mehm8128 です。
-今日は Focus Management API について書いていきます。初めての番外編です。
+今日は Focus Management API の概要について書いていきます。
 
 ## Focus Management API とは
 
@@ -108,6 +108,4 @@ TODO: When a FocusScope which contains the currently focused element unmounts �
 
 ## まとめ
 
-React Aria に実装されている`Focus Scope`の実装を読もうと思ったのですが、長くなりそうなので別の回で書きます。
-
-明日の担当は [@mehm8128](https://zenn.dev/mehm8128) さんで、 Toast についての記事です。お楽しみにー
+明日の担当は [@mehm8128](https://zenn.dev/mehm8128) さんで、 番外編 Focus Management API について（実装編）の記事です。お楽しみにー
