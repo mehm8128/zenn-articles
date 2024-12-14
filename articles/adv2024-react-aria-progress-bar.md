@@ -1,6 +1,6 @@
 ---
 title: "ProgressBarについて - React Ariaの実装読むぞ"
-emoji: "🐕"
+emoji: "🌀"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["frontend", "react", "a11y", "reactaria"]
 published: false
