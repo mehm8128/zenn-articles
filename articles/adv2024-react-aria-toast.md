@@ -130,7 +130,8 @@ https://github.com/adobe/react-spectrum/blob/b0f15697245de74ebc99ab3d687f5eb3733
 https://github.com/adobe/react-spectrum/blob/b0f15697245de74ebc99ab3d687f5eb3733d3a34/packages/%40react-aria/toast/src/useToastRegion.ts#L71-L104
 
 また、トーストが 1 つもなくなったら`F6`を用いて移動してきたときの、元々フォーカスしていた要素にフォーカスを戻します。
-数日後の記事で紹介する（本当は今日紹介する予定だったけど延期にした）`FocusScope`の focus restore が効かないからここで実装しているとのことなのですが、なんで効かないのか分かりませんでした...。まだ`FocusScope`の実装を読めていないので、読んだら分かるかもです。
+数日後の記事で紹介する（本当は今日紹介する予定だったけど延期にした）`FocusScope`の focus restore が効かないからここで実装してい ~~るとのことなのですが、なんで効かないのか分かりませんでした...。まだ`FocusScope`の実装を読めていないので、読んだら分かるかもです。~~ ます。追記: 読みました。
+`FocusScope`は mount するタイミングでフォーカスされている要素を`document.activeElement`で取得するので、`useToastRegion`を使っているコンポーネント（`ToastRegion`）が mount するタイミングでしかフォーカスの復元先を更新しません。つまり、一回`ToastRegion`に入って再度元の場所に戻り、別の要素から`F6`キーで入ったとしても`ToastRegion`が mount したタイミングでフォーカスされていた要素が記憶されている状態のままということです。よって、`lastFocused`を別で保持しておき、unmount するタイミングでそちらにフォーカスを戻すようにしています。
 
 https://github.com/adobe/react-spectrum/blob/b0f15697245de74ebc99ab3d687f5eb3733d3a34/packages/%40react-aria/toast/src/useToastRegion.ts#L118-L132
 
