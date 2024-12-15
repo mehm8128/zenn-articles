@@ -3,7 +3,7 @@ title: "Tabについて - React Ariaの実装読むぞ"
 emoji: "📑"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["frontend", "react", "a11y", "reactaria"]
-published: false
+published: true
 ---
 
 :::message
@@ -11,7 +11,7 @@ published: false
 :::
 
 こんにちは、フロントエンドエンジニアの mehm8128 です。
-今日は TabList について書いていきます。
+今日は Tab について書いていきます。
 
 https://react-spectrum.adobe.com/react-aria/useTabList.html
 
