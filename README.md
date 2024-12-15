@@ -1,3 +1,3 @@
 # Zenn Articles
 
-WSLではそのまま`nr dev`できますが、macでは`wslview`を`open`に変えてください。
+`nr dev`で起動できます。

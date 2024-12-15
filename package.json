@@ -2,7 +2,6 @@
 	"name": "zenn-articles",
 	"scripts": {
 		"dev": "zenn preview",
-		"open": "wslview http://localhost:8000",
 		"new": "zenn new:article",
 		"new:book": "zenn new:book"
 	},
