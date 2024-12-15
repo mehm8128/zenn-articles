@@ -7,7 +7,7 @@ published: false
 ---
 
 :::message
-この記事は [React Aria の実装読むぞ - Qiita Advent Calendar 2024](https://qiita.com/advent-calendar/2024/react-aria) の 1 日目の記事です。
+この記事は [React Aria の実装読むぞ - Qiita Advent Calendar 2024](https://qiita.com/advent-calendar/2024/react-aria) の 22 日目の記事です。
 :::
 
 こんにちは、フロントエンドエンジニアの mehm8128 です。
@@ -25,7 +25,7 @@ https://react-spectrum.adobe.com/react-aria/useDateField.html
 
 ## 本題
 
-こちらが APG です。
+APG はこちらです。
 https://www.w3.org/WAI/ARIA/apg/patterns/listbox/
 
 ### i18n
@@ -48,4 +48,4 @@ When used within a date picker or date range picker, the field gets role="presen
 
 ## まとめ
 
-明日の担当は [@mehm8128](https://zenn.dev/mehm8128) さんで、 Text Field についての記事です。お楽しみにー
+明日の担当は [@mehm8128](https://zenn.dev/mehm8128) さんで、 Calendar についての記事です。お楽しみにー
