@@ -3,7 +3,7 @@ title: "【番外編】Focus Management APIについて（概要編） - React A
 emoji: "🔍"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["frontend", "react", "a11y", "reactaria"]
-published: false
+published: true
 ---
 
 :::message
@@ -19,9 +19,9 @@ Focus Management API とは、こちらの React の RFC で提案されてい�
 
 https://github.com/reactjs/rfcs/pull/109
 
-RFC 自体はここから見ることができます（リンク先飛ぶときれいに表示されてる状態で見れます）。
+RFC 自体はここから見ることができます。
 
-https://github.com/devongovett/rfcs-1/blob/patch-1/text/2019-focus-management.md
+[https://github.com/devongovett/rfcs-1/blob/patch-1/text/2019-focus-management.md](https://github.com/devongovett/rfcs-1/blob/patch-1/text/2019-focus-management.md)
 
 簡単に言うと、`FocusScope`コンポーネントと`FocusManager`という API を `react-dom` にビルトインで導入したいという提案です。
 [React の `createPortal`](https://ja.react.dev/reference/react-dom/createPortal)が抱えている問題の改善や、その他フォーカス制御をいい感じにしたいというのが主な目的です。
@@ -37,11 +37,11 @@ https://react-spectrum.adobe.com/react-aria/FocusScope.html
 ### Focus containment
 
 宣言的な React で、命令的な処理を書くことになる ref（`useRef`）を使うのはエスケープハッチとされています。特にフォーカス制御などで ref を使わざるを得ないときがありますが、ref は React っぽくないのであまり使いたくないとのことです。
-ref を使う場面の例として、例えばダイアログやその他ポップアップで、フォーカスが外に出てしまわないようにしたいことがあります。これを Focus containment を呼んでいます。ダイアログで最後の要素にフォーカスしている状態で Tab キーを押したら、ダイアログ内の一番上の要素にフォーカスが戻るようにしたりします。これは現状、手動で命令的にフォーカスを制御しなければ実装できません。
+ref を使う場面の例として、例えばダイアログやその他ポップアップで、フォーカスが外に出てしまわないようにしたいことがあります。これを Focus containment を呼んでいます。ダイアログ内の最後の要素にフォーカスしている状態で Tab キーを押したら、ダイアログ内の一番上の要素にフォーカスが戻るようにしたりといったものです。これは現状、手動で命令的にフォーカスを制御しなければ実装できません。
 
 ### Restoring focus
 
-現状、ある要素にフォーカスを移動したら、前にどの要素がフォーカスを持っていたかを記憶しておくには上記の ref などを用いて手動で管理しておくしかありません。前にフォーカスしていた要素を記憶していたい場面を 2 つ紹介します。
+現状フォーカスを移動するとき、前にどの要素がフォーカスを持っていたかを記憶しておくには上記の ref などを用いて手動で管理しておくしかありません。前にフォーカスしていた要素を記憶していたい場面の例を 2 つ紹介します。
 
 リストとかグリッドといった UI パターン（参考: [GridList について - React Aria の実装読むぞ](https://zenn.dev/mehm8128/articles/adv2024-react-aria-gridlist#%E3%83%87%E3%83%BC%E3%82%BF%E3%82%B0%E3%83%AA%E3%83%83%E3%83%89)）では、一度 Tab キーでフォーカスしたらその後の、その UI の中でのフォーカス移動は矢印キーで移動したいです。なぜなら、見たいわけではないグリッドにフォーカスしたときに、そこから抜け出して次のコンテンツに進むために何回も Tab キーを押さなければならないからです。
 そのために [Roving tab index パターン](https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#kbd_roving_tabindex)が上記の動作を実現する 1 つの手段ではありますが、一度フォーカスが外れてまた戻ってきたときに、前にフォーカスされていた要素にフォーカスを復元するにはそれを記憶しておかないといけません。
@@ -69,8 +69,8 @@ function App() {
 }
 ```
 
-`Portal`では`createPoratl`を用いて子要素を`document.body`に配置させています。
-この場合、フォーカス順が`input 1`->`input2`->`input3`ではなくて、`input 1`->`input3`->`input2`となります。これは分かりづらいので、React tree の順にフォーカスされるようにしてほしいということが提案されています。実はイベントバブリングは React tree の通りに行われるらしいです。つまり、`input 2`で発生したイベントはその親要素である`div`タグにバブリングされる、ということです。
+`Portal`コンポーネントは、`createPoratl`を用いて子要素を`document.body`に配置させるようなものだと想定しています。
+この場合、フォーカス順が`input 1`→`input2`→`input3`ではなくて、`input 1`→`input3`→`input2`となります。これは分かりづらいので、React tree の順にフォーカスされるようにしてほしいということが提案されています。実はイベントバブリングは React tree の通りに行われるらしいです。つまり、`input 2`で発生したイベントはその親要素である`div`タグにバブリングされる、ということです。
 
 ## 解決方法
 
@@ -85,10 +85,10 @@ tabbable: デフォルトでフォーカス可能な`input`や`button`要素に�
 
 ### `FocusScope`
 
-React ルートに暗黙の`FocusScope`を用意しておき、`FocusScope`はその中にあるフォーカス可能要素で順序付きリストを作成します。Tab キーを押したときに、この順序通りにフォーカスが移動していきます。
+React root に暗黙の`FocusScope`を用意しておき、`FocusScope`はその中にあるフォーカス可能要素で順序付きリストを作成します。Tab キーを押したときに、この順序通りにフォーカスが移動していきます。
 各`FocusScope`はその中で最後にフォーカスされた要素を記憶しておき、他の`FocusScope`からフォーカスが移動してきたときにその位置にフォーカスを戻すことができるようにします。また、現在フォーカスされている要素を持っている`FocusScope`がアンマウントした場合、その`FocusScope`外の最後にフォーカスを持っていた要素にフォーカスが移動します。
 
-また、`FocusScope`は Focus containment にも用いることができます。`contain`prop を渡した場合、`FocusScope`内のフォーカス可能要素の中でフォーカスがループします。そして、`autoFocus`prop を渡すと`FocusScope`内で最初のフォーカス可能要素に自動でフォーカスします。
+さらに、`FocusScope`は Focus containment にも用いることができます。`contain`prop を渡した場合、`FocusScope`内のフォーカス可能要素の中でフォーカスがループします。そして、`autoFocus`prop を渡すと`FocusScope`内で最初のフォーカス可能要素に自動でフォーカスします。
 
 ### `FocusManager`
 
