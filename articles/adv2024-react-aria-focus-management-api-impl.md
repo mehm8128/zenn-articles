@@ -3,7 +3,7 @@ title: "【番外編】Focus Management APIについて（実装編） - React A
 emoji: "🎮"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["frontend", "react", "a11y", "reactaria"]
-published: false
+published: true
 ---
 
 :::message
@@ -64,6 +64,15 @@ https://github.com/adobe/react-spectrum/blob/326f48154e301edab425c8198c5c3af7242
 `useFocusManager`は親の`FocusScope`から context を受け取って色んなメソッドを実行できるようになっています。ここらへんで TreeWalker API を使って実装されています。
 
 https://github.com/adobe/react-spectrum/blob/326f48154e301edab425c8198c5c3af72422462b/packages/%40react-aria/focus/src/FocusScope.tsx#L205-L268
+
+### `focusgroup`について
+
+本当は昨日の記事で書く予定だったのですが、書く時間がなかったのでこの記事で補足します。
+
+Open UI に、`focusgroup`という HTML 属性の Proposal があります。これは現在 ref などを用いて Programmically にキーボード操作によるフォーカス移動をしているのを、HTML 属性だけで制御できるようにするというものです。詳しくは僕もまだ読めていないので、Open UI の Proposal や azukiazusa さんの記事をご覧ください。
+
+https://open-ui.org/components/focusgroup.explainer/
+https://azukiazusa.dev/blog/focusgroup-arrow-key-focus-navigation/
 
 ## まとめ
 
