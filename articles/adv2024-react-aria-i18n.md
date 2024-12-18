@@ -20,6 +20,24 @@ https://react-spectrum.adobe.com/react-aria/internationalization.html
 https://react-spectrum.adobe.com/react-aria/I18nProvider.html
 https://react-spectrum.adobe.com/blog/how-we-internationalized-our-numberfield.html
 
+基本
+https://zenn.dev/sajikix/articles/intl-advent-calendar-24-01
+
+日付
+https://zenn.dev/sajikix/articles/intl-advent-calendar-24-07
+https://zenn.dev/sajikix/articles/intl-advent-calendar-24-08
+https://zenn.dev/sajikix/articles/intl-advent-calendar-24-09
+
+数値
+https://zenn.dev/sajikix/articles/intl-advent-calendar-24-13
+https://zenn.dev/sajikix/articles/intl-advent-calendar-24-14
+https://zenn.dev/sajikix/articles/intl-advent-calendar-24-15
+
+その他
+https://zenn.dev/sajikix/articles/intl-advent-calendar-24-17
+https://zenn.dev/sajikix/articles/intl-advent-calendar-24-18
+https://zenn.dev/sajikix/articles/intl-advent-calendar-24-19
+
 ###
 
 ## まとめ
