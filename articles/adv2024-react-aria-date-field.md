@@ -33,18 +33,36 @@ https://www.w3.org/WAI/ARIA/apg/patterns/listbox/
 i18 記事出したあとになるので書く
 https://react-spectrum.adobe.com/blog/date-and-time-pickers-for-all.html
 
+> Rather than wrapping a Date object and providing an API on top, it implements all date arithmetic and utilities from scratch
+
+CalendarDate オブジェクト
+Temporal に inspire されてる
+
+intl.datetimeformat は複数の暦をサポートしてるけど、js の Date オブジェクトはグレゴリオ暦のみサポートしてる
+つまり、別の暦で表示すると正しく表示されない
+よって、i18ned/date オブジェクトでいい感じに別の暦に変換できるようにしてる
+その他一週間が何曜日に終わるかとか何曜日が休日かとか、タイムゾーンとかサマータイムとかの面倒とかも見てくれる
+format 部分は intl を wrap したもの
+
 ### `useDateSegment`
 
-`backspace`関数気になる
 Only apply aria-describedby to the first segment
-contenteditable
+->冗長な読み上げにならないように
 enterkeyhint
-他に読み上げ関連のとかあれば
+->スマホのときに右下に表示されるボタンのテキスト
+https://developer.mozilla.org/ja/docs/Web/HTML/Global_attributes/enterkeyhint
+列挙型なことに注意（好きなのを入れられるわけではない）
 
 ### date picker で使うときの注意点みたいな
 
 If within a date picker or date range picker, the date field will have role="presentation"
 When used within a date picker or date range picker, the field gets role="presentation"
+
+`descProps`: 選択した日付 : 2024 年 12 月 18 日
+`fieldProps`: 普通にフィールドの説明文
+
+date picker のときはさらに外側に、date field と calendar を両方合わせた group があるからついてないって話っぽそう
+describedby は`fieldProps['aria-describedby']`で既に date picker 側で選択した日付もつけてくれてるから、それ単体で OK
 
 ## まとめ
 
