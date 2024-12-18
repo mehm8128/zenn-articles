@@ -30,21 +30,27 @@ https://www.w3.org/WAI/ARIA/apg/patterns/listbox/
 
 ###
 
-unavailable な cell をクリックしたときに、最も近い日付が選択されてしまうの、あんまりよくなさそう
-
-https://react-spectrum.adobe.com/react-aria/useCalendar.html#controlling-the-focused-date
-最初フォーカスされてなくない？
+i18n
+range は intl の range 使ってる
+あとは date field で書いた通り
 
 useCalendarBase
-role: 'application'
 読み上げ。Announce when the visible date range changes
+そのまま。selectedDateDescription が変わったときに読み上げる
 
 useCalendarGrid
 Column headers are hidden to screen readers to make navigating with a touch screen reader easier
-キーボード操作
+そのまま。ヘッダー（曜日部分）はスクリーンリーダーによる読み上げをスキップして、日付部分にフォーカスするごとに曜日が読み上げられるようになってる
 
 useCalendarCell
 anchorDate って何
+->range calendar のときの range の開始日時
+drag の処理とか色々してるので、できればもうちょっと見てみる
+
+range
+「クリックして日付範囲の選択を開始」「クリックして日付範囲の選択を終了」の読み上げ。aria-description につけることで、フォーカス時に読み上げ
+スクリーンリーダーユーザー向けの読み上げなのに、「クリックして」でいいのか？
+https://github.com/adobe/react-spectrum/blob/adae13c78e7085df4b2d39817def75f35df4f6c9/packages/%40react-aria/calendar/src/useCalendarCell.ts#L145-L156
 
 ## まとめ
 
