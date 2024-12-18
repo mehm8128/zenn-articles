@@ -12,8 +12,12 @@ published: false
 
 こんにちは、フロントエンドエンジニアの mehm8128 です。
 
+どんな a11y 対応があって、一通り対応するのがどれだけ大変かみたいな
+
 今後の展望
-nextui
+
+https://nextui.org/
+https://www.jollyui.dev/
 
 ## まとめ
 
