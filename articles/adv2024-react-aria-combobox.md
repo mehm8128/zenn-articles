@@ -118,8 +118,6 @@ https://github.com/adobe/react-spectrum/issues/7377
 
 #### スクリーンリーダー間差異
 
-`VoiceOver has issues with announcing aria-activedescendant properly on change`から 3 つ、useEffect で手動読み上げさせてるやつ
-
 NVDA と Voice Over における読み上げの問題があったので、その改善方法について述べられていました。
 
 ##### NVDA
