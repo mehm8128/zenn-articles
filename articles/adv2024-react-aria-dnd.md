@@ -20,6 +20,8 @@ https://react-spectrum.adobe.com/blog/drag-and-drop.html
 https://react-spectrum.adobe.com/react-aria/DropZone.html
 https://react-spectrum.adobe.com/react-aria/useDrag.html
 
+https://azukiazusa.dev/blog/react-aria-drag-and-drop/
+
 ###
 
 ## まとめ
