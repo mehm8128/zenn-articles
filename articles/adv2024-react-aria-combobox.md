@@ -3,7 +3,7 @@ title: "ComboBoxについて - React Ariaの実装読むぞ"
 emoji: "💥"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["frontend", "react", "a11y", "reactaria"]
-published: false
+published: true
 ---
 
 :::message
@@ -100,7 +100,7 @@ https://react-spectrum.adobe.com/blog/building-a-combobox.html
 ### React portals
 
 [前回と前々回解説した Focus Management API の RFC](https://zenn.dev/mehm8128/articles/adv2024-react-aria-focus-management-api#react-portals) でも述べられていたようなフォーカス順の話です。
-ComboBox が開いている間はこのコンポーネント以外のところにスクリーンリーダーがアクセスできないように（≒ フォーカスできないように）、残りの全ての要素に`aria-hidden`をつけています。また、その間に新しい DOM が生成されたときも MutationObserver で監視して、新たに`aria-hidden`をつけるようにしているらしいです。
+ComboBox が開いている間はこのコンポーネント以外のところにスクリーンリーダーがアクセスできないように（≒ フォーカスできないように）、残りの全ての要素に`aria-hidden`をつけています。また、その間に新しい DOM が生成されたときも`MutationObserver`で監視して、新たに`aria-hidden`をつけるようにしているらしいです。
 
 ちなみに、これだと重いので`startTransition`を用いてパフォーマンス改善をするというテクニックがあるらしいです。
 https://x.com/javascripter/status/1867513567156805906
@@ -127,7 +127,7 @@ NVDA と Voice Over における読み上げの問題があったので、その
 ##### Voice Over
 
 とにかく読み上げがされず、自前で`LiveAnnoucer`を作成して読み上げが行われるようにしたという話が書かれています。
-例えば`group`role 内のオプションや利用可能なオプションの数の読み上げ、選択中のオプションにフォーカスしたときに現在選択中という情報などが読み上げられていなかったらしいです。
+例えば`group`role 内のオプションラベルや利用可能なオプションの数の読み上げ、選択中のオプションにフォーカスしたときに現在選択中という情報などが読み上げられていなかったらしいです。
 `LiveAnnouncer`については 2 日目の記事で解説したので、そちらをご覧ください。
 
 https://zenn.dev/mehm8128/articles/adv2024-react-aria-button#ispending%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6
@@ -139,7 +139,7 @@ https://github.com/adobe/react-spectrum/blob/326f48154e301edab425c8198c5c3af7242
 
 ### キーボード操作
 
-前に`useListBox`や`useComboBox`を用いたときのメニューでのフォーカス移動の挙動と、`useMenu`を用いたときの挙動が異なっていて気になって調査したことがあるので、参考程度に紹介しておきます。
+前に`useListBox`や`useComboBox`を用いたときのメニューでのフォーカス移動の挙動と、`useMenu`を用いたときの挙動が異なっていて気になって調査したことがあるので、紹介しておきます。
 https://zenn.dev/mehm8128/articles/react-aria-combobox
 
 ### Customizable Select Element
@@ -149,7 +149,7 @@ saku さんの 1 人アドベントカレンダーで、Customizable Select Elem
 
 https://adventar.org/calendars/10293
 
-現在 Chrome Canary の v130 以上で Experimental Web Platform features のフラグ有効化（`chrome://flags/#enable-experimental-web-platform-features`）すると、Customizable Select Element の動作を確認できます。
+現在 Chrome Canary の v130 以上で Experimental Web Platform features のフラグを有効化（`chrome://flags/#enable-experimental-web-platform-features`）すると、Customizable Select Element の動作を確認できます。
 11 日目の記事に CodePen のデモがあります。
 
 https://blog.sakupi01.com/dev/articles/2024-openui-advent-11
