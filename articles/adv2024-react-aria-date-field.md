@@ -1,6 +1,6 @@
 ---
 title: "DateFieldについて - React Ariaの実装読むぞ"
-emoji: "🐕"
+emoji: "🗓️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["frontend", "react", "a11y", "reactaria"]
 published: false
@@ -20,49 +20,114 @@ https://react-spectrum.adobe.com/react-aria/useDateField.html
 ドキュメントからそのまま取ってきています。
 
 ```tsx
+export function DateField(props) {
+  let { locale } = useLocale();
+  let state = useDateFieldState({
+    ...props,
+    locale,
+    createCalendar,
+  });
 
+  let ref = React.useRef(null);
+  let { labelProps, fieldProps } = useDateField(props, state, ref);
+
+  return (
+    <div className="wrapper">
+      <span {...labelProps}>{props.label}</span>
+      <div {...fieldProps} ref={ref} className="field">
+        {state.segments.map((segment, i) => (
+          <DateSegment key={i} segment={segment} state={state} />
+        ))}
+        {state.isInvalid && <span aria-hidden="true">🚫</span>}
+      </div>
+    </div>
+  );
+}
+
+function DateSegment({ segment, state }) {
+  let ref = React.useRef(null);
+  let { segmentProps } = useDateSegment(segment, state, ref);
+
+  return (
+    <div
+      {...segmentProps}
+      ref={ref}
+      className={`segment ${segment.isPlaceholder ? "placeholder" : ""}`}
+    >
+      {segment.text}
+    </div>
+  );
+}
 ```
 
 ## 本題
 
-APG はこちらです。
-https://www.w3.org/WAI/ARIA/apg/patterns/listbox/
-
 ### i18n
 
-i18 記事出したあとになるので書く
+フォーマットについては昨日の記事で紹介したのですが、Intl 以外の観点で見ていきます。
+
+React Aria では`CalendarDate` オブジェクトという、`Date`オブジェクトを wrap しているのではなくて完全に独自実装をしている日付用オブジェクトを用意しています。これは Temporal に inspire されているらしく、日付の演算やその他便利なメソッドが用意されています。
+
+> Rather than wrapping a Date object and providing an API on top, it implements all date arithmetic and utilities from scratch.
+
+公式のサンプルコードもそのまま載せておきます。
+
+```ts
+import { CalendarDate } from "@internationalized/date";
+
+let date = new CalendarDate(2022, 2, 3);
+date = date.add({ years: 1, months: 1, days: 1 });
+date.toString(); // '2023-03-04'
+```
+
 https://react-spectrum.adobe.com/blog/date-and-time-pickers-for-all.html
 
-> Rather than wrapping a Date object and providing an API on top, it implements all date arithmetic and utilities from scratch
+`CalendarDate`オブジェクトのいくつかの利点を見ていきます。
 
-CalendarDate オブジェクト
-Temporal に inspire されてる
+`Intl.datetimeformat` は複数の暦のフォーマットをサポートしているのですが、`Date` オブジェクトはグレゴリオ暦のみサポートしているので、演算結果を別の暦で表示しようとすると正しく表示されないという問題があります。
+よって、`CalendarDate` オブジェクトを用いて別の暦に変換できるようにしているとのことです。
+サンプルコードをそのまま引用しておきます。
 
-intl.datetimeformat は複数の暦をサポートしてるけど、js の Date オブジェクトはグレゴリオ暦のみサポートしてる
-つまり、別の暦で表示すると正しく表示されない
-よって、i18ned/date オブジェクトでいい感じに別の暦に変換できるようにしてる
-その他一週間が何曜日に終わるかとか何曜日が休日かとか、タイムゾーンとかサマータイムとかの面倒とかも見てくれる
-format 部分は intl を wrap したもの
+```ts
+import {
+  GregorianCalendar,
+  HebrewCalendar,
+  toCalendar,
+} from "@internationalized/date";
+
+let hebrewDate = new CalendarDate(new HebrewCalendar(), 5781, 1, 1);
+let gregorianDate = toCalendar(hebrewDate, new GregorianCalendar());
+gregorianDate.toString();
+// => '2020-09-19'
+```
+
+その他、1 週間が何曜日に終わるかや何曜日が休日か、またタイムゾーンとかサマータイムなどの面倒も見てくれていて、様々なユーティリティ関数が提供されています。
 
 ### `useDateSegment`
 
-Only apply aria-describedby to the first segment
-->冗長な読み上げにならないように
-enterkeyhint
-->スマホのときに右下に表示されるボタンのテキスト
-https://developer.mozilla.org/ja/docs/Web/HTML/Global_attributes/enterkeyhint
-列挙型なことに注意（好きなのを入れられるわけではない）
+`useDateSegment`は年、月、日などのそれぞれの入力欄用の hook です。
+この中で`useSpinButton`を用いて spinbutton にしていたり、その他数値の入力に関する a11y 対応がされています。
 
-### date picker で使うときの注意点みたいな
+https://github.com/adobe/react-spectrum/blob/main/packages/%40react-aria/datepicker/src/useDateSegment.ts
 
-If within a date picker or date range picker, the date field will have role="presentation"
-When used within a date picker or date range picker, the field gets role="presentation"
+### DatePicker で使用するときの冗長な読み上げ対応
 
-`descProps`: 選択した日付 : 2024 年 12 月 18 日
-`fieldProps`: 普通にフィールドの説明文
+`useDatePicker`という hook を使うことで、DateField と一緒に Calendar（明日紹介します）を表示することができる、DatePicker を作成することができます。
 
-date picker のときはさらに外側に、date field と calendar を両方合わせた group があるからついてないって話っぽそう
-describedby は`fieldProps['aria-describedby']`で既に date picker 側で選択した日付もつけてくれてるから、それ単体で OK
+https://react-spectrum.adobe.com/react-aria/useDatePicker.html
+
+この`useDatePicker`で使用するときに、冗長な読み上げがされないような対応がされています。
+`useDateField`を単体で利用するときは年・月・日の入力欄のみで 1 つのグループですが、`useDatePicker`と一緒に利用するときは、DatePicker のトリガーボタンも含めて 1 つのグループなので、`group`role をつけて description などを付与するのを、`useDateField`の責務ではなくて`useDatePicker`の責務にして、冗長な読み上げを防いだり、グループ構造を適切にしています。
+
+以下のコードで、`descProps`は「選択した日付 : 2024 年 12 月 18 日」などのテキスト、`fieldProps`はフィールド自体の説明文です。
+
+https://github.com/adobe/react-spectrum/blob/50c7ada5d1880a174b6b6d3f43e8d90ee9bd4ad8/packages/%40react-aria/datepicker/src/useDateField.ts#L98-L102
+
+`hookData.set`は先ほどの`useDateSegment`にデータを渡しています。
+https://github.com/adobe/react-spectrum/blob/50c7ada5d1880a174b6b6d3f43e8d90ee9bd4ad8/packages/%40react-aria/datepicker/src/useDateField.ts#L107-L113
+
+ここで DateField の role などを指定しています。
+https://github.com/adobe/react-spectrum/blob/50c7ada5d1880a174b6b6d3f43e8d90ee9bd4ad8/packages/%40react-aria/datepicker/src/useDateField.ts#L117-L132
 
 ## まとめ
 
