@@ -1,6 +1,6 @@
 ---
 title: "Calendarについて - React Ariaの実装読むぞ"
-emoji: "🐕"
+emoji: "🗓️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["frontend", "react", "a11y", "reactaria"]
 published: false
@@ -20,37 +20,69 @@ https://react-spectrum.adobe.com/react-aria/useCalendar.html
 ドキュメントからそのまま取ってきています。
 
 ```tsx
+function Calendar(props) {
+  let { locale } = useLocale();
+  let state = useCalendarState({
+    ...props,
+    locale,
+    createCalendar,
+  });
 
+  let { calendarProps, prevButtonProps, nextButtonProps, title } = useCalendar(
+    props,
+    state
+  );
+
+  return (
+    <div {...calendarProps} className="calendar">
+      <div className="header">
+        <h2>{title}</h2>
+        <Button {...prevButtonProps}>&lt;</Button>
+        <Button {...nextButtonProps}>&gt;</Button>
+      </div>
+      <CalendarGrid state={state} />
+    </div>
+  );
+}
 ```
 
 ## 本題
 
-APG はこちらです。
-https://www.w3.org/WAI/ARIA/apg/patterns/listbox/
+### i18n
 
-###
+再び i18n です。
+React Aria の Calendar には 2 種類あり、普通に選択する Calendar と、日付の範囲を選択する Calendar です。後者はホテル予約とかで見るやつです。
+範囲選択でも、選択した範囲を示すのに適切なフォーマットにする必要があるので、i18n が行われています。
 
-i18n
-range は intl の range 使ってる
-あとは date field で書いた通り
+そこで登場するのが`useDateFormatter`から得られる`DateFormatter`オブジェクトの`formatRange`メソッドです。これは内部で`Intl.DateTimeFormat`の`formatRange`メソッドを使っています。
 
-useCalendarBase
-読み上げ。Announce when the visible date range changes
-そのまま。selectedDateDescription が変わったときに読み上げる
+`Intl.DateTimeFormat`の`formatRange`メソッドについてはこちらの記事をご覧ください。
+https://zenn.dev/sajikix/articles/intl-advent-calendar-24-07#formatrange()-%E3%81%A8-formatrangetoparts()
 
-useCalendarGrid
-Column headers are hidden to screen readers to make navigating with a touch screen reader easier
-そのまま。ヘッダー（曜日部分）はスクリーンリーダーによる読み上げをスキップして、日付部分にフォーカスするごとに曜日が読み上げられるようになってる
+日付の演算は独自の`CalendarDate`オブジェクトを利用するのですが、フォーマットについては Intl のメソッドを使う関係上、一度`Date`オブジェクトに変換してから渡すような実装になっているようです。
 
-useCalendarCell
-anchorDate って何
-->range calendar のときの range の開始日時
-drag の処理とか色々してるので、できればもうちょっと見てみる
+https://github.com/adobe/react-spectrum/blob/50c7ada5d1880a174b6b6d3f43e8d90ee9bd4ad8/packages/%40internationalized/date/src/DateFormatter.ts#L40-L54
 
-range
-「クリックして日付範囲の選択を開始」「クリックして日付範囲の選択を終了」の読み上げ。aria-description につけることで、フォーカス時に読み上げ
-スクリーンリーダーユーザー向けの読み上げなのに、「クリックして」でいいのか？
-https://github.com/adobe/react-spectrum/blob/adae13c78e7085df4b2d39817def75f35df4f6c9/packages/%40react-aria/calendar/src/useCalendarCell.ts#L145-L156
+### 読み上げ
+
+Calendar の操作について、補足説明的な読み上げがされたり、逆に冗長な読み上げを防ぐためにスキップされたりしています。
+
+#### `useCalendarGrid`
+
+https://github.com/adobe/react-spectrum/blob/50c7ada5d1880a174b6b6d3f43e8d90ee9bd4ad8/packages/%40react-aria/calendar/src/useCalendarGrid.ts#L158-L162
+
+Calendar のヘッダー（曜日の部分）は、スクリーンリーダーによる読み上げがされないようにしています。これによって、日付部分に素早く移動することができるようにしています。代わりに、各日付のボタンにフォーカスしたタイミングで日付と一緒に曜日が読み上げられるようになっています。
+
+#### useCalendarCell
+
+`useRangeCalendar`で範囲選択が可能になっているとき、操作についての補足説明が読み上げられます。
+`state.anchorDate`とは選択されている、開始日時です。開始日時が選択されているとき、他の日付にフォーカスすると日付情報と共に「クリックして日付範囲の選択を終了」と読み上げられます。
+逆に、まだ開始日時を選択していないときには「クリックして日付範囲の選択を開始」と読み上げられます。
+これらの説明は`aria-description`として付与されます。
+
+https://github.com/adobe/react-spectrum/blob/50c7ada5d1880a174b6b6d3f43e8d90ee9bd4ad8/packages/%40react-aria/calendar/src/useCalendarCell.ts#L145-L156
+
+ただ、スクリーンリーダーユーザー向けの読み上げなので、「クリックして」ではなくてキーボード操作を想定した読み上げにした方が良いのではと思いました（useNumberField のときのような翻訳ミスではなくて、`en-US`でも`"Click to start selecting date range"`などとなっています）。
 
 ## まとめ
 
