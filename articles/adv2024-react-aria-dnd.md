@@ -25,9 +25,10 @@ https://react-spectrum.adobe.com/blog/drag-and-drop.html
 
 DnD はマウスやタッチによる操作を前提としているように思われるかもしれませんが、DnD によって行いたい操作を、同様の異なる操作によって実現できていれば問題ありません。そこで、React Aria ではキーボード操作によって DnD と同様の操作、つまりアイテムの移動ができるようになっています。また、初めてそのサービスを使うユーザーにとってはそのキーボード操作方法が分からない可能性もあるということで、アナウンスによる操作方法の補足説明も行われます。
 
-DnD は主に`useDrag`と`useDrop`を用いて連携させることによって実現できます。ドラッグできるアイテム（drag source）に`useDrag`、ドロップできる箇所（drop target）に`useDrop`を用います。
-また、ListBox や GridList などのリスト内で用いるには`useDraggableCollection`や`useDroppableCollection`を使います。
-しかし、例えばファイルアップロードなどといった外部アプリケーションと連携するような DnD 操作を考えてみます。マウスによって DnD を行うことができるユーザーであれば DropZone のようなものを用意しておくことで DnD が可能ですが、キーボード操作しか行うことのできないユーザーはこれを用いることができません（`useDrag`などは実装している Web アプリ内で完結してしまう機能であるため）。これらを実現可能にするためあえに、`useClipboard`という hook も提供されています。これは内部で[Clipboard API - Web APIs | MDN](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API)を使用していて、外部アプリケーションとも連携可能になります。
+DnD は主に[`useDrag`](https://react-spectrum.adobe.com/react-aria/useDrag.html)と[`useDrop`](https://react-spectrum.adobe.com/react-aria/useDrop.html)を用いて連携させることによって実現できます。ドラッグできるアイテム（drag source）に`useDrag`、ドロップできる箇所（drop target）に`useDrop`を用います。
+
+また、ListBox や GridList などのリスト内で用いるには[`useDraggableCollection`](https://react-spectrum.adobe.com/react-aria/useDraggableCollection.html)や[`useDroppableCollection`](https://react-spectrum.adobe.com/react-aria/useDroppableCollection.html)を使います。
+しかし、例えばファイルアップロードなどといった外部アプリケーションと連携するような DnD 操作を考えてみます。マウスによって DnD を行うことができるユーザーであれば DropZone のようなものを用意しておくことで DnD が可能ですが、キーボード操作しか行うことのできないユーザーはこれを用いることができません（`useDrag`などは実装している Web アプリ内で完結してしまう機能であるため）。これらを実現可能にするために、[`useClipboard`](https://react-spectrum.adobe.com/react-aria/useClipboard.html)という hook も提供されています。これは内部で[Clipboard API - Web APIs | MDN](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API)を使用していて、外部アプリケーションとも連携可能になります。
 
 Clipboard API については、最近会社の先輩が記事を出していたので興味のある方は読んでみてください。
 https://zenn.dev/cybozu_frontend/articles/d2782f5ad615f0
@@ -54,7 +55,7 @@ https://github.com/adobe/react-spectrum/blob/50c7ada5d1880a174b6b6d3f43e8d90ee9b
 
 次に`useDropIndicator`を見ていきます。これは、ドラッグ中にリストのアイテムとアイテムの間に表示されるバーのようなものです。最初に紹介したブログ記事のデモでも体験できます。
 
-これは`button`role になっているのですが、リスト内でリストアイテム以外の要素が出てくることは通常ないので、`aria-roledescription`に「ドロップインジケーター」というテキストが指定され、役割が明確にされています。
+これは`button`role になっているのですが、リスト内でリストアイテム以外の要素が出てくることは通常ないので、[`aria-roledescription`](https://developer.mozilla.org/ja/docs/Web/Accessibility/ARIA/Roles/application_role#aria-roledescription)に「ドロップインジケーター」というテキストが指定され、役割が明確にされています。
 
 https://github.com/adobe/react-spectrum/blob/50c7ada5d1880a174b6b6d3f43e8d90ee9bd4ad8/packages/%40react-aria/dnd/src/useDropIndicator.ts#L106
 
