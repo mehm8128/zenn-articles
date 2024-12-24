@@ -1,7 +1,7 @@
 ---
 title: "まとめ - React Ariaの実装読むぞ"
 emoji: "🎄"
-type: "idea" # tech: 技術記事 / idea: アイデア
+type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["frontend", "react", "a11y", "reactaria"]
 published: true
 ---
