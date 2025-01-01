@@ -3,7 +3,7 @@ title: "OSSのドキュメント翻訳に†Contribution†しよう"
 emoji: "🌏"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["oss", "オープンソース"]
-published: false
+published: true
 ---
 
 こんにちは、mehm8128 です。今年もよろしくお願いします。
