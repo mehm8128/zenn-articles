@@ -3,7 +3,7 @@ title: "Reactの<ViewTransition>コンポーネントなど: Cybozu Frontend Wee
 emoji: "⚡"
 type: "tech"
 topics: ["frontend", "cybozufrontendweek"]
-published: false
+published: true
 publication_name: "cybozu_frontend"
 ---
 
