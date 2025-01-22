@@ -1,5 +1,5 @@
 ---
-title: "Reactの<ViewTransition>コンポーネントなど: Cybozu Frontend Weekly (2025-01-21号)"
+title: "React の ViewTransition コンポーネントなど: Cybozu Frontend Weekly (2025-01-21号)"
 emoji: "⚡"
 type: "tech"
 topics: ["frontend", "cybozufrontendweek"]
