@@ -82,7 +82,7 @@ https://docs.grit.io/language/syntax
 }
 ```
 
-これを https://app.grit.io/studio で以下の HTML に対して施すと、2 つ目の`disabled`が`disabled={true}`に変換されることが確認できます（言語は JavaScript/TypeScript のままでいけます）。
+これを https://app.grit.io/studio で以下の JSX に対して施すと、2 つ目の`disabled`が`disabled={true}`に変換されることが確認できます（言語は JavaScript/TypeScript のままでいけます）。
 
 ```jsx
 <input disabled={true} disabled />
