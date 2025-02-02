@@ -84,8 +84,8 @@ https://docs.grit.io/language/syntax
 
 これを https://app.grit.io/studio で以下の HTML に対して施すと、2 つ目の`disabled`が`disabled={true}`に変換されることが確認できます（言語は JavaScript/TypeScript のままでいけます）。
 
-```html
-<input disabled="{true}" disabled />
+```jsx
+<input disabled={true} disabled />
 ```
 
 今回は紹介していないですが、AST を見たマッチング処理も行うことができるので、柔軟なマッチングが可能なようです。
@@ -122,7 +122,7 @@ Searched 8 files in 9ms. Found 1 match.
 
 無事、`console.warn`だけ取得できました。
 
-まだ rewrites ができないので auto-fix はできないのですが、決めたルールに違反するコードを検出し、エラーを吐かせるだけなら十分使えると思います。
+まだ rewrites ができないので auto-fix はできないのですが、決めたルールに違反するコードを検出し、エラーを吐かせるだけならある程度試すことができるようになっています。
 
 ## JS/TS plugins
 
