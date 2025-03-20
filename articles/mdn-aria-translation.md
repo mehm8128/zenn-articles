@@ -28,16 +28,19 @@ https://zenn.dev/mehm8128/articles/oss-document-translation#biome
 
 ## 面白かったやつ
 
-1ヶ月翻訳してみて、面白かったものをいくつか紹介します。
+1 ヶ月翻訳してみて、面白かったものをいくつか紹介します。
 
 - braille
   - 点字ディスプレイ
 - ariaControlsElements
-  - 要素のリストを取得できる。まだSafariしかサポートしてない
+  - 要素のリストを取得できる。まだ Safari しかサポートしてない
 - ElementInterenals
-  - WebComponentsの文脈らしい
-- aria-ownsとaria-controls
+  - WebComponents の文脈らしい
+- aria-owns と aria-controls
   - あとでちゃんと読む: https://www.makethingsaccessible.com/guides/aria-controls-vs-aria-owns/
+- dl,dt,dd について
+  - https://github.com/w3c/html-aria/issues/539
+- role の継承
 
 レビューについて
 中身はほとんど見られてなくて、フォーマット的なところだけ見られてそうなので、翻訳内容が不安だったら明示的に書いておくべき
