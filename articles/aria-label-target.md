@@ -12,7 +12,7 @@ published: true
 
 https://zenn.dev/moneyforward/articles/20231120-icon-button-accessible-name
 
-## aria-label、ボタン/リンクに付けるかアイコンに付けるか
+## aria-label、ボタン/リンクに付けるか？アイコンに付けるか？
 
 例えば以下のようなアイコンリンク/アイコンボタンがあり、`aria-label` を用いて accessible name を付けなければならないとき、`<button>` 要素 / `<a>` 要素か `<svg>` 要素のどちらに `aria-label` を付けますか？
 
