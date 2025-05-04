@@ -3,12 +3,12 @@ title: "aria-label、ボタン/リンクに付けるか？アイコンに付け�
 emoji: "🎆"
 type: "idea" # tech: 技術記事 / idea: アイデア
 topics: ["a11y"]
-published: false
+published: true
 ---
 
-こんにちは、最近社会人になったフロントエンドエンジニアの mehm8128 です。
+こんにちは、[最近社会人になった](https://x.com/mehm8128/status/1906999436989137088) フロントエンドエンジニアの mehm8128 です。
 最近のおすすめ技術書は [Effective TypeScript](https://www.oreilly.co.jp/books/9784814401093/) です。
-今回はずっと気になってることを書きます。ちょっと書いてから気づいたのですが、以下の記事が、僕が書きたいことをほぼ全て書いてくれてたので、そっちの方が気になるという方は僕の記事は読まなくて OK です。
+今回はずっと気になってることを書きます。ちょっと書いてから気づいたのですが、以下の記事に僕が書きたいことのほぼ全てが書かれていたので、そっちの方が気になるという方は僕の記事は読まなくて OK です。
 
 https://zenn.dev/moneyforward/articles/20231120-icon-button-accessible-name
 
