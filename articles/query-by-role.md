@@ -3,7 +3,7 @@ title: "query-by-role というライブラリを作った"
 emoji: "🎣"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["a11y", "typescript", "test", "waiaria"]
-published: false
+published: true
 ---
 
 こんにちは、フロントエンドエンジニアの mehm8128 です。最近やってることは sizu.me とか Bluesky とかに書いてます。
