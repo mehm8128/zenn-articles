@@ -75,4 +75,36 @@ https://webkit.org/b/257186
 `descendantsOfType`で descendants を全部取って順番に見ていくので、DFS pre-order traversal になっているはず
 `descendantsOfType`の本質部分は見つけられなかった
 
+## sectionheader と sectionfooter
+
+https://github.com/w3c/aria/issues/1915
+https://github.com/w3c/aria/pull/1931
+
+sectionheader と sectionfooter ほしいよねって話
+現在は section 系の要素の中にある header, footer は role を持たなくて、ただの`<div>`と同じような感じだけど、article とかの header, footer も持つようにしたいという話
+landmark ではない。もし landmark なら、5.3.4 Landmark Roles に入る
+
+https://github.com/w3c/html-aam/issues/585
+https://github.com/w3c/aria/pull/2543
+
+`<main>`じゃなくて`<div role="main">`だった場合も同様に sectionheader になる？という話
+https://github.com/w3c/html-aam/issues/586
+
+### wpt
+
+https://github.com/w3c/aria/issues/2295
+https://github.com/web-platform-tests/interop-accessibility/issues/136
+https://github.com/web-platform-tests/wpt/pull/45916
+
+### 実装
+
+webkit: ちょうど進行中
+`Source/WebCore/accessibility/AccessibilityNodeObject.cpp`が本質部分
+471 行目間違えてるけどレビュー書いていいのか分からん（Footer→Header）
+https://github.com/WebKit/WebKit/pull/46361
+
+blink:マージ済み
+https://issues.chromium.org/issues/337094897
+既に`kHeaderAsNonLandmark `と`kFooterAsNonLandmark`があったからそれの名前を変えるだけでよかったらしい
+
 ## まとめ
