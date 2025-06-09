@@ -107,4 +107,11 @@ blink:マージ済み
 https://issues.chromium.org/issues/337094897
 既に`kHeaderAsNonLandmark `と`kFooterAsNonLandmark`があったからそれの名前を変えるだけでよかったらしい
 
+## NVDA
+
+https://github.com/nvaccess/nvda/issues/18186
+https://github.com/nvaccess/nvda/pull/18217
+
+本当にこの暫定的な対処でいいのか気になる
+
 ## まとめ
