@@ -121,7 +121,7 @@ https://labs.leaningtech.com/blog/cheerpj-4.0
 https://github.com/TanStack/db
 
 TanStack Query を拡張し、バックエンドを意識せずにコレクション操作・トランザクションといった機能を提供する TanStack/db の alpha 版が公開されました。
-Electric（https://electric-sql.com/）と連携するようにも設計されていますが、必須ではなく、REST・GraphQLなど様々なバックエンドと連携可能とのことです。
+Electric (https://electric-sql.com/) と連携するようにも設計されていますが、必須ではなく、REST・GraphQL など様々なバックエンドと連携可能とのことです。
 
 ## 開発を止めない段階的フロントエンドリプレイスの実践
 
