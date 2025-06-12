@@ -147,6 +147,6 @@ https://www.w3.org/TR/2025/WD-css-mixins-1-20250515/
 
 `@function()` と `@mixin()` の標準化に関する、 First Public Working Draft です。
 
-## まとめ
+## あとがき
 
 React Aria Components ベースの UI ライブラリや AriaNotify、`contrast-color()` などアクセシビリティ周りの話題が充実していました。今後が楽しみです。
