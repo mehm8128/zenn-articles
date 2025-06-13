@@ -1,5 +1,5 @@
 ---
-title: "`nameFrom: heading`について"
+title: "`nameFrom: heading`とsectionheader/sectionfooterについて"
 emoji: "⛑️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["frontend", "html", "a11y", "waiaria"]
@@ -119,56 +119,72 @@ if (accessibleNameDerivesFromHeading()) { // nameFrom: heading を持つロー�
 
 おそらく `descendantsOfType` で上の要素から順番に見ていくようになっているので DFS pre-order traversal になっているということなのだと思いますが、その実装箇所を見つけられませんでした。
 
-### まとめ
-
-便利ですね。
-
 ## sectionheader role と sectionfooter role
 
+次は sectionheader role と sectionfooter role について見ていきます。
+
+今まで `<header>` 要素及び `<footer>` 要素は、`<body>` の子要素などで使う場合には banner role 及び contentinfo role になっていましたが、`<article>` や `<aside>`、`<nav>`、`<section>`、`<main>` 要素の子孫である場合には、それらの role が割り当てられず、generic role になってしまっていました。しかし、せっかくセマンティックなマークアップをしているので、そのような場合にもスクリーンリーダーに対して role を公開するべきではないかという提案から、今回新しく sectionheader role と sectionfooter role が追加されました。
+banner role や contentinfo role ではない理由の記述は見つけられませんでしたが、おそらく landmark role として公開したくないからだと思われます。
+
+issue と PR はこちらです。
 https://github.com/w3c/aria/issues/1915
 https://github.com/w3c/aria/pull/1931
 
-sectionheader と sectionfooter ほしいよねって話
-現在は section 系の要素の中にある header, footer は role を持たなくて、ただの`<div>`と同じような感じだけど、article とかの header, footer も持つようにしたいという話
-landmark ではない。もし landmark なら、5.3.4 Landmark Roles に入る
+関連 issue・PR はここらへん。
 
 https://github.com/w3c/html-aam/issues/585
 https://github.com/w3c/aria/pull/2543
+https://github.com/w3c/aria/pull/2551
 
-`<main>`じゃなくて`<div role="main">`だった場合も同様に sectionheader になる？という話
+また、今は `<main>` など上で挙げた HTML 要素の子孫である場合の話でしたが、それらの要素に相当する role の要素の子孫である場合にどうなるかという議論が別で行われています。
+
 https://github.com/w3c/html-aam/issues/586
-
-### wpt
-
-https://github.com/w3c/aria/issues/2295
-https://github.com/web-platform-tests/interop-accessibility/issues/136
-https://github.com/web-platform-tests/wpt/pull/45916
 
 ### 実装
 
-webkit: マージされた
-`Source/WebCore/accessibility/AccessibilityNodeObject.cpp`が本質部分
-471 行目間違えてるけどレビュー書いていいのか分からん（Footer→Header）
+WebKit と Blink で既に実装されています。
+また、スクリーンリーダーへの修正もあったので、NVDA を見ていきます。
+
+#### WebKit
+
+https://bugs.webkit.org/show_bug.cgi?id=273325
 https://github.com/WebKit/WebKit/pull/46361
 
-blink:マージ済み
-https://issues.chromium.org/issues/337094897
-既に`kHeaderAsNonLandmark `と`kFooterAsNonLandmark`があったからそれの名前を変えるだけでよかったらしい
+`Source/WebCore/accessibility/AccessibilityNodeObject.cpp` が本質部分です。
 
-## NVDA
+header では `AccessibilityRole::Generic` が `AccessibilityRole::SectionHeader` になり、footer では `AccessibilityRole::Footer` が `AccessibilityRole::SectionFooter` になっています。footer が元々 `AccessibilityRole::Footer` だったのは、[コメントに貼られている読み上げの問題](https://bugs.webkit.org/show_bug.cgi?id=190138) への対応で内部の role を用意する必要が出てきたようです。
+ちなみに、471 行目で「**Footer** elements should be role="banner"」と書いてあるのはおそらく「**Header** elements should be role="banner"」のミスなので、注意が必要です。
+
+#### Blink
+
+https://issues.chromium.org/issues/337094897
+https://chromium-review.googlesource.com/5709272
+
+多分本質部分は `third_party/blink/renderer/modules/accessibility/ax_object.cc` です。
+
+`kHeaderAsNonLandmark` が `kSectionHeader` に、`kFooterAsNonLandmark` が`kSectionFooter` になっています。
+
+### NVDA
+
+今回の変更に伴い、NVDA で sectionheader role や sectionfooter role が "grouping" と読み上げられていたのが、banner role や contentinfo role のときと同じように "header"、"footer" と読み上げられるように修正されました。
 
 https://github.com/nvaccess/nvda/issues/18186
 https://github.com/nvaccess/nvda/pull/18217
 
-container-tag について
+実装量は少ないですが、`"container-tag" not in obj.IA2Attributes` の部分が分からなかったので少し調べてみました。
+
+container-tag について、`"container"` という文字列は `PRESCAT_LAYOUT="container"` として定義されている箇所があります。
 https://github.com/nvaccess/nvda/blob/13cb733684960127c58c33a013abbb2d1b88bb8c/source/textInfos/\_\_init\_\_.py#L61-L62
-で`PRESCAT_LAYOUT="container"`が定義されている
-`getPresentationCategory`の
+
+また、`getPresentationCategory` という関数で `role == controlTypes.Role.LANDMARK or self.get("landmark")` のときに `PRESCAT_LAYOUT` を返すような実装になっています。
 https://github.com/nvaccess/nvda/blob/13cb733684960127c58c33a013abbb2d1b88bb8c/source/textInfos/\_\_init\_\_.py#L144-L152
-で landmark のときに`PRESCAT_LAYOUT`になるらしい
 
-よって、`container`ではないとき（≒landmark ではないとき）に、PR のタイトルの通り、"grouping"と読み上げられないように、`Groupbox`を`remove`している
+よって、`container` ではないとき（≒landmark ではないとき）に、`Groupbox` を `remove` しているという結論に至ったのですが、`container-tag`ではなくて `container` を見ていることや、`obj.IA2Attributes` の実態が分かっていないことなどから本当のところは分かりません（NVDA のコード内で他に`container-tag`がありませんでした）。知っている方は教えていただきたいです。
 
-本当にこの暫定的な対処でいいのか気になる
+ちなみに、過去に aria-errormessage の読み上げをサポートしたときの PR を読んでみたときのスクラップもあります。
+https://zenn.dev/mehm8128/scraps/b04c726be1feb1
 
 ## まとめ
+
+W3C のリポジトリは最近まで全然追っていなかったのですが、[TPAC 神戸](https://www.w3.org/ja/news-events/w3c-tpac/) に参加予定であることや X で流れてくることなどから、最近 a11y 関連のリポジトリを watch し、GitHub の通知欄を埋めています。
+今後も a11y 関連の話題に着目していきたいと思います。
