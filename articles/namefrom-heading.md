@@ -136,6 +136,9 @@ https://github.com/w3c/html-aam/issues/585
 https://github.com/w3c/aria/pull/2543
 https://github.com/w3c/aria/pull/2551
 
+元 issue で挙げられている `hgroup` の話については、この記事の話だと思われます。
+https://blog.w0s.jp/entry/682
+
 また、今は `<main>` など上で挙げた HTML 要素の子孫である場合の話でしたが、それらの要素に相当する role の要素の子孫である場合にどうなるかという議論が別で行われています。
 
 https://github.com/w3c/html-aam/issues/586
