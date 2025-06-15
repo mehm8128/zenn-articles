@@ -101,8 +101,6 @@ https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/
 `directory` ロールは、目次などといった参照リストに使われるロールでした。
 しかし、`list` ロールがよりアクセシブルであるため、WAI-ARIA 1.2 で非推奨になりました。
 
-TODO: mdn 翻訳
-
 ### `aria-grabbed`
 
 https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-grabbed
@@ -114,19 +112,14 @@ https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attrib
 TODO: https://github.com/w3c/aria/issues/1447
 https://www.w3.org/Search/Mail/Public/search?keywords=%40aria-grabbed+and+%40aria-dropeffect&lists=public-pfwg&sortby=date-asc
 
-TODO: mdn 翻訳
-
 ### `aria-dropeffect`
 
 https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-dropeffect
 
 `aria-dropeffect` は、ドラッグされたオブジェクトがドロップされるときに何が起こるかを伝えるための属性でした。
 例えば`aria-dropeffect="copy"` であれば、ドロップされたオブジェクトがコピーされることを示します。
-また、[`DataTransfer.dropEffect`](https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/dropEffect) で同等の機能が提供されます。
 
 `aria-grabbed` と同様、将来的に新しい機能に置き換わるため、WAI-ARIA 1.1 で非推奨になりました。
-
-TODO: mdn 翻訳
 
 ## 静的解析
 
@@ -136,3 +129,6 @@ https://markuplint.dev/docs/rules/deprecated-attr
 https://markuplint.dev/docs/rules/deprecated-element
 
 ## まとめ
+
+今回、`directory` ロールと `aria-dropeffect` については MDN が日本語翻訳されていなかったので、新規翻訳しました。
+https://github.com/mdn/translated-content/pull/27725
