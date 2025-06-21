@@ -2,7 +2,7 @@
 title: "イントロダクション - UIライブラリ a11y"
 emoji: "🎄"
 type: "idea"
-topics: ["frontend", "a11y", "wcag", "react", "component"]
+topics: ["frontend", "a11y", "wcag"]
 published: false
 ---
 
