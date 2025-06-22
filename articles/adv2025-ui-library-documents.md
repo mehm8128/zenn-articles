@@ -11,13 +11,13 @@ published: false
 :::
 
 こんにちは、フロントエンドエンジニアの mehm8128 です。今回は色とコントラスト比について紹介していきます。
-色に関係のある WCAG の SC をいくつか紹介したあと、色空間やダークモードについて見ていき、最後にコントラスト比の話をします。
+色に関係のある WCAG の SC をいくつか紹介したあと、コントラスト比を含め色に関連する話をいくつかしていきます。
 
 ## WCAG で関係ありそうなやつ
 
 https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html
 https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html
-https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.
+https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html
 https://www.w3.org/WAI/WCAG22/Understanding/contrast-enhanced.html
 
 ## 色空間
@@ -37,6 +37,17 @@ a11y の文脈でのダークモードの必要性や UI ライブラリでの�
 
 https://accessible-usable.net/2022/02/entry_220201.html
 https://accessibility-tech.blogspot.com/2019/06/ui.html
+https://mantine.dev/styles/color-functions/
+
+## Color Picker
+
+読み上げどうなってるかみたいな
+React Aria Components
+https://react-spectrum.adobe.com/react-aria/ColorPicker.html
+https://react-spectrum.adobe.com/blog/accessible-color-descriptions.html
+
+Chakra-UI
+https://chakra-ui.com/docs/components/color-picker
 
 ## コントラスト比
 
