@@ -39,6 +39,11 @@ https://www.tak-dcxi.com/article/introduce-kiso-css/#%E3%83%95%E3%82%A9%E3%83%B3
 斜体について
 https://solutionware.jp/2025/06/02/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E3%81%AE%E3%80%8C%E6%96%9C%E4%BD%93%E3%80%8D%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/
 
+強制カラーモード
+https://www.tak-dcxi.com/article/introduce-kiso-css/#%E3%83%AA%E3%82%BB%E3%83%83%E3%83%88%E3%81%AE%E5%8E%B3%E9%81%B8
+https://github.com/tak-dcxi/kiso.css/blob/main/kiso.css#L214-L224
+とか
+
 ## まとめ
 
 明日の担当は [@mehm8128](https://zenn.dev/mehm8128) さんで、「」についての記事です。お楽しみにー
