@@ -107,7 +107,9 @@ https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attrib
 
 しかし、将来的に新しい機能に置き換わるため、WAI-ARIA 1.1 で非推奨になりました。
 
-TODO: https://github.com/w3c/aria/issues/1447
+https://github.com/w3c/aria/issues/1447
+
+非推奨になるまでの流れや新しい機能についてはおそらく以下のメーリングリストを追うと分かるのですが、そこまでは追いきれませんでした。
 https://www.w3.org/Search/Mail/Public/search?keywords=%40aria-grabbed+and+%40aria-dropeffect&lists=public-pfwg&sortby=date-asc
 
 ### `aria-dropeffect`
@@ -127,3 +129,5 @@ https://markuplint.dev/docs/rules/deprecated-attr
 https://markuplint.dev/docs/rules/deprecated-element
 
 ## まとめ
+
+HTML 要素や ARIA はしっかり [MDN](https://developer.mozilla.org/ja/docs/Web) や [HTML Living Standard](https://html.spec.whatwg.org/multipage/)、[WAI-ARIA](https://www.w3.org/TR/wai-aria/) を参照し、非推奨でないものを正しい使い方で使うようにしましょう。
