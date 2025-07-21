@@ -3,7 +3,7 @@ title: "`nameFrom: heading`とsectionheader/sectionfooterについて"
 emoji: "⛑️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["frontend", "html", "a11y", "waiaria"]
-published: false
+published: true
 ---
 
 こんにちは、フロントエンドエンジニアの mehm8128 です。
@@ -124,7 +124,28 @@ if (accessibleNameDerivesFromHeading()) { // nameFrom: heading を持つロー�
 次は sectionheader role と sectionfooter role について見ていきます。
 
 今まで `<header>` 要素及び `<footer>` 要素は、`<body>` の子要素などで使う場合には banner role 及び contentinfo role になっていましたが、`<article>` や `<aside>`、`<nav>`、`<section>`、`<main>` 要素の子孫である場合には、それらの role が割り当てられず、generic role になってしまっていました。しかし、せっかくセマンティックなマークアップをしているので、そのような場合にもスクリーンリーダーに対して role を公開するべきではないかという提案から、今回新しく sectionheader role と sectionfooter role が追加されました。
-banner role や contentinfo role ではない理由の記述は見つけられませんでしたが、おそらく landmark role として公開したくないからだと思われます。
+
+以下、HTML のコード例です。これをそのまま`index.html`などで保存すれば Chrome で確認できます。
+
+sectionheader role になる例
+
+```html
+<article>
+  <header>記事のタイトル</header>
+  <p>記事の内容</p>
+</article>
+```
+
+banner role になる例
+
+```html
+<body>
+  <header>サイトのタイトル</header>
+  <p>サイトの内容</p>
+</body>
+```
+
+banner role や contentinfo role ではなくて新しく別のロールを設ける理由の記述は見つけられませんでしたが、おそらく landmark role として公開したくないからだと思われます。
 
 issue と PR はこちらです。
 https://github.com/w3c/aria/issues/1915
@@ -176,18 +197,18 @@ https://github.com/nvaccess/nvda/pull/18217
 
 実装量は少ないですが、`"container-tag" not in obj.IA2Attributes` の部分が分からなかったので少し調べてみました。
 
-container-tag について、`"container"` という文字列は `PRESCAT_LAYOUT="container"` として定義されている箇所があります。
+`"container-tag"` について、`"container"` という文字列は `PRESCAT_LAYOUT="container"` として定義されている箇所があります。
 https://github.com/nvaccess/nvda/blob/13cb733684960127c58c33a013abbb2d1b88bb8c/source/textInfos/\_\_init\_\_.py#L61-L62
 
 また、`getPresentationCategory` という関数で `role == controlTypes.Role.LANDMARK or self.get("landmark")` のときに `PRESCAT_LAYOUT` を返すような実装になっています。
 https://github.com/nvaccess/nvda/blob/13cb733684960127c58c33a013abbb2d1b88bb8c/source/textInfos/\_\_init\_\_.py#L144-L152
 
-よって、`container` ではないとき（≒landmark ではないとき）に、`Groupbox` を `remove` しているという結論に至ったのですが、`container-tag`ではなくて `container` を見ていることや、`obj.IA2Attributes` の実態が分かっていないことなどから本当のところは分かりません（NVDA のコード内で他に`container-tag`がありませんでした）。知っている方は教えていただきたいです。
+よって、`container` ではないとき（≒landmark ではないとき）に、`Groupbox` を `remove` しているという解釈に至ったのですが、`container-tag`ではなくて `container` を見ていることや、`obj.IA2Attributes` の実態が分かっていないことなどから本当のところは分かりません（NVDA のコード内で他に`container-tag`がありませんでした）。知っている方は教えていただきたいです。
 
 ちなみに、過去に aria-errormessage の読み上げをサポートしたときの PR を読んでみたときのスクラップもあります。
 https://zenn.dev/mehm8128/scraps/b04c726be1feb1
 
 ## まとめ
 
-W3C のリポジトリは最近まで全然追っていなかったのですが、[TPAC 神戸](https://www.w3.org/ja/news-events/w3c-tpac/) に参加予定であることや X で流れてくることなどから、最近 a11y 関連のリポジトリを watch し、GitHub の通知欄を埋めています。
+W3C のリポジトリは最近まで全然追っていなかったのですが、最近は a11y 関連のリポジトリを watch し、GitHub の通知欄を埋めています。
 今後も a11y 関連の話題に着目していきたいと思います。
