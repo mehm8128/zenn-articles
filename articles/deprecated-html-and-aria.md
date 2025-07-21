@@ -103,13 +103,13 @@ https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/
 
 https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-grabbed
 
-`aria-grabbed` は、ドラッグアンドドロップで要素が掴まれた状態を表す属性でした。
+`aria-grabbed` は、ドラッグ＆ドロップで要素が掴まれた状態を表す属性でした。
 
 しかし、将来的に新しい機能に置き換わるため、WAI-ARIA 1.1 で非推奨になりました。
 
 https://github.com/w3c/aria/issues/1447
 
-非推奨になるまでの流れや新しい機能についてはおそらく以下のメーリングリストを追うと分かるのですが、そこまでは追いきれませんでした。
+非推奨になるまでの流れや新しい機能についてはおそらく以下のメーリングリストを追うと分かるのですが、追いきれませんでした。
 https://www.w3.org/Search/Mail/Public/search?keywords=%40aria-grabbed+and+%40aria-dropeffect&lists=public-pfwg&sortby=date-asc
 
 ### `aria-dropeffect`
