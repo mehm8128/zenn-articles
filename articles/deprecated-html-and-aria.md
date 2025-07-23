@@ -35,7 +35,7 @@ https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Experimental_dep
 それでは、a11y 上の理由から Deprecated になったものを見ていきます。
 
 :::message alert
-この記事では実際に a11y 上の問題があるサンプルを紹介しています。前後の文章をよく読んでから参照先リンクを開くようにお願いします。
+この記事では実際に a11y 上の問題があるサンプルを紹介しています。前後の文章をよく読んでから参照先リンクを開くようにしてください。
 :::
 
 ## Deprecated な HTML
