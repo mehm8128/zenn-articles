@@ -4,7 +4,12 @@ emoji: "🗑️"
 type: "tech"
 topics: ["frontend", "a11y", "html", "aria"]
 published: false
+publication_name: "cybozu_frontend"
 ---
+
+:::message
+この記事は、[CYBOZU SUMMER BLOG FES '25](https://cybozu.github.io/summer-blog-fes-2025/) の記事です。
+:::
 
 こんにちは、フロントエンドエンジニアの mehm8128 です。
 今回は敢えて、a11y 上の理由から Deprecated になった HTML と ARIA をまとめてみようという記事です。
