@@ -145,7 +145,7 @@ banner role になる例
 </body>
 ```
 
-banner role や contentinfo role ではなくて新しく別のロールを設ける理由の記述は見つけられませんでしたが、おそらく landmark role として公開したくないからだと思われます。
+banner role や contentinfo role ではなくて新しく別のロールを設ける理由の記述は見つけられませんでした~~が、おそらく landmark role として公開したくないからだと思われます~~。単純に、body 直下のグローバルなヘッダー・フッターと、それ以外の、article などに対するローカルなヘッダー・フッターを別のセマンティクスとして扱いたいから、というアドバイスをいただきました（それはそうでした）。
 
 issue と PR はこちらです。
 https://github.com/w3c/aria/issues/1915
