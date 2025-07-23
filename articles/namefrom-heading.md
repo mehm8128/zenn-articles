@@ -192,18 +192,20 @@ https://chromium-review.googlesource.com/5709272
 
 今回の変更に伴い、NVDA で sectionheader role や sectionfooter role が "grouping" と読み上げられていたのが、banner role や contentinfo role のときと同じように "header"、"footer" と読み上げられるように修正されました。
 
+**が、上手く動かなかったようで一旦 PR が Close されてしまいました。**
+
 https://github.com/nvaccess/nvda/issues/18186
 https://github.com/nvaccess/nvda/pull/18217
 
-実装量は少ないですが、`"container-tag" not in obj.IA2Attributes` の部分が分からなかったので少し調べてみました。
+~~実装量は少ないですが、`"container-tag" not in obj.IA2Attributes` の部分が分からなかったので少し調べてみました。~~
 
-`"container-tag"` について、`"container"` という文字列は `PRESCAT_LAYOUT="container"` として定義されている箇所があります。
-https://github.com/nvaccess/nvda/blob/13cb733684960127c58c33a013abbb2d1b88bb8c/source/textInfos/\_\_init\_\_.py#L61-L62
+~~`"container-tag"` について、`"container"` という文字列は `PRESCAT_LAYOUT="container"` として定義されている箇所があります。
+https://github.com/nvaccess/nvda/blob/13cb733684960127c58c33a013abbb2d1b88bb8c/source/textInfos/\_\_init\_\_.py#L61-L62~~
 
-また、`getPresentationCategory` という関数で `role == controlTypes.Role.LANDMARK or self.get("landmark")` のときに `PRESCAT_LAYOUT` を返すような実装になっています。
-https://github.com/nvaccess/nvda/blob/13cb733684960127c58c33a013abbb2d1b88bb8c/source/textInfos/\_\_init\_\_.py#L144-L152
+~~また、`getPresentationCategory` という関数で `role == controlTypes.Role.LANDMARK or self.get("landmark")` のときに `PRESCAT_LAYOUT` を返すような実装になっています。~~
+~~https://github.com/nvaccess/nvda/blob/13cb733684960127c58c33a013abbb2d1b88bb8c/source/textInfos/\_\_init\_\_.py#L144-L152~~
 
-よって、`container` ではないとき（≒landmark ではないとき）に、`Groupbox` を `remove` しているという解釈に至ったのですが、`container-tag`ではなくて `container` を見ていることや、`obj.IA2Attributes` の実態が分かっていないことなどから本当のところは分かりません（NVDA のコード内で他に`container-tag`がありませんでした）。知っている方は教えていただきたいです。
+~~よって、`container` ではないとき（≒landmark ではないとき）に、`Groupbox` を `remove` しているという解釈に至ったのですが、`container-tag`ではなくて `container` を見ていることや、`obj.IA2Attributes` の実態が分かっていないことなどから本当のところは分かりません（NVDA のコード内で他に`container-tag`がありませんでした）。知っている方は教えていただきたいです。~~
 
 ちなみに、過去に aria-errormessage の読み上げをサポートしたときの PR を読んでみたときのスクラップもあります。
 https://zenn.dev/mehm8128/scraps/b04c726be1feb1
