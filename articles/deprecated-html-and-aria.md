@@ -93,7 +93,12 @@ https://www.washington.edu/accesscomputing/are-frames-accessible
 https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dir
 
 `<dir>` 要素は、ディレクトリ（フォルダ）を表すための要素でした。
-しかし、`<ul>` や `<ol>` のような、よりセマンティックでアクセシブルな要素が出てきたため、非推奨となりました。
+しかし、`<ul>` や `<ol>` のような要素がよりセマンティックでアクセシブルであったため、非推奨となりました。
+
+:::message
+コメントにて補足をいただき、微修正しました。ありがとうございます！
+https://zenn.dev/link/comments/5c16484fd88c9e
+:::
 
 ## Deprecated な ARIA
 
