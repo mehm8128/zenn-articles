@@ -3,7 +3,7 @@ title: "a11y 上の理由で Deprecated になった HTML と ARIA まとめ"
 emoji: "🗑️"
 type: "tech"
 topics: ["frontend", "a11y", "html", "aria"]
-published: false
+published: true
 publication_name: "cybozu_frontend"
 ---
 
