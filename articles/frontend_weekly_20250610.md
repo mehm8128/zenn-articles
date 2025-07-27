@@ -25,7 +25,7 @@ React Aria Components ベースの、 shadcn/ui っぽくコピペして使用�
 [Recharts](https://recharts.org/en-US) を用いたグラフ系のコンポーネントが充実していそうなのが印象的でした。
 また、似たようなライブラリに [JollyUI](https://www.jollyui.dev/) や [Draft UI](https://draft-ui.com/) などがあります。
 
-## Creating a more accessible web with Aria Notify - Microsoft Edge Blog
+### Creating a more accessible web with Aria Notify - Microsoft Edge Blog
 
 https://blogs.windows.com/msedgedev/2025/05/05/creating-a-more-accessible-web-with-aria-notify/
 
@@ -39,7 +39,7 @@ document.querySelector("#text-editor").ariaNotify("Selected text is bold");
 
 この機能は Microsoft Edge 136 のオリジントライアル、もしくは `--enable-blink-features=AriaNotify` の feature flag を有効化することで試すことができます。
 
-## Emotion から CSS Modules に移行しました | PR TIMES 開発者ブログ
+### Emotion から CSS Modules に移行しました | PR TIMES 開発者ブログ
 
 https://developers.prtimes.jp/2025/05/09/migrate-from-emotion-to-css-modules/
 
@@ -47,7 +47,7 @@ PR TIMES で Emotion を CSS Modules に移行した背景や移行方法の紹�
 
 Tailwind と CSS Modules との比較や、CSS の詳細度の問題など移行に伴う注意点などが挙げられています。
 
-## Add wide gamut P3 and alpha transparency to your color picker in HTML | WebKit
+### Add wide gamut P3 and alpha transparency to your color picker in HTML | WebKit
 
 https://webkit.org/blog/16900/p3-and-alpha-color-pickers/
 
@@ -75,7 +75,7 @@ Safari 18.4 でサポートされた `<input type="color">` の `colorspace` と
 />
 ```
 
-## feat: add react-server-dom-vite
+### feat: add react-server-dom-vite
 
 https://github.com/facebook/react/pull/31768
 https://github.com/facebook/react/pull/33152
@@ -84,7 +84,7 @@ React Server Components を Vite を動かすことができるようにする P
 
 今までは RSC が Webpack でしか動かなかったのですが、今回の PR で Vite でも動くようになるとのことです。
 
-## How to have the browser pick a contrasting color in CSS
+### How to have the browser pick a contrasting color in CSS
 
 https://webkit.org/blog/16929/contrast-color/
 
@@ -100,7 +100,7 @@ color: contrast-color(purple);
 
 この機能は現在、Safari Technology Preview で利用できます。
 
-## MS の大規模レイオフで rbuckton 氏が退職
+### MS の大規模レイオフで rbuckton 氏が退職
 
 https://x.com/rbuckton/status/1922364558426911039
 
@@ -108,7 +108,7 @@ Microsoft の rbuckton 氏が退職されたというポストです。
 
 rbuckton 氏は [typescript-go](https://github.com/microsoft/typescript-go) の committer や、TC39 では [Explicit Resource Management](https://github.com/tc39/proposal-explicit-resource-management) の champion、[ES Enum](https://github.com/tc39/proposal-enum) の推進なども行っていました。
 
-## CheerpJ 4.0: WebAssembly JVM for the browser, now with Java 11 and JNI support
+### CheerpJ 4.0: WebAssembly JVM for the browser, now with Java 11 and JNI support
 
 https://labs.leaningtech.com/blog/cheerpj-4.0
 
@@ -116,7 +116,7 @@ https://labs.leaningtech.com/blog/cheerpj-4.0
 
 このバージョンから Java8 に加えて Java11 もサポートされ、パフォーマンスなどの改善も入っているようです。
 
-## TanStack/db
+### TanStack/db
 
 https://github.com/TanStack/db
 
@@ -124,7 +124,7 @@ TanStack Query を拡張し、バックエンドを意識せずにコレクシ�
 
 内部で [`electric-sql/client`](https://github.com/electric-sql/electric) を使用していて、[ElectricSQL](https://electric-sql.com/) との連携が容易になっています。ただ、ElectricSQL 以外にも REST・GraphQL など、様々なバックエンドと連携可能とのことです。
 
-## 開発を止めない段階的フロントエンドリプレイスの実践
+### 開発を止めない段階的フロントエンドリプレイスの実践
 
 https://www.m3tech.blog/entry/frontend-replacement-plan
 
@@ -132,7 +132,7 @@ https://www.m3tech.blog/entry/frontend-replacement-plan
 
 1 では基盤整備や段階的なリプレイスの方法など移行戦略の話、2 では Radix UI をベースとした digikar-ui という独自コンポーネントライブラリなど具体的な移行についての話、3 ではチーム体制や情報共有など、組織の話が書かれていました。
 
-## Video with alpha transparency on the web
+### Video with alpha transparency on the web
 
 https://jakearchibald.com/2024/video-with-transparency/
 
@@ -141,7 +141,7 @@ Airbnb が開発した新しいメディアフォーマット「Lava」の解説
 透明度付き動画をサポートし、Web とモバイルの両方で動く軽量なフォーマットとのことです。
 透明度付き動画フォーマットの既存の問題点を説明し、それに対する解決策が解説されています。
 
-## CSS Function and Mixins Module
+### CSS Function and Mixins Module
 
 https://www.w3.org/TR/2025/WD-css-mixins-1-20250515/
 
