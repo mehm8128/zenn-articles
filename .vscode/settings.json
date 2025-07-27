@@ -1,5 +1,6 @@
 {
   "github.copilot.enable": {
-    "workspace": false
+    "*": false,
+    "markdown": false
   }
 }
