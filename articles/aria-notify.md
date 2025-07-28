@@ -7,7 +7,7 @@ published: false
 ---
 
 こんにちは、フロントエンドエンジニアの mehm8128 です。
-今回は、Edge 136 から Origin Trial で導入されており、Chrome 140 でも導入予定も ARIA Notify について紹介します。
+今回は、Edge 136 から Origin Trial で導入されており、Chrome 140 でも導入予定の ARIA Notify について紹介します。
 
 ## ARIA Notify とは
 
@@ -53,7 +53,10 @@ fallback として`aria-live`が使われる
 
 ## iframe
 
-後でちゃんと見る
+iframe を使う親コンテンツは、iframe 内の document に対して`ariaNotify`することはできない
+しかし、iframe 内の document が自分自身のコンテンツに対して`ariaNotify`することができる
+それを親コンテンツは iframe の`allow`属性や`Permissions-Policy`などで禁止することができる（例えば iframe の`ariaNotify`がうるさい場合など？）
+どういう用途で使うのか、Permissions-Policy は誰が何のためにつかえるのかなど、もう少し調べる余地がある
 
 ## 未解決問題
 
