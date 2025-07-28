@@ -14,15 +14,14 @@ published: false
 https://blogs.windows.com/msedgedev/2025/05/05/creating-a-more-accessible-web-with-aria-notify/
 
 explainer: https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/main/Accessibility/AriaNotify/explainer.md
+W3C のスライド: https://docs.google.com/presentation/u/0/d/1aoleJpv04kdQ3kMYlkInU9W-bdnrdf_9-aHyMgBEXW0/htmlpresent (https://www.w3.org/2025/03/26-aria-minutes.html)
 aria の PR: https://github.com/w3c/aria/pull/2577
 aria の PR2？: https://github.com/w3c/aria/pull/2211
 aria の issue: https://github.com/w3c/aria/issues?q=is%3Aissue%20state%3Aopen%20%20%22ariaNotify%22%20in%3Atitle
-Chrome Intent to Ship: https://groups.google.com/a/chromium.org/g/blink-dev/c/QCtWzIPgcCY/m/RSuXobocDAAJ
 design-reviews: https://github.com/w3ctag/design-reviews/issues/1075
 discussion: https://github.com/w3c/aria/discussions/1958
 Design Doc: https://docs.google.com/document/d/1tFT-4_sDvgnZoS8AYEcQquXzqAYaoB53DBH0C2T5rMk/edit?tab=t.0#heading=h.8a9jnxl3wfhe
-priority 動かん: https://www.oidaisdes.org/aria-notify-first-look.en/
-W3C のスライド: https://docs.google.com/presentation/u/0/d/1aoleJpv04kdQ3kMYlkInU9W-bdnrdf_9-aHyMgBEXW0/htmlpresent (https://www.w3.org/2025/03/26-aria-minutes.html)
+Chrome Intent to Ship: https://groups.google.com/a/chromium.org/g/blink-dev/c/QCtWzIPgcCY/m/RSuXobocDAAJ
 
 ## 背景
 
@@ -32,6 +31,8 @@ W3C のスライド: https://docs.google.com/presentation/u/0/d/1aoleJpv04kdQ3kM
 - Live region や「視覚的な変化を通知する」という前提があるので、DOM に結びついていなければならないが、[React Aria の LiveAnnouncer](https://github.com/adobe/react-spectrum/blob/main/packages/%40react-aria/live-announcer/src/LiveAnnouncer.tsx)のようなハック的な実装が行われてしまうことがある
   - https://zenn.dev/mehm8128/articles/adv2024-react-aria-button#ispending%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6
   - これは視覚的な役割を果たさないため、機能実装の修正時に追従が忘れられたりいつの間にか壊れたりしがち
+
+Live region を置き換えるものではなく、今までハック的な使われ方をしてきた場面を改善するためのもの
 
 ## 用例
 
