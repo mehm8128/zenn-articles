@@ -2,40 +2,34 @@
 title: "命令的な ARIA ライブリージョン：ARIA Notifyの紹介"
 emoji: "📢"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["frontend", "a11y", "aria", "waiaria"]
+topics: ["frontend", "a11y", "waiaria"]
 published: false
 ---
 
 こんにちは、フロントエンドエンジニアの mehm8128 です。
-今回は、Edge では 136、Chrome では 140 から導入されている ARIA Notify について紹介します。
+今回は、Edge では 136、Chrome (Canary) では 140 から導入されている ARIA Notify について紹介します。
 
 https://blogs.windows.com/msedgedev/2025/05/05/creating-a-more-accessible-web-with-aria-notify/
 
 ## ARIA Notify とは
 
-ARIA Notify とは、既存の ARIA ライブリージョンにおける問題点を基に検討されている、新しい API です。`document.ariaNotify()`のように命令的に呼び出すことで、スクリーンリーダーや点字ディスプレイなどの支援技術に情報を伝えることができます。
+ARIA Notify とは、既存の ARIA ライブリージョンにおける問題点を基に検討されている、新しい API です。`document.ariaNotify()` のように命令的に呼び出すことで、スクリーンリーダーや点字ディスプレイなどの支援技術に情報を伝えることができます。
 ただし、既存のライブリージョンを完全に置き換えるものではありません。本来の目的で利用されているライブリージョンはそのままで良く、意図しない用いられ方をしてしまっている部分で、より正確に支援技術に情報を通知するための API となっています。
-現在は仕様の議論段階で、v1 が Edge では 136 、Chrome では 140 から導入されています。
+現在は仕様の議論段階で、v1 が Edge では 136 、Chrome (Canary) では 140 から導入されています。
 
 以下が explainer で、本記事ではこれを上から順に追っていきます。
 
 https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/main/Accessibility/AriaNotify/explainer.md
 
-W3C のスライド: https://docs.google.com/presentation/u/0/d/1aoleJpv04kdQ3kMYlkInU9W-bdnrdf_9-aHyMgBEXW0/htmlpresent (https://www.w3.org/2025/03/26-aria-minutes.html)
-aria の PR: https://github.com/w3c/aria/pull/2577
-aria の PR2？: https://github.com/w3c/aria/pull/2211
-aria の issue: https://github.com/w3c/aria/issues?q=is%3Aissue%20state%3Aopen%20%20%22ariaNotify%22%20in%3Atitle
-design-reviews: https://github.com/w3ctag/design-reviews/issues/1075
-discussion: https://github.com/w3c/aria/discussions/1958
-Design Doc: https://docs.google.com/document/d/1tFT-4_sDvgnZoS8AYEcQquXzqAYaoB53DBH0C2T5rMk/edit?tab=t.0#heading=h.8a9jnxl3wfhe
-Chrome Intent to Ship: https://groups.google.com/a/chromium.org/g/blink-dev/c/QCtWzIPgcCY/m/RSuXobocDAAJ
-
 ## 背景
 
-背景として、ライブリージョンの問題点が挙げられています。
+背景として、ライブリージョンにおける問題点が挙げられています。
+ライブリージョンについては以下のページにまとまっています。
+
+https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Guides/Live_regions
 
 - スクリーンリーダーやブラウザによって、挙動やアウトプットが大きく異なり、一貫性がなかった
-  - そもそも DOM が更新されたときに、それがちゃんとブラウザからスクリーンリーダーに伝われるかどうかなど
+  - そもそも DOM が更新されたときに、それがちゃんとブラウザからスクリーンリーダーに伝わるかどうかなど
   - DOM が複雑だと、通知するテキストの計算方法に一貫性がなかったり
 - `aria-live` の `assertive` と `polite` の挙動が明確に定義されておらず、スクリーンリーダーによって動作が異なっていた
 - ライブリージョンには「視覚的な変化を通知する」という前提があるので DOM に結びついていなければならないが、DOM と結びつかない命令的な通知をしたい場合に、ハック的な実装が行われてしまうことがある
@@ -48,57 +42,181 @@ Chrome Intent to Ship: https://groups.google.com/a/chromium.org/g/blink-dev/c/QC
 - メールの送信に少し時間がかかった後、送信に失敗したことを通知するとき
 - スプレッドシートで、セルの編集時に副作用として別のセルの値が変更されたとき
 
-## 解決策
+上 2 つは必ずしも DOM に結びつかない通知で、3 つ目は最初に編集したセルの DOM に紐づけた通知がしたい（explainer では「Secondary actions」として紹介されています）という用例です。
 
-- 命令的なので DOM から計算する必要がなく、通知内容に一貫性が出る
+## 提案された解決策
 
-## `priority`
+前述の背景に対して、新しい命令的な API である `ariaNotify` が提案されました。これは命令的で、ユーザーが直接通知内容を引数に指定して JavaScript から実行する API なので、DOM の中身から通知内容を計算する必要がなく、前述のような一貫性を欠いた挙動を回避することができます。
+この関数は `document.ariaNotify("text")` として呼び出すとドキュメントの lang 属性から言語が推測され、`document.querySelector("query").ariaNotify("text")` として呼び出すと、`querySelector` で取得した要素の最も近い祖先の lang 属性から言語が推測されます。
 
-全通知キュー：高優先度キュー＋低優先度キュー
+```js
+// ドキュメントに関連した通知を送信する例
+document.ariaNotify("John Doe is connected");
 
-- `high`: 高優先度通知キューの末尾に追加
-- `normal`: 全通知キュー（低優先度キュー）の末尾に追加
+// 要素に関連した通知を送信する例
+document
+  .querySelector("#richEditRegion1")
+  .ariaNotify("Selected text glowing blue");
+```
 
-fallback として`aria-live`が使われる
+### `priority` オプション
+
+通知の読み上げ中に新しい通知が送信されたとき、優先順位付けをして通知を保留中キューに追加します。
+基本的に優先順位付けはスクリーンリーダーが行いますが、`ariaNotify` を利用する側で明示的に以下の 2 つから優先度を指定することができます。
+
+- `high`: 通知を高優先度通知キューの末尾に追加
+- `normal`: 通知を全通知キューの末尾に追加
+
+```js
+// バックグラウンドタスクのステータスが更新されたことの通知（低～普通優先度）
+document.ariaNotify("Background task completed", { priority: "normal" });
+
+// データが消失した可能性があることを知らせる、高優先度の通知
+document.ariaNotify("Unable to save changes, lost connection to server", {
+  priority: "high",
+});
+```
+
+これは `aria-live` 属性と似ていて、`priority: "high"` が `aria-live="assertive"` に、`priority: "normal"` が `aria-live="polite"` に該当します。
 
 ## iframe
 
-iframe を使う親コンテンツは、iframe 内の document に対して`ariaNotify`することはできない
-しかし、iframe 内の document が自分自身のコンテンツに対して`ariaNotify`することができる
-それを親コンテンツは iframe の`allow`属性や`Permissions-Policy`などで禁止することができる（例えば iframe の`ariaNotify`がうるさい場合など？）
-どういう用途で使うのか、Permissions-Policy は誰が何のためにつかえるのかなど、もう少し調べる余地がある
+iframe を使う親コンテンツは、iframe 内のドキュメントに対して `ariaNotify` で通知を追加することはできません。しかし、iframe 内のドキュメントが自分自身のコンテンツに対して `ariaNotify` することができます。
+それゆえ、iframe 内コンテンツの通知が過剰で禁止したい場合は、親コンテンツが iframe の `allow` 属性や `Permissions-Policy` などを用いてオプトアウトすることができます。
 
-## 未解決問題
+## 未解決の問題
 
-- AT ユーザーのみ弾くために aria notify を（たくさんアナウンスさせるなどして）悪用する可能性がある
-  - その対策として、[UserActivation API](https://developer.mozilla.org/ja/docs/Web/API/Navigator/userActivation) を利用して、ユーザーがアクティブにしたウィンドウでのみに制限することができる？
-  - これは開発者が行うもの？それとも Aria Notify 側で行うもの？
-  - `actions`って書いてあるけど、UserActivation API はアクション単位ではなくてウィンドウ単位でしか検知できない
+`ariaNotify` によって二重通知や冗長な通知が発生する可能性があります。さらには、Web サイト側が支援技術ユーザーのみ弾くために `ariaNotify` を（たくさん通知を送信するなどして）悪用する可能性があることが懸念されています。
 
-## 今後
+その対策として、[UserActivation](https://developer.mozilla.org/ja/docs/Web/API/UserActivation) が利用できるということが書かれています。
+[Features gated by user activation - Security](https://developer.mozilla.org/en-US/docs/Web/Security/User_activation) に記載のある API は既にこの仕組みを利用して、対策を行っているものです。
+
+## 今後の検討事項
+
+v1 では提供されていないが、検討中で v2 以降サポートされる可能性のある機能について紹介されています。
 
 ### 点字と音声マークアップ
 
-- `braille`オプションで点字用のテキストも指定できるようにする（`aria-braillelabel`みたいな）
-- `SSML`オプションで、読み上げ方をより細かく指定できるようにする
+`braille`オプションで、点字ディスプレイに対する通知を別で指定することができます。
+例えば商品の評価を表す「星 3 つ」を、点字ディスプレイでより簡潔に表すために、「\*」を使って以下のように表現できます。
 
-### interrupt
+```js
+document.ariaNotify("3 stars", { braille: "***" });
+```
 
-後から ariaNotify されたテキストの割り込み方
+これは WAI-ARIA 1.3 から入る [aria-braillelabel 属性](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-braillelabel) と似ています。
 
-大体以下のようになるが、priority に応じて微妙に挙動が変わる
-正確な動作は explainer の step1 ～ 3 を参照
-例えば`priority: high`を読み上げ中に`priority: normal`を`interrupt: all`で`ariaNotify`しても、`priority: high`が一通り読み上げ終わるまで読み上げられないはず
+また、`SSML`オプションで読み上げられ方をより細かく指定できます。
 
-- none: デフォルト。priority に応じて、保留中のキューに追加される
-- all: 読み上げ中テキストを無音にして、保留中キューも全て削除し、自分のテキストを読み上げさせる
-- pending: 読み上げ中テキストはそのまま読み上げさせるが、保留中キューは全て削除し、読み上げ中テキストが読み終わり次第、自分のテキストを読み上げさせる
+SSML とは Speech Synthesis Markup Language（音声合成マークアップ言語）の略で、「ピッチ、発音、読み上げ速度、音量などのテキスト読み上げの出力属性を微調整するために使用できる XML ベースのマークアップ言語」とのことです。
 
-### type
+https://learn.microsoft.com/ja-jp/azure/ai-services/speech-service/speech-synthesis-markup
 
-- `type`を自分で定義して、コンテキストを提供できる。例えば「このアナウンスはタスクの進行状況に関するものである」とか「このアナウンスはアクションの完了ステータスを表すものである」とか
-- 汎用的な`type`を事前に定義しておくべきかはまだ議論中
-- `type`でフィルターしたり、この`type`は`priority: high`のもののみ通知する、のような設定をスクリーンリーダーでできるらしい？
-- 最初に書かれてる点字とか音とかは何の話？
+例えば、「911」を「きゅーひゃくじゅーいち」ではなくて「きゅー、いち、いち」と発音させたい場合に、以下のように `interpret-as="digits"` と指定することで、1 桁ずつ読み上げてくれるそうです。
 
-next: PR 読んでみる
+```js
+document.ariaNotify("911", { SSML: '<say-as interpret-as="digits">911' });
+```
+
+### `interrupt` オプション
+
+これは `priority` と少し似ていてややこしいです。別のテキストの読み上げ中に `ariaNotify` で送信されたテキストがどのように割り込むかを指定するオプションです。`priority` は保留中キューに入っている他の通知との優先順位を指定しするものだったのですが、今回は読み上げ中に割り込むかどうかなどを指定するものです。
+
+オプションを記載しますが、簡略化すると正確性に欠けてしまうため、ほぼ直訳になっています。また、`all` と `pending` の違いは太字の部分です。
+
+- `none`
+  - 何も中断せず、保留中（キューにある）の通知の削除もしない
+- `all`
+  - ステップ 1. 同じソース・`priority`・`interrupt` を持つ通知が読み上げられているときは、**その読み上げを直ちに中断する**
+  - ステップ 2. 同じソース・`priority`・`interrupt` を持つ保留中の通知があるときは、それらを全て削除する
+  - ステップ 3. `priority` に応じて通知をキューに追加する
+- `pending`
+  - ステップ 1. 同じソース・`priority`・`interrupt` を持つ通知が読み上げられているときは、**その読み上げが終了するまで待つ**
+  - ステップ 2. 同じソース・`priority`・`interrupt` を持つ保留中の通知があるときは、それらを全て削除する
+  - ステップ 3. `priority` に応じて通知をキューに追加する
+
+「ソース」はおそらく `ariaNotify` を呼ぶときに指定したドキュメントや要素のことです（原文で "source"）。
+
+提示されているサンプルコードを見ると分かりやすいので、見ていきます。1％から 100％までの進捗状況が順に読み上げられる例です（おそらく `while` などで回すことが想定されています）。
+
+`interrupt: "all"`の例です。この場合、前のパーセントの読み上げが終わっていなくても、次の読み上げが始まったら読み上げ中の通知が中断され、新しい読み上げが優先されます。
+つまり、進捗状況の進む速度が速い場合、「Progress is 100」以外はほとんど聞こえないことになります。
+
+```js
+let percent = 0;
+function simulateProgress() {
+  percent += 1;
+  updateProgressBarVisual(percent);
+  document
+    .querySelector("#progressBar")
+    .ariaNotify(`Progress is ${currentValue}`, {
+      priority: "normal",
+      interrupt: "all",
+    });
+}
+
+if (percent < 100) {
+  setTimeout(simulateProgress, 100);
+}
+```
+
+`interrupt: "pending"` の例です。この場合、読み上げ中の通知は全て読み上げられるので、「Progress is 1」は確実に読み上げられます。しかし、次の通知が送信されたタイミングでキューは全て削除されるので、1 の読み上げ中に 2 ～ 4 が送信された場合、2 ～ 3 の通知は削除され、次に読み上げられるのは「Progress is 4」となります。そして、最後は「Progress is 100」が読み上げられます。
+
+```js
+let percent = 0;
+function simulateProgress() {
+  percent += 1;
+  updateProgressBarVisual(percent);
+  document
+    .querySelector("#progressBar")
+    .ariaNotify(`Progress is ${currentValue}`, {
+      priority: "normal",
+      interrupt: "pending",
+    });
+}
+
+if (percent < 100) {
+  setTimeout(simulateProgress, 100);
+}
+```
+
+### `type` オプション
+
+まだ謎が多いオプションです。少し前までは `notificationId` と呼ばれていたようです。
+
+`type` というオプション、もしくは第二引数に直接文字列を渡すと、通知に対して追加のコンテキストを付与できます。
+
+例えば以下のサンプルコードだと、`"task-progress-started"` や `"task-progress-finished"` で追加のコンテキストを与えています。
+
+```js
+document.ariaNotify(
+  "Uploading file untitled-1 to the cloud.",
+  "task-progress-started"
+);
+
+myfile.asyncFileUpload().then(() => {
+  document.ariaNotify("File untitled-1 uploaded.", {
+    type: "task-progress-finished",
+  });
+});
+```
+
+スクリーンリーダーでは、このコンテキストに対してフィルタリングしたり、優先順位の高い通知のみ通知するといったことができるようになります（既になっているのか、今後そうしたい話なのかは不明です）。
+例えば上記の例で「`type: "task-progress-finished"` の通知は通知しない」のようなフィルタリングが適用できるという話です。
+
+同様にこの `type` を用いて、点字で出力する指示や、ビープ音を出力するような指示など、様々なカスタマイズができるとのことです。
+
+これについては、事前に `type` のプリセットを定義しておくべきなのかという議論もあるようです。
+
+## 参考（になりそうな）文献
+
+- [Add ariaNotify draft by janewman · Pull Request #2577 · w3c/aria](https://github.com/w3c/aria/pull/2577)
+- [add arianotify draft by keithamus · Pull Request #2211 · w3c/aria](https://github.com/w3c/aria/pull/2211)
+  - 上の PR の元となった PR
+- [Issues · w3c/aria](https://github.com/w3c/aria/issues?q=is%3Aissue%20%22ariaNotify%22%20in%3Atitle)
+- [ARIA-Notify Breakout Session 2025 – 26 March 2025](https://www.w3.org/2025/03/26-aria-minutes.html)
+  - スライドへのリンクがあります
+- [Review request for AriaNotify API · Issue #1075 · w3ctag/design-reviews](https://github.com/w3ctag/design-reviews/issues/1075)
+- [ARIA Notification Proposal Discussion Points · w3c/aria · Discussion #1958](https://github.com/w3c/aria/discussions/1958)
+- [ariaNotify Design Doc - Google ドキュメント](https://docs.google.com/document/d/1tFT-4_sDvgnZoS8AYEcQquXzqAYaoB53DBH0C2T5rMk/edit?tab=t.0#heading=h.8a9jnxl3wfhe)
+- [Intent to Ship: ARIA Notify API](https://groups.google.com/a/chromium.org/g/blink-dev/c/QCtWzIPgcCY/m/RSuXobocDAAJ)
