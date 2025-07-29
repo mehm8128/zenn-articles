@@ -1,0 +1,36 @@
+name: Publish
+
+on:
+  pull_request:
+    types: [labeled]
+  workflow_dispatch:
+
+jobs:
+  switch_published_state:
+    runs-on: ubuntu-latest
+    if: github.event.action == 'labeled' && github.event.label.name == 'publish'
+    steps:
+      - name: Checkout main Branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
+          fetch-depth: 0
+
+      - name: Checkout Pull Request
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Change published state in changed files
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git diff --name-only origin/${{ github.event.pull_request.base.ref }}...HEAD | grep '\.md$' | while read file; do
+            sed -i 's/published: false/published: true/g' "$file"
+            git add "$file"
+          done
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -m "Set published: true" || echo "No changes to commit"
+          git push origin HEAD
