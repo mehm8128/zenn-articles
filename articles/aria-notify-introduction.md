@@ -208,7 +208,7 @@ myfile.asyncFileUpload().then(() => {
 
 これについては、事前に `type` のプリセットを定義しておくべきなのかという議論もあるようです。
 
-## 参考（になりそうな）文献
+## 参考（になりそうな）資料
 
 - [Add ariaNotify draft by janewman · Pull Request #2577 · w3c/aria](https://github.com/w3c/aria/pull/2577)
 - [add arianotify draft by keithamus · Pull Request #2211 · w3c/aria](https://github.com/w3c/aria/pull/2211)
