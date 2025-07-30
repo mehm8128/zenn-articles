@@ -7,7 +7,7 @@ published: true
 ---
 
 こんにちは、フロントエンドエンジニアの mehm8128 です。
-今回は、Edge では 136、Chrome (Canary) では 140 から導入されている ARIA Notify について紹介します。
+今回は新しく検討されている ARIA Notify API について紹介します。
 
 https://blogs.windows.com/msedgedev/2025/05/05/creating-a-more-accessible-web-with-aria-notify/
 
@@ -15,7 +15,7 @@ https://blogs.windows.com/msedgedev/2025/05/05/creating-a-more-accessible-web-wi
 
 ARIA Notify とは、既存の ARIA ライブリージョンにおける問題点を基に検討されている、新しい API です。`document.ariaNotify()` のように命令的に呼び出すことで、スクリーンリーダーや点字ディスプレイなどの支援技術に情報を伝えることができます。
 ただし、既存のライブリージョンを完全に置き換えるものではありません。本来の目的で利用されているライブリージョンはそのままで良く、意図しない用いられ方をしてしまっている部分で、より正確に支援技術に情報を通知するための API となっています。
-現在は仕様の議論段階で、v1 が Edge では 136 、Chrome (Canary) では 140 から導入されています。
+現在は仕様の議論段階で、最低限の機能が入った API が Edge では 136 以降の Origin Trial もしくは feature flag を有効化した状態、Chrome では 140 以降で feature flag を有効化した状態で利用可能です。
 
 以下が explainer で、本記事ではこれを上から順に追っていきます。
 
@@ -93,7 +93,7 @@ iframe を使う親コンテンツは、iframe 内のドキュメントに対し
 
 ## 今後の検討事項
 
-v1 では提供されていないが、検討中で v2 以降サポートされる可能性のある機能について紹介されています。
+現在は提供されていないが、検討中で今後サポートされる可能性のある機能について紹介されています。
 
 ### 点字と音声マークアップ
 
