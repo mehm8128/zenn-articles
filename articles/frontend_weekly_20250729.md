@@ -3,7 +3,7 @@ title: "State of HTML 2025 の開始など: Cybozu Frontend Weekly (2025-07-29�
 emoji: "🎆"
 type: "idea"
 topics: ["frontend", "cybozufrontendweek"]
-published: false
+published: true
 publication_name: "cybozu_frontend"
 ---
 
@@ -78,6 +78,8 @@ https://github.com/testing-library/react-testing-library/issues/1209#issuecommen
 以下のようなサンプルコードが紹介されています。
 
 ```tsx
+import { renderServer } from "vitest-plugin-rsc/testing-library";
+
 await renderServer(<Component />);
 ```
 
