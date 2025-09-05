@@ -55,6 +55,7 @@ https://blog.sakupi01.com/dev/articles/2025-css-advent-0
   - 代わりに、[🎨 CSS Advent Calendar: Day 16 / Hard Core Scoping of Standard | @sakupi01.com](https://blog.sakupi01.com/dev/articles/2025-css-advent-16/) をご覧ください
 - DOM Parts や Template Instantiation、HTML Modules など
   - 少し毛色が違うものっぽいので、今回は扱いません
+  - 代わりに、[<template>要素の深淵へ：DOM の影に潜む再利用性の真実 #WebComponents #HTMLTemplate #九 03 #令和 IT 史ざっくり解説](https://dopingconsomme.blogspot.com/2025/09/html-template-element-deep-dive-expert-guide.html) をご覧ください
 
 ## まとめ
 
