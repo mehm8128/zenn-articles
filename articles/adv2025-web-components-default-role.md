@@ -1,0 +1,29 @@
+---
+title: "カスタム要素のデフォルトロール - Web Components a11y 1人 Advent Calendar"
+emoji: "🎨"
+type: "tech"
+topics: ["frontend", "webcomponents", "a11y"]
+published: false
+---
+
+:::message
+この記事は [Web Components a11y 1 人 Advent Calendar - Qiita Advent Calendar 2025](https://qiita.com/advent-calendar/2025/web-components-a11y) の n 日目の記事です。
+:::
+
+こんにちは、フロントエンドエンジニアの mehm8128 です。
+
+今回は、比較的動きのあった、カスタム要素のデフォルトロールについての issue を紹介します。
+
+https://github.com/WICG/webcomponents/issues/1073
+
+## 背景
+
+## 解決策
+
+## 近況
+
+https://github.com/w3c/aria/pull/2383
+
+## まとめ
+
+明日はについて紹介します。
