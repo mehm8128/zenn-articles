@@ -6,6 +6,8 @@
 		"new:book": "zenn new:book"
 	},
 	"devDependencies": {
+		"textlint": "^15.2.2",
+		"textlint-rule-preset-ja-technical-writing": "^12.0.2",
 		"zenn-cli": "^0.2.3"
 	}
 }
