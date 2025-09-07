@@ -24,6 +24,10 @@ https://github.com/WICG/webcomponents/blob/gh-pages/proposals/ShadowRoot-delegat
 
 https://github.com/WICG/webcomponents/blob/gh-pages/proposals/custom-element-default-focus.md
 
+## おまけ：focusgroup
+
+https://open-ui.org/components/scoped-focusgroup.explainer/#shadow-dom-boundaries
+
 ## まとめ
 
 明日はイベント制御について紹介します。
