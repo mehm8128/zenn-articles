@@ -21,6 +21,8 @@ published: false
 
 ほとんどのデザインシステムで使われてるとかも
 
+https://github.com/stenciljs/core
+
 ## Web Components の作り方
 
 サンプルコード
@@ -31,6 +33,15 @@ published: false
 後続記事の参考になるものなら特に良い
 
 ## その他周辺ライブラリ
+
+- lint
+  - https://github.com/open-wc/open-wc/blob/master/docs/docs/linting/eslint-plugin-lit-a11y/overview.md
+- cem
+  - https://github.com/webcomponents/custom-elements-manifest
+- lsp
+  - https://wc-toolkit.com/integrations/web-components-language-server/
+- test
+  - https://modern-web.dev/guides/test-runner/getting-started/
 
 ## まとめ
 
