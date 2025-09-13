@@ -22,6 +22,7 @@ ShadowDOM は実装をカプセル化し、隠蔽することでユーザーに�
 実装は隠蔽したいけど、ページのユーザーは要素を認識できるので、そこで矛盾が発生している？
 
 proposal の問題点のところからも取ってくる
+Background の図がほしい
 
 解決策
 1 reflection
@@ -29,16 +30,22 @@ proposal の問題点のところからも取ってくる
 今年から使えるようになったブラウザが多そう
 https://caniuse.com/?search=ariaActiveDescendantElement%20
 
+宣言的には使えない
+
 2 reflection を open な shadowroot にも使えるようにする
 問題点
 a. カプセル化が失われてしまう可能性
 b. closed な shadowroot ではどうする？
 c. 宣言的に使えない
 
-3 ::part()と同じように参照する
-実装が難しい？
-
 残りは別の日に
+
+どの解決案でも共通で必須の条件は行か
+
+- シリアル化可能
+  - declarative に使えるようにするため
+- closed と open の両方の shadowroot で機能する
+- shadow dom のカプセル化を保持する
 
 https://nolanlawson.com/2022/11/28/shadow-dom-and-accessibility-the-trouble-with-aria/
 
