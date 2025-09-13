@@ -14,6 +14,8 @@ published: false
 
 今日から 5 日間は、Reference Target について紹介します。
 
+## 問題点
+
 https://alice.pages.igalia.com/blog/how-shadow-dom-and-accessibility-are-in-conflict/
 
 autocomplete を例にして、aria-activedescendant が shadowDOM 内の要素を参照しないことを説明している
@@ -24,7 +26,8 @@ ShadowDOM は実装をカプセル化し、隠蔽することでユーザーに�
 proposal の問題点のところからも取ってくる
 Background の図がほしい
 
-解決策
+## 解決策
+
 1 reflection
 内部から外部を参照はできるようになった
 今年から使えるようになったブラウザが多そう
@@ -48,6 +51,18 @@ c. 宣言的に使えない
 - shadow dom のカプセル化を保持する
 
 https://nolanlawson.com/2022/11/28/shadow-dom-and-accessibility-the-trouble-with-aria/
+
+## デザインシステムでの実装
+
+Spectrum
+気合で aria-lebel の設定やフォーカス移動をやっていた
+https://github.com/adobe/spectrum-web-components/blob/main/packages/field-label/src/FieldLabel.ts#L81
+https://github.com/adobe/spectrum-web-components/blob/main/packages/field-label/src/FieldLabel.ts#L97
+Material Web
+label は input に上手く当たっていなくて、読み上げ失敗してる
+フォーカスは、formAssociated: true にしつつ delegateFocus: true にすれば当たってくれるっぽい
+https://material-web.dev/components/checkbox/#label
+https://github.com/material-components/material-web/blob/main/checkbox/internal/checkbox.ts
 
 ## まとめ
 
