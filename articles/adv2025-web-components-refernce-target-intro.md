@@ -40,6 +40,8 @@ c. 宣言的に使えない
 
 残りは別の日に
 
+https://nolanlawson.com/2022/11/28/shadow-dom-and-accessibility-the-trouble-with-aria/
+
 ## まとめ
 
 明日はについて紹介します。
