@@ -35,6 +35,11 @@ exportid
 
 ## 実装例
 
+## ユースケース求めてる issue
+
+本当に phase2 いるのか？的な？
+https://github.com/WICG/webcomponents/issues/1111
+
 ## まとめ
 
 明日はについて紹介します。
