@@ -14,6 +14,7 @@ published: false
 
 https://github.com/alice/aom/blob/gh-pages/semantic-delegate.md
 https://github.com/Westbrook/cross-root-aria-reflection/blob/main/cross-root-aria-reflection.md
+https://github.com/leobalter/cross-root-aria-delegation/blob/main/explainer.md
 
 shadowrootdelegatesariaattributes や shadowrootreflectsariacontrols、reflectariacontrols でつなげる
 問題点としては、同じ aria-属性を複数の要素に別の値で紐づけることができないこと
@@ -40,8 +41,6 @@ shadowDOM 外の input から、shadowDOM 内の label の値を aria-labelledby
 カスタム要素を id で参照されたときに、参照された属性によって内部で参照する要素を変える
 `shadowrootreflectsariaattributes="aria-controls aria-activedescendant"`
 `aria-controls`から参照されたら、`reflectedariaattributes="aria-controls"`を持つ要素が参照される、とか
-
-https://github.com/Westbrook/cross-root-aria-reflection/blob/main/cross-root-aria-reflection.md
 
 方法 2
 CSS の`::part()`で同様に参照されるようにする
