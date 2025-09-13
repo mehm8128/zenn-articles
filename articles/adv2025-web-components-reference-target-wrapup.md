@@ -12,6 +12,9 @@ published: false
 
 こんにちは、フロントエンドエンジニアの mehm8128 です。
 
+https://blogs.igalia.com/mrego/solving-cross-root-aria-issues-in-shadow-dom/
+https://github.com/WICG/webcomponents/issues/1098
+
 ## まとめ
 
 明日はについて紹介します。
