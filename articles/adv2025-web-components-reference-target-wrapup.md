@@ -14,6 +14,10 @@ published: false
 
 https://blogs.igalia.com/mrego/solving-cross-root-aria-issues-in-shadow-dom/
 https://github.com/WICG/webcomponents/issues/1098
+https://github.com/whatwg/dom/pull/1353
+https://github.com/whatwg/html/pull/10995
+
+残りのブラウザ対応状況とか
 
 ## まとめ
 
