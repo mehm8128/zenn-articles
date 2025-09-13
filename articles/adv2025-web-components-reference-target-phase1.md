@@ -24,7 +24,8 @@ non goals
 
 - Allow attributes on the host to be "forwarded" to the enclosed element.
   - For example, to allow role or aria-label on the host to be applied to the enclosed element.
-  - semantic delegate 的な？
+  - [cross-root ARIA delegation](https://github.com/leobalter/cross-root-aria-delegation/blob/main/explainer.md) の 1 とか、semantic delegate みたいな話
+  - なくても最悪、適当な attr として渡せばいい（`ariaLabelledby`みたいな）
 - Straightforward form association for enclosed form-associated elements.
   - 分からん
 - Provide a serializable way to create references from elements in shadow DOM to elements in light DOM.
