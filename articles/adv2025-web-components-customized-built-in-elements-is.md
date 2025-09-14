@@ -43,6 +43,7 @@ progressive enhancement もある
   - local name はカスタム要素の名前？
 - https://github.com/WICG/webcomponents/issues/509#issuecomment-230700060
   - 親クラスに機能が追加されたときに、サブクラスでもサポートしないといけなくなる
+- `<custom-element>`の場合と`<a is="custom-element">`の場合が混在して読みづらい
 
 https://github.com/WebKit/standards-positions/issues/97
 https://github.com/w3c/tpac2023-breakouts/issues/44
