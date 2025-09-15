@@ -24,6 +24,12 @@ https://github.com/WICG/webcomponents/blob/gh-pages/proposals/ShadowRoot-delegat
 
 https://github.com/WICG/webcomponents/blob/gh-pages/proposals/custom-element-default-focus.md
 
+## tabindex つけなくてもデフォルトでフォーカス可能にしたい
+
+カスタム組み込み要素入ったらいらない？諸説
+
+https://github.com/WICG/webcomponents/issues/762
+
 ## おまけ：focusgroup
 
 https://open-ui.org/components/scoped-focusgroup.explainer/#shadow-dom-boundaries
