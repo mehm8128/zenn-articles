@@ -3,7 +3,7 @@ title: "WebKit Features in Safari 26.0など: Cybozu Frontend Weekly (2025-09-15
 emoji: "🎨"
 type: "idea"
 topics: ["frontend", "cybozufrontendweek"]
-published: false
+published: true
 publication_name: "cybozu_frontend"
 ---
 
