@@ -18,6 +18,7 @@ https://github.com/whatwg/dom/pull/1353
 https://github.com/whatwg/html/pull/10995
 
 残りのブラウザ対応状況とか
+https://wpt.fyi/results/shadow-dom/reference-target/tentative?label=experimental&label=master&aligned
 
 ## まとめ
 
