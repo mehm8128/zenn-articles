@@ -34,6 +34,9 @@ https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/main/ElementInternalsType
 
 progressive enhancement もある
 
+読む
+https://github.com/WICG/webcomponents/blob/gh-pages/proposals/Type-Extensions.md
+
 #### 問題点
 
 - shadow tree が attach できなかった
