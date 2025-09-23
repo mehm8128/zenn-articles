@@ -28,6 +28,10 @@ https://developer.mozilla.org/ja/docs/Web/CSS/:state
 State of HTML のやつ
 よく分かってないので調査必要
 
+## part, exportParts
+
+後ろの exportids の説明で使えるように
+
 ## Slotted descendant styling
 
 State of HTML のやつ
