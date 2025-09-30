@@ -1,5 +1,5 @@
 ---
-title: "Interest InvokersのShipなど: Cybozu Web Standards Monthly (2025-09号)"
+title: "Web 標準動向 2025年9月版"
 emoji: "🍡"
 type: "idea"
 topics: ["frontend", "cybozuwebstandards"]
@@ -11,7 +11,7 @@ publication_name: "cybozu_frontend"
 
 ## はじめに
 
-今月から Cybozu Web Standards Monthly が始まります。
+今月から「Web 標準動向」が始まります。
 
 サイボウズは 2025 年 4 月より、W3C のメンバーに加入しました。
 
