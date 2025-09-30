@@ -138,7 +138,7 @@ https://groups.google.com/a/chromium.org/g/blink-dev/c/aflQmg68ISU/m/ArMqnZvVAAA
 Declarative CSS Module Scripts が Blink で Intent to Prototype になりました。
 
 Chromium で利用可能な [CSS import attributes](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/import/with) の機能を宣言的に利用できるようにしたものです。
-これにより、1 つのスタイルシートを複数の Shadow Root で利用できるようになります。
+これにより、1 つのスタイルシートを複数の Shadow Root 間で効率的に共有できるようになります。
 
 ## ARIA・WCAG
 
@@ -156,7 +156,7 @@ ARIA Notify は、これまで ARIA ライブリージョンをハック的に�
 その他詳細は以下の記事で解説しています。
 [命令的な ARIA ライブリージョン：ARIA Notify の紹介](https://zenn.dev/mehm8128/articles/aria-notify-introduction)
 
-また、先週 MDN のページも誕生しました。
+また、MDN のページも誕生しました。
 [Element: ariaNotify() method - Web APIs | MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaNotify)
 
 ### WCAG 3 が 2025 年 9 月 4 日付で更新
@@ -372,5 +372,6 @@ WinterTC において、 fetch API のレビューが一段落したので HTTP 
 https://groups.google.com/a/mozilla.org/g/dev-platform/c/zQaRDA68e5A/m/XX_CRC4mAQAJ
 
 Trusted Types が Gecko で Intent to prototype となりました。
+Trusted Types は、`element.innerHTML`など脆弱性の原因となる DOM プロパティに文字列を代入する前に、安全な文字列に変換する処理を行ったという型付けができるようになるものです。
 
 Safari には先日の Safari 26 のリリースで入ったので、Firefox で Ship されると全ての主要ブラウザでサポートされることになります。
