@@ -3,7 +3,7 @@ title: "Web 標準動向 2025年9月版"
 emoji: "🍡"
 type: "idea"
 topics: ["frontend", "cybozuwebstandards"]
-published: false
+published: true
 publication_name: "cybozu_frontend"
 ---
 
@@ -26,11 +26,11 @@ https://blog.cybozu.io/entry/joining-w3c
 今月の執筆者は以下の 4 名です。
 
 - [Saji](https://x.com/sajikix)
-  - ECMA402(Intl)周りのトピックを執筆
+  - ECMA402 (Intl) 周りのトピックを執筆
 - [daiki](https://x.com/k1tikurisu)
   - ECMA262 周りのトピックを執筆
 - [saku](https://x.com/sakupi01)
-  - HTML, CSS, Interop
+  - HTML, CSS, Interop に関連するトピックを執筆
 - [mehm8128](https://x.com/mehm8128)
   - 主に a11y に関連するトピックを執筆
 
@@ -122,7 +122,6 @@ CSS 仕様の安定性を示す「CSS Snapshot」が今年も公開されまし�
   - Media Queries 5 の `prefers-reduced-motion`, `prefers-contrast`, `forced-colors` など
 
 2025 年のスナップショット全体に関しては、以下の Group Note を参照ください。
-
 [CSS Snapshot 2025](https://www.w3.org/TR/css-2025/)
 
 ### **Apple has a private CSS property to add Liquid Glass effects to web content**
