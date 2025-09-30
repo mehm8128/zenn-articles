@@ -357,7 +357,7 @@ https://www.unicode.org/versions/Unicode17.0.0/
 
 https://groups.google.com/a/chromium.org/g/blink-dev/c/zzN7erylAc4
 
-Chromium が汎用的な国際化機能の実装や Unicode サポートのために使用するサードパーティライブラリ ICU （International Components for Unicode）を v77 にアップデートしました。このアップデートは直近でリリースされた Unicode 16 や CLDR (Common Locale Data Repository) 46 を含んだものとなっています。
+Chromium が汎用的な国際化機能の実装や Unicode サポートのために使用するサードパーティライブラリ ICU （International Components for Unicode）を v77 にアップデートしました。このアップデートは直近でリリースされた Unicode 16 や CLDR (Common Locale Data Repository) 46 へのサポートを含んだものとなっています。
 
 ### HTTP server API brainstorming · Issue #137 · WinterTC55/admin
 
