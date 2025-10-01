@@ -1,5 +1,5 @@
 ---
-title: "WCAG2.2 の ISO/IEC 40500:2025 規格化など: Cybozu Frontend Weekly (2025-09-30号)"
+title: "WCAG2.2のISO/IEC 40500:2025 規格化など: Cybozu Frontend Weekly (2025-09-30号)"
 emoji: "🍣"
 type: "idea"
 topics: ["frontend", "cybozufrontendweek"]
