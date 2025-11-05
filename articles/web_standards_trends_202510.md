@@ -163,7 +163,7 @@ https://github.com/w3c/aria/issues/2663
 [Read only `window.getComputedStyle()` equivalent for accessible state · Issue #212 · WICG/aom](https://github.com/WICG/aom/issues/212)
 [.elementInternals accessor property · Issue #11040 · whatwg/html](https://github.com/whatwg/html/issues/11040)
 
-### aria-valuenow
+### [aria-valuenow]: default to native value when one exists
 
 https://github.com/w3c/aria/issues/2631
 
