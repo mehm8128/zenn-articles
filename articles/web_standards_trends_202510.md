@@ -156,7 +156,7 @@ https://github.com/w3c/aria/issues/2663
 
 `window.getComputedStyle`と同じように、計算された aria 属性や role を取得できるメソッドが提案されています。
 
-これにより、ElementInterenals で定義されて HTML 上には現れていない aria 属性や role の値、`<section>`要素のように accessible name が付与されているかどうかで role の値が変わるような要素の role の値などを簡単に取得できるようになり、テストや Axe などのアクセシビリティチェックツールなどで役に立つことが予想されます。  
+これにより、ElementInternals で定義されて HTML 上には現れていない aria-属性や role の値、`<section>`要素のように accessible name が付与されているかどうかで role の値が変わるような要素の role の値などを簡単に取得できるようになり、テストや Axe などのアクセシビリティチェックツールなどで役に立つことが予想されます。  
 ただ、パフォーマンスの問題や[Web Platform Design Principles 2.11. Don’t reveal that assistive technologies are being used](https://www.w3.org/TR/design-principles/#do-not-expose-use-of-assistive-tech "https://www.w3.org/TR/design-principles/#do-not-expose-use-of-assistive-tech")に基づくプライバシーの問題により、実現方法が複数検討されていて、まだ議論中です。
 
 [ARIA WG – 23 October 2025](https://www.w3.org/2025/10/23-aria-minutes.html#51e0)
