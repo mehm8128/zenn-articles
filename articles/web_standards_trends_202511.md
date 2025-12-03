@@ -73,7 +73,7 @@ https://groups.google.com/a/chromium.org/g/blink-dev/c/A57SyMHayKM/m/-eWIfZqBCAA
 
 強制カラーモード時に、絵文字がモノクロでレンダリングされるようになります。
 
-## ARIA・WCAG
+## ARIA
 
 ### Change tooltip to name prohibited
 
