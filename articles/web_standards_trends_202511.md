@@ -25,7 +25,6 @@ https://blog.cybozu.io/entry/joining-w3c
 https://www.w3.org/2025/11/TPAC/Overview.html
 
 W3C の全グループが一同に会す国際会議である TPAC 2025 が 11/10 ～ 11/14 に神戸で開催されました。
-
 サイボウズからはオンサイトで 8 名、オンラインでも 2 名ほど参加しました。
 
 以下の 2 つの記事に、概要や感想がまとまっています。
