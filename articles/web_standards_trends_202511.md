@@ -77,6 +77,8 @@ Chromium での実装が進んでおり、Stable バージョンでも `chrome:/
 
 https://raw.githack.com/mrdoob/three.js/htmltexture/examples/webgl_materials_texture_html.html
 
+![Canvas 要素と WebGL を用いて作られた立方体に、HMTL でテキストが描画されている](/images/web_standards-trends/202511-canvas.png)
+
 ## Prototype: Declarative scroll commands for HTMLButtonElement
 
 https://groups.google.com/a/chromium.org/g/blink-dev/c/3jwcQg6u90k
