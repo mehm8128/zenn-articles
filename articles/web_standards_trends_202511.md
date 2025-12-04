@@ -75,9 +75,11 @@ https://github.com/WICG/html-in-canvas
 
 Chromium での実装が進んでおり、Stable バージョンでも `chrome://flags/#canvas-draw-element` を有効化することで利用可能です。
 
-https://raw.githack.com/mrdoob/three.js/htmltexture/examples/webgl_materials_texture_html.html
+[three.js webgl - materials - html texture](https://raw.githack.com/mrdoob/three.js/htmltexture/examples/webgl_materials_texture_html.html)
 
-## Prototype: Declarative scroll commands for HTMLButtonElement
+![Canvas 要素と WebGL を用いて作られた立方体に、HTML でテキストが描画されている](/images/web_standards-trends/202511-canvas.png)
+
+### Prototype: Declarative scroll commands for HTMLButtonElement
 
 https://groups.google.com/a/chromium.org/g/blink-dev/c/3jwcQg6u90k
 
