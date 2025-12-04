@@ -235,7 +235,7 @@ https://blogs.windows.com/msedgedev/2025/11/03/microsoft-edge-introduces-passkey
 
 デスクトップ版 Edge on Windows でパスキーの同期が可能になりました。
 
-### ADC Projects Update
+### ACD Projects Update
 
 https://docs.google.com/document/d/1ree75ImLZjf60lTZ3BhCaLHygxgywr7SBXp-q0xPs8A/edit?tab=t.kwy3jemh57eo#heading=h.otakpzvvzent
 
