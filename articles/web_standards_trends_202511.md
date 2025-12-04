@@ -169,7 +169,7 @@ Privacy Sandbox の終了を受け、複数の API の削除が始まりまし�
 
 https://github.com/w3c/aria/pull/2670
 
-tooltip ロールの name from が`author and contents`から prohibited に変わります。
+tooltip ロールの name from が`author and contents`から`prohibited`に変わります。
 
 tooltip ロールは多くの場合、`aria-describedby`によって呼び出し元要素から中身を参照されるような使い方がされます（[参考](https://www.w3.org/TR/wai-aria-1.2/#tooltip)）。しかし`aria-label`などで tooltip ロールの要素に accessible name をつけてしまうと、`aria-describedby`したときにその`aria-label`の内容しか読まれず、ツールチップの詳細な中身が読まれないというバグが発生してしまう可能性があることから、author による名前付けが禁止されました。
 また、name from は`author`, `author and contents`, `prohibited`のどれかで`contents`のみの場合には`prohibited`になることから、`prohibited`になったようです。
