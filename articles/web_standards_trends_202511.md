@@ -124,13 +124,18 @@ https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/146
 Firefox 145 (Stable) と 146 (Beta) がのリリースされました。ディベロッパーから多くの期待が集まっていた CSS の機能がいくつかリリースされたため、取り上げます。
 
 - `text-autospace`：初期値に関しては他と同じく `no-autospace`（デフォルトで間隔をあけない） です。どのブラウザも仕様に準拠しない（仕様のデフォルトは `normal` で、間隔をあける）という状態で、クロスブラウザサポートが完了しています。
-- `<hr>` in `<select>`：HTMLSelectElement のパーサ緩和の手始めとして、 `<hr>` が `<select>` に挿入可能になりました。Customizable Select Element に向けた実装が進行しています。
+- `<hr>` in `<select>`：HTMLSelectElement のパーサ緩和の手始めとして、`<hr>` が `<select>` に挿入可能になりました。Customizable Select Element に向けた実装が進行しています。
 - `CSS Anchor Positioning`：Interop 2025 Focus Areas の一つであり、ディベロッパーからの期待も多く寄せられていた待望の機能が、 Firefox の実装で揃いました。ただし、クロスブラウザでのサポートが保証されている機能は `anchor-name`、`position-anchor`、 `anchor()`関数となっています。それ以外の機能は、一部のブラウザでのみサポートされています。
 - CSS `@scope`：こちらも Interop 2025 Focus Area の機能で、Firefox の実装によりクロスブラウザサポートが完了しました。Cascade に近接性（Scope Proximity）をもたらし、DOM 構造上の”近さ”を加味したスタイルの優先度づけが可能になります。
 - `contrast-color()`：任意の色を引数に取り、WCAG 2.2 AA のコントラスト基準を満たす white/black いずれかのカラーを返す関数です。
 - `display-p3-linear` 色空間： `display-p3` 色空間よりも、表示される色の精度が高くなります。
 
-そのほか、 `Atomics.waitAsync()` や Navigation API といった待望の機能もリリースに含まれています。このリリースによってクロスブラウザでのサポートが完了した機能も多く、今年の Firefox の素晴らしい功績が表れたリリースだったとも言えるでしょう。
+そのほか、`Atomics.waitAsync()` や Navigation API といった待望の機能もリリースに含まれています。このリリースによってクロスブラウザでのサポートが完了した機能も多く、今年の Firefox の素晴らしい功績が表れたリリースだったとも言えるでしょう。
+
+:::message
+追記：コメント欄にて、`<hr>` in `<select>`及び Navigation API についての補足情報をいただきました。ありがとうございます！
+https://zenn.dev/link/comments/c176b7bcaee96d
+:::
 
 ### **\[css-grid-3\] Masonry Switch Syntax**
 
