@@ -27,7 +27,7 @@ https://blog.cybozu.io/entry/w3c-interview-part2
 
 - [Saji](https://x.com/sajikix)
   - ECMA402 (Intl) 周りのトピックを執筆
-- [daiki](https://x.com/k1tikurisu)
+- [daiki](https://x.com/daikimkw)
   - ECMA262 周りのトピックを執筆
 - [saku](https://x.com/sakupi01)
   - HTML, CSS に関連するトピックを執筆
