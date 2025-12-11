@@ -3,7 +3,7 @@ title: "OxlintやOxfmtのAlpha版など: Cybozu Frontend Weekly (2025-12-09号)"
 emoji: "🎄"
 type: "idea"
 topics: ["frontend", "cybozufrontendweek"]
-published: false
+published: true
 publication_name: "cybozu_frontend"
 ---
 
@@ -31,7 +31,7 @@ https://www.jftc.go.jp/choice_screen/index.html
 
 12/18 より施行される、スマホソフトウェア競争促進法に則り、スマホのデフォルトブラウザ・検索エンジンを選択することができる「チョイススクリーン」の紹介サイトです。
 
-ミツエーリンクスの記事も併せてご覧ください。
+以下の記事も併せてご覧ください。
 https://www.mitsue.co.jp/knowledge/column/20251209.html
 
 ### Announcing Oxfmt Alpha
