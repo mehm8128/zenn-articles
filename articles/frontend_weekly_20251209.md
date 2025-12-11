@@ -3,7 +3,7 @@ title: "OxlintやOxfmtのAlpha版など: Cybozu Frontend Weekly (2025-12-09号)"
 emoji: "🎄"
 type: "idea"
 topics: ["frontend", "cybozufrontendweek"]
-published: false
+published: true
 publication_name: "cybozu_frontend"
 ---
 
