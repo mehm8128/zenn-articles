@@ -206,7 +206,7 @@ WinterTC の Minimum Common Web API standard の第 1 版が publish されま�
 
 ### 📃 December 2025 release notes
 
-https://web-platform-dx.github.io/web-features-explorer/release-notes
+https://web-platform-dx.github.io/web-features-explorer/release-notes/december-2025/
 
 ## Misc
 
