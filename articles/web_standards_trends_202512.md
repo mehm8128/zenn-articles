@@ -243,7 +243,7 @@ https://groups.google.com/a/chromium.org/g/blink-dev/c/k3qAz6ADbik
 
 Blink の開発者が集まるイベントが、来年 4 月 20-21 に開催されることが決定しました。
 
-場所はワシントンの MicroSoft オフィスで、配信・録画もあるようです。
+場所はワシントンの Microsoft オフィスで、配信・録画もあるようです。
 
 ### Vote for the web features you want to see
 
