@@ -49,13 +49,14 @@ Menu 要素はアプリケーションにおいて、コマンドを実行する
 
 https://groups.google.com/a/chromium.org/g/blink-dev/c/i7bGjrFmuQU
 
-Customizable select listbox とは、Customizable select element のピッカーを除き、複数選択に対応したバージョンです。
+Select Element において `size >=2` の場合における、Listbox(In-page select) UI の標準化です。Picker(Popup) UI から Listbox パーツを切り離した部分をイメージするとわかりやすいでしょう。
+このパーツを Input と組み合わせたり独自で Popup させたりして、将来的には Combobox などにも流用できる、プリミティブなパーツです。
 
 ### Blink: Prototype: Canvas text writing mode support
 
 https://groups.google.com/a/chromium.org/g/blink-dev/c/WxD-ssll9K4
 
-Canvas のテキストを縦書きにできるようになりました。
+Canvas のテキスト描画に書字方向（writing mode）のサポートを追加する提案です。Canvas のテキストスタイルに `writingMode` 属性と `textOrientation` 属性が追加され、CSS で既にサポートされている縦書きテキストの正しい文字整形が Canvas でも可能になります。
 
 ## DOM
 
@@ -63,7 +64,7 @@ Canvas のテキストを縦書きにできるようになりました。
 
 https://groups.google.com/a/chromium.org/g/blink-dev/c/OjQXhCZiXe0
 
-TT の仕様が更新され、モンキーパッチで実装されていた Chrome が準拠しました。
+Trusted Types の仕様が更新され、モンキーパッチで実装されていた Chrome が準拠しました。
 Safari/Firefox も開発を進めています。
 
 ### Blink: Ship: Sanitizer API
@@ -71,7 +72,7 @@ Safari/Firefox も開発を進めています。
 https://groups.google.com/a/chromium.org/g/blink-dev/c/iu3VwMotMBc
 
 Sanitizer API は、HTML 文字列からスクリプトなど危険な部分を削除する API です。
-全ブラウザが Positive で WHATWG では Stage 2 となっています。
+全ブラウザの Standard Position が Positive で WHATWG では Stage 2 となっている提案です。
 
 ## CSS
 
@@ -79,24 +80,24 @@ Sanitizer API は、HTML 文字列からスクリプトなど危険な部分を�
 
 https://groups.google.com/a/chromium.org/g/blink-dev/c/7p3x9gwsB6U
 
-`text-align: justify` が付与されたテキストの、割り付け方法を制御できるプロパティです。
-単語間/文字間の余白を用いた両端割り付け方法などを指定できる。
+`text-align: justify`（両端揃え）が付与されたテキストに対して、どのような方法で文字間隔を調整するか（割り付け方法）を制御する CSS プロパティです。
+単語間/文字間の余白を用いた両端割り付け方法などを指定できます。
 
 ### What's new in DevTools, Chrome 143
 
 https://developer.chrome.com/blog/new-in-devtools-143
 
-Chrome 143 において、DevTools で CSS 関連の追加機能がサポートされました。
+Chrome 143 の DevTools では、 CSS 関連の新しい機能がサポートされました。
 
-- `@starting-style`のモック
-- `display: grid-lanes`の、Flexbox や Grid と同様のエディタウィジェット
+- `@starting-style` 時のスタイルモック
+- `display: grid-lanes`（Masonry レイアウト）の、Flexbox や Grid と同様のエディタウィジェット対応
 
 ### Blink: Prototype and Ship: trigger-scope
 
 https://groups.google.com/a/chromium.org/g/blink-dev/c/2hN81UUSQO8
 
 Scroll-triggered Animations で利用する dashed ident のスコープを制限し、名前の衝突を防ぐプロパティです。
-`anchor-scope` の Scroll-triggered Animations 版となっています。
+`anchor-scope` の Scroll-triggered Animations 版のようなイメージです。
 
 ### Introducing CSS Grid Lanes
 
@@ -104,7 +105,15 @@ https://webkit.org/blog/17660/introducing-css-grid-lanes/
 
 Grid-Lanes の使い方と現状の解説です。
 
-Item Flow の仕様はまだ固まっていないですが `display: grid-lanes` と `grid-template-[columns | rows]` のデフォルト挙動は固まり、基本的な Masonry レイアウトは組めるフェーズまできました。[Technology Preview 234](https://webkit.org/blog/17674/release-notes-for-safari-technology-preview-234/) から試すことができます。
+Item Flow の仕様はまだ固まっていませんが、 `display: grid-lanes` における `grid-template-[columns | rows]` のデフォルト挙動は固まり、基本的な Masonry レイアウトは組める段階になっています。[Technology Preview 234](https://webkit.org/blog/17674/release-notes-for-safari-technology-preview-234/) から試すことができます。
+各エンジンでの実装状況は以下で確認できます。
+
+- 302618 – Enable grid-lanes on stable
+  - https://bugs.webkit.org/show_bug.cgi?id=302618
+- Implement CSS Grid Lanes (aka Masonry) [343257585] - Chromium
+  - https://issues.chromium.org/issues/343257585#comment180
+- 1981604 - (masonry) [css-grid-3] [META] Implement css-grid-3 masonry 
+  - https://bugzilla.mozilla.org/show_bug.cgi?id=1981604
 
 ## ARIA・WCAG
 
@@ -163,7 +172,7 @@ Intl Locale Info API Proposal は Intl.Local インスタンスに様々なロ�
 - サポートする命数法
 - サポートするタイムゾーン
 
-今までも Intl.Locale のインスタンスプロパティには、`calendar` や `numberingSystem` がありましが、これらは「その Intl.Locale のインスタンスに設定された値」を返すのに対して、今回の Intl Locale Info API はあくまで「そのロケールで一般的に使用される値」を返してくれます。そのため API によっては優先度順で複数の値を配列で返すものもあります。MDN にはすでに[ページがある](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/getCalendars)ので、ぜひどのようなメソッドがあるか知っておきましょう。
+今までも Intl.Locale のインスタンスプロパティには、`calendar` や `numberingSystem` がありましたが、これらは「その Intl.Locale のインスタンスに設定された値」を返すのに対して、今回の Intl Locale Info API はあくまで「そのロケールで一般的に使用される値」を返してくれます。そのため API によっては優先度順で複数の値を配列で返すものもあります。MDN にはすでに[ページがある](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/getCalendars)ので、ぜひどのようなメソッドがあるか知っておきましょう。
 
 サポート状況ですが、現在主要ブラウザでは FireFox 以外のブラウザがサポートしています。
 
@@ -171,13 +180,13 @@ Intl Locale Info API Proposal は Intl.Local インスタンスに様々なロ�
 
 https://github.com/tc39/ecma402/pull/1037
 
-`Intl.DisplayNames` の `resolvedOptions` において、`languageDisplay` がオプションで指定されない場合、仕様的には内部スロットが `undefined` のまま残ってしまうというバグがあり、これに対して編集上の修正 Editorial Change を行うことになりました。実際にこの矛盾した仕様をそのまま実装しているエンジンは存在しないため実際の挙動にそう形での変更となるようです、
+`Intl.DisplayNames` の `resolvedOptions` において、`languageDisplay` がオプションで指定されない場合、仕様的には内部スロットが `undefined` のまま残ってしまうというバグがあり、これに対して編集上の修正 Editorial Change を行うことになりました。実際にこの矛盾した仕様をそのまま実装しているエンジンは存在しないため実際の挙動に沿う形での変更となるようです、
 
 #### iso8601 as DateTimeFormat calendar
 
 https://github.com/tc39/ecma402/issues/1036
 
-`Intl.DateTimeFormat`では `iso8601` カレンダーをサポートすることになっていますが、CLDR 側でこの挙動が安定しておらず、実装間で際が生じてしまっている(Firefox は強制ハイフン区切り、Chrome はロケール依存など)問題についてです。
+`Intl.DateTimeFormat`では `iso8601` カレンダーをサポートすることになっていますが、CLDR 側でこの挙動が安定しておらず、実装間で差異が生じてしまっている(Firefox は強制ハイフン区切り、Chrome はロケール依存など)問題についてです。
 
 基本的に ISO8601 文字列が欲しい場合は toISOString などを利用すれば取得できるものの、広いロケールに対応する英語表記などで「日付部分は ISO 形式（YYYY-MM-DD）にしつつ、曜日などはロケールに基づいた名称で表示したい」といったニーズもあるため、これらを解消すべく CLDR のデザイングループと協議を継続することになりました。`iso8601` カレンダー指定時は`YYYY-MM-DD`や `HH:MM:S` などの主要な数値フィールドを固定しつつ、曜日やタイムゾーン名はロケール依存とする方向で調整が進められる予定です。
 
@@ -234,26 +243,29 @@ https://groups.google.com/a/chromium.org/g/blink-dev/c/k3qAz6ADbik
 
 Blink の開発者が集まるイベントが、来年 4 月 20-21 に開催されることが決定しました。
 
-場所はワシントンの MS オフィスで、配信・録画もあるようです。
+場所はワシントンの Microsoft オフィスで、配信・録画もあるようです。
 
 ### Vote for the web features you want to see
 
 https://web.dev/blog/upvote-features
 
-[Can I use](http://caniuse.com) や [webstatus.dev](https://webstatus.dev) などに Thumb-up UI が追加されました。多くの人が見るプラットフォームからより広く Developer Signals を集めやすくなることが期待されます。
+より広い Developer Signals の収集を目指して、[Can I use](http://caniuse.com) や [webstatus.dev](https://webstatus.dev) などに、該当機能の Issue を指す Thumb-up リンク（👍🏻）が追加されました。
+機能の相互互換性を調べるついでに、実装者に興味を伝えやすくなるでしょう。
 
 ### Introducing A2UI: An open project for agent-driven interfaces
 
 https://developers.googleblog.com/introducing-a2ui-an-open-project-for-agent-driven-interfaces/
 
-Agent が動的に UI を生成する標準フォーマットです。
-テキストベースではなく UI ベースで対話可能にするものとなっています。
+Agent が動的に UI を生成するための標準フォーマットが OSS として公開されました。
+A2UI を用いると、テキストベースではなく UI ベースでの Agent と対話が可能になります。
 
 ### Mozilla’s next chapter: Building the world’s most trusted software company
 
 https://blog.mozilla.org/en/mozilla/leadership/mozillas-next-chapter-anthony-enzor-demeo-new-ceo/
 
-Anthony Enzor-DeMeo が Mozilla’s new CEO に就任しました。
+Anthony Enzor-DeMeo が Mozilla の新しい CEO に就任しました。
+ユーザーを第一に考える企業としての Mozilla の理念に基づき、プライバシー、データ利用、AIの透明性を確保した AI への投資や、検索以外の収益源の多様化について述べられています。
+Laura Chambers 前暫定 CEO の功績にも感謝が示されており、彼女は Mozilla 取締役会に復帰する予定だそうです。
 
 ### WebKit Features for Safari 26.2
 
