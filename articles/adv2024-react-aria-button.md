@@ -8,4 +8,4 @@ published: true
 
 この記事は以下のサイトに移動しました。
 
-https://portfolio.hm8128.me/adv2024-reactaria/day1
+https://portfolio.hm8128.me/adv2024-reactaria/day2
