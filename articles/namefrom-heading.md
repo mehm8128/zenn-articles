@@ -3,7 +3,7 @@ title: "`nameFrom: heading`とsectionheader/sectionfooterについて"
 emoji: "⛑️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["frontend", "html", "a11y", "waiaria"]
-published: true
+published: false
 ---
 
 この記事は以下のサイトに移動しました。

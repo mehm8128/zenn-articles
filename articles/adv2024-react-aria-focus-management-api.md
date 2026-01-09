@@ -3,7 +3,7 @@ title: "【番外編】Focus Management APIについて（概要編） - React A
 emoji: "🔍"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["frontend", "react", "a11y", "reactaria"]
-published: true
+published: false
 ---
 
 この記事は以下のサイトに移動しました。

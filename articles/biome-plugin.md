@@ -3,7 +3,7 @@ title: "BiomeのPluginについて"
 emoji: "🚅"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["biome", "javascript", "typescript", "ast", "search"]
-published: true
+published: false
 ---
 
 この記事は以下のサイトに移動しました。

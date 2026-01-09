@@ -3,7 +3,7 @@ title: "DHS Trusted Tester Certification 取ってみた（Web a11y）"
 emoji: "✅"
 type: "idea" # tech: 技術記事 / idea: アイデア
 topics: ["資格", "WCAG", "a11y"]
-published: true
+published: false
 ---
 
 この記事は以下のサイトに移動しました。

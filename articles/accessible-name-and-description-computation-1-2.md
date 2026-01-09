@@ -3,7 +3,7 @@ title: "Accessible Name and Description Computation 1.2 を読む"
 emoji: "🏷️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["frontend", "a11y", "w3c"]
-published: true
+published: false
 ---
 
 この記事は以下のサイトに移動しました。
