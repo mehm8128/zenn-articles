@@ -262,8 +262,10 @@ https://github.com/tc39/proposal-iterator-sequencing
 既存のイテレータを連結してイテレータを作成する提案です。
 Iterator.concatを利用すると直感的で分かりやすい記述が可能になります。
 
-```
-let lows = Iterator.from([0, 1, 2, 3]); let highs = Iterator.from([6, 7, 8, 9]); let digits = Iterator.concat(lows, [4, 5], highs);　// [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+```js
+let lows = Iterator.from([0, 1, 2, 3]);
+let highs = Iterator.from([6, 7, 8, 9]);
+let digits = Iterator.concat(lows, [4, 5], highs); // [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
 
 #### tc39/proposal-import-text: Stage 2
@@ -272,7 +274,7 @@ https://github.com/tc39/proposal-import-text
 
 JSON, Binary, CSS に続いて Text も UTF8 として import できるようにする提案です。
 
-```
+```js
 import text from "path/to/file.txt" with { type: "text" };
 ```
 
@@ -285,8 +287,10 @@ https://github.com/tc39/proposal-composites
 `Composite()` を関数にし、同じ形のオブジェクトに同じインスタンスを返すようにします。
 返ったインスタンスは `===` が同じです。
 
-```
-const pos1 = Composite({ x: 1, y: 4 }); const pos2 = Composite({ x: 1, y: 4 }); Composite.equal(pos1, pos2); // true
+```js
+const pos1 = Composite({ x: 1, y: 4 });
+const pos2 = Composite({ x: 1, y: 4 });
+Composite.equal(pos1, pos2); // true
 ```
 
 グローバルに Map を持ち保存しておく内部実装なので、 GC や WeakMap など課題はまだあります。
