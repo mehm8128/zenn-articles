@@ -243,17 +243,19 @@ https://github.com/tc39/proposal-intl-era-monthcode/issues/86
 
 日本暦の「明治」の開始日について、CLDRに太陰太陽暦と太陽暦を取り違えた古いデータが存在し、実装間で混乱を招いていた点について、定義をどうするかの議論がなされました。
 
-補足：日本における太陽暦への改暦とCLDR問題(zennのinfo記法がいいかも)
+:::message
+補足：日本における太陽暦への改暦とCLDR問題
 
 日本が太陽暦(グレゴリウス暦)を導入したのは西暦1837年の1月1日で、これを明治6年の1月1日として制定しました。ややこしいですが西暦1836年の12月31日は日本の旧暦(太陰太陽暦)における明治5年12月2日であるため、「明治5年12月2日(旧暦)の次の日が明治6年の1月1日(グレゴリウス暦)」という形になっています。
 
 今回の問題は古いCLDRが、明治5年12月2日以前の年月日もグレゴリウス暦かのように扱ってしまっていたために、古いCLDRを参照しているシステムで改暦以前の計算がズレるというものです。
 
 これに対し、1872年12月31日まではグレゴリオ暦の元号（AD/CE相当）を使用し、1873年1月1日以降を日本の太陽暦元号として定義することに合意しました。
+:::
 
 ### ECMA262
 
-### tc39/proposal-iterator-sequencing: Stage 4
+#### tc39/proposal-iterator-sequencing: Stage 4
 
 https://github.com/tc39/proposal-iterator-sequencing
 
@@ -264,7 +266,7 @@ Iterator.concatを利用すると直感的で分かりやすい記述が可能�
 let lows = Iterator.from([0, 1, 2, 3]); let highs = Iterator.from([6, 7, 8, 9]); let digits = Iterator.concat(lows, [4, 5], highs);　// [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
 
-### tc39/proposal-import-text: Stage 2
+#### tc39/proposal-import-text: Stage 2
 
 https://github.com/tc39/proposal-import-text
 
@@ -274,7 +276,7 @@ JSON, Binary, CSS に続いて Text も UTF8 として import できるように
 import text from "path/to/file.txt" with { type: "text" };
 ```
 
-### tc39/proposal-composites: Stage 1
+#### tc39/proposal-composites: Stage 1
 
 https://github.com/tc39/proposal-composites
 
@@ -289,7 +291,7 @@ const pos1 = Composite({ x: 1, y: 4 }); const pos2 = Composite({ x: 1, y: 4 }); 
 
 グローバルに Map を持ち保存しておく内部実装なので、 GC や WeakMap など課題はまだあります。
 
-### tc39/proposal-amount: Stage 1
+#### tc39/proposal-amount: Stage 1
 
 https://github.com/tc39/proposal-amount
 
