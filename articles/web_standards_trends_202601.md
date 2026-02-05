@@ -108,12 +108,6 @@ https://github.com/w3c/a11y-tracking/issues/290
 
 実現された場合、併せて`prefers-reduced-motion`の取りうる値も追加されることになりそうです。
 
-### CSS Wrapped 2025
-
-https://developer.chrome.com/blog/css-wrapped-2025
-
-毎年恒例の、Chrome チームのメンバーによる 2025 年の CSS の主要項目をまとめた記事です。
-
 ### Intent to Ship: Decouple border-width, outline-width and column-rule-width values from their corresponding style values
 
 https://groups.google.com/a/chromium.org/g/blink-dev/c/_50sVoTmZ3I
@@ -337,11 +331,31 @@ Apple のプラットフォーム（特に Siri）に Google の Gemini が統�
 
 https://blog.mozilla.org/l10n/2026/01/07/mozilla-localization-in-2025/
 
+Mozillaが2025年に行ったLocalizationの取り組みについて振り返る記事が出ました。
+
+Mozillaのローカリゼーションコミュニティによって開発・使用されている翻訳管理システムPontoonでは提出される翻訳数やサポートするロケールが着実に増えており、承認済みの翻訳数で22%、サポートするロケールで33%増となっています。
+
+またPontoon自体の改善も行われており、新しいデータモデルへの切り替えやAPIの切り替えなどが行われているようです。
+
+2026年も以下のような試みやアップデートを行なっていくとのことです。(すでに一部は公開・実施されています。)
+
+- Pontoonのプラットフォーム移行による処理の改善
+- [Mozilla Language Portal](https://language.mozilla.org/) のローンチと拡充
+  - Mozillaの持つ翻訳やドキュメントなどを特定の言語・キーワードで検索できる
+- iOSプロジェクトへの複数形対応の拡張と、Pontoonの翻訳メモリサポートの継続的な改善
+- 機械翻訳オプションの改善
+
 ### EPUB and HTML - Survey results and next steps
 
 https://www.w3.org/blog/2026/epub-and-html-survey-results-and-next-steps/
 
 長年議論されていた「EPUBのベースをXMLからHTMLへ移行する」提案が、出版エコシステムの既存資産（XMLベースのワークフロー）との乖離が大きすぎるとして見送りとなりました。
+
+### CSS Wrapped 2025
+
+https://developer.chrome.com/blog/css-wrapped-2025
+
+毎年恒例の、Chrome チームのメンバーによる 2025 年の CSS の主要項目をまとめた記事です。
 
 ### 2025 Web Almanac
 
