@@ -42,7 +42,7 @@ https://blog.cybozu.io/entry/joining-w3c
 
 https://www.w3.org/news/2026/w3c-invites-implementations-of-html-ruby-markup-extensions/
 
-ルビの HTML 仕様「HTML Ruby Markup Extensions」が W3C の Candidate Recommendation に昇格しました。
+ルビの HTML 仕様「HTML Ruby Markup Extensions」が W3C のCandidate Recommendation Snapshot として公開されました。
 
 大きな変更は、ルビのマークアップモデルの作り直しです。現行 WHATWG HTML のルビは、複数レベルの注釈や熟語ルビ、インラインへのフォールバックをうまく表現できませんでした。今回はベースと注釈の区切り方・対応付けを定義し直しています。
 
@@ -77,7 +77,7 @@ https://github.com/whatwg/html/issues/12591
 
 `<time>` 要素に新しい `format` 属性を追加し、UA Shadow Root経由でローカライズされた日時を自動表示する提案がStage1になりました。これによりサーバーサイドレンダリング（SSR）や静的レンダリングされたHTMLでもユーザーのタイムゾーンを加味した時刻を正確に表示できるようにします。
 
-具体的には以下のようにtime要素に `"date"`, `"time"`, `"date time"` のいずれかをとる`format` 属性を追加することで実現することを提案しています。
+具体的には以下のようにtime要素に`"date"`, `"time"`, `"datetime"`のいずれかをとる`format`属性を追加することで実現することを提案しています。
 
 ```html
 <time datetime="2026-06-17T08:13:41.099Z" format="datetime">
@@ -137,6 +137,8 @@ https://groups.google.com/a/chromium.org/g/blink-dev/c/fl5TIBDLHuo
 ```
 
 ### Chrome 150 Beta
+
+https://developer.chrome.com/blog/chrome-150-beta
 
 Chrome 150 の Beta が公開されました。CSS まわりを中心に注目度の高い機能を取り上げます。
 
@@ -325,7 +327,7 @@ https://github.com/tc39/ecma262/pull/3849
 
 `ParseScript` と `ParseModule` は、ソーステキストをパースして `Script / Module` レコードを生成する `ECMAScript` 仕様内の抽象操作です。
 
-従来の仕様では引数の前提条件が実態とズレており、ホスト側はすでに `ParseText` を介して文字列を渡して利用していました。今回の変更で`ParseScript / ParseModule` が文字列入力を正式に受け取れるよう記述が整えられ、仕様の層構造の整合性が取れた形です。
+従来の仕様では引数の前提条件が実態とズレており、ホスト側はすでに `ParseText` を介して文字列を渡して利用していました。今回の変更で`ParseScript / ParseModule` が文字列入力を正式に受け取れるよう記述が整えられ、仕様の整合性が取れた形です。
 
 ## Baseline
 
