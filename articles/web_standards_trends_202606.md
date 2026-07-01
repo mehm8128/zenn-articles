@@ -1,6 +1,6 @@
 ---
-title: "Web 標準動向 2026年7月版"
-emoji: "🎆"
+title: "Web 標準動向 2026年6月版"
+emoji: "🐸"
 type: "idea"
 topics: ["frontend", "cybozuwebstandards"]
 published: false
