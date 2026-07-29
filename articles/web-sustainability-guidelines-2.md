@@ -33,6 +33,8 @@ GovernanceとSocial Equityというカテゴリーに属しており、労働に
 
 日本人も翻訳に参加した[Heydon/principles-of-web-accessibility](https://github.com/Heydon/principles-of-web-accessibility/blob/main/README_ja.md)の"Get paid"（日本語: 報酬を得よう）のセクションを思い出しました。
 
+![5.15のShare economic benefitsのスクショ。Living wage、Incentivisation、Employee benefitsという3つの達成基準がある。](/images/wsgj/share-economic-benefits.png)
+
 ### AIの話
 
 [5.19 Establish responsible practices around AI and emerging or disruptive technologies](https://www.w3.org/TR/web-sustainability-guidelines/#x5-19-establish-responsible-practices-around-ai-and-emerging-or-disruptive-technologies)という、AIに特化したガイドラインがあるという発見もありました。
@@ -53,6 +55,8 @@ Prosperity: Highは4.9、5.15、5.23の3つのガイドラインが該当しま�
 
 「4.9 Assess the impact and requirements of data processing」は5つの達成基準で構成されています。
 5つのうち、1つ目の「Success Criterion: Carbon shifting」だけ他の4つと比べて毛色が異なっており、理解に時間を費やしました。
+
+![4.9 Assess the impact and requirements of data processingと、それに付随するCarbon shiftingという達成基準のスクショ。](/images/wsgj/carbon-shifting.png)
 
 Carbon Shiftingという言葉に聞き馴染みがなかったのですが、途中で登場している「Grid Carbon Intensity（グリッド炭素強度）」というキーワードを調べることで理解が進みました。電力網（グリッド）から供給される電気1kWh（キロワット時）あたりに排出される二酸化炭素の量（gCO2eq/kWh）のことで、発電に使われるエネルギー源の比率（再生可能エネルギーの割合など）によって時間帯や地域ごとに変動します。Carbon Shiftingは、このグリッド炭素強度データに基づいて、炭素強度が低いタイミングにタスクをスケジューリング・バッチ実行したり、炭素強度の低いリージョンにワークロードをずらしたりする取り組みとのことです。
 
