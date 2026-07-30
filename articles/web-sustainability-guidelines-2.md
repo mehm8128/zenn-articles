@@ -65,10 +65,15 @@ Carbon Shiftingという言葉に聞き馴染みがなかったのですが、�
 
 https://aws.amazon.com/jp/blogs/aws-cloud-financial-management/updated-carbon-methodology-for-the-aws-customer-carbon-footprint-tool/
 
+また、Google Cloudではマシンのリージョンを選択するときに、二酸化炭素の排出量が少ないかどうかという表示が出るようになっているようです。
+[Pick the Google Cloud region with the lowest CO2 | Google Cloud Blog](https://cloud.google.com/blog/topics/sustainability/pick-the-google-cloud-region-with-the-lowest-co2?hl=en)
+![Google Cloudの「マシンの構成」という画面のリージョン選択ドロップダウンで、モントリオールやトロントには「低CO2」という表示がついていて、メキシコにはついていない。](/images/wsgj/google-cloud-region-co2.png)
+
 残り4つは「HTTP/2など高パフォーマンスのプロトコルを使おう」「不要なデータ処理を避けてください」など、Sustainabilityの意識がなくとも、パフォーマンスやコストなどの観点から一般的なエンジニアが考慮するであろう達成基準となっていました。
 
 アクセシビリティに関連するものだと[3.6 Ensure code follows good semantic practices](https://www.w3.org/TR/web-sustainability-guidelines/#ensure-code-follows-good-semantic-practices)なども、特別にSustainabilityへの意識がなくても考慮するような内容だという気づきもありました。
+今後読む範囲でも、同様にエンジニアとしての一般的な考慮事項が登場することがあるかもしれないと予想する声が上がっています。
 
 ## 次回予告
 
-次回以降は、Prosperity: Highの残りのガイドラインや、Medium/Lowの達成基準を読み進めていく予定です。
+次回以降は、Prosperity: Highの残りや、続けてMedium/Lowのガイドラインを読み進めていく予定です。
