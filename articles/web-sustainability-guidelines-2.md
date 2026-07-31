@@ -3,7 +3,7 @@ title: "Web Sustainability Guidelinesを読む会 #2"
 emoji: "🍍"
 type: "idea"
 topics: ["W3C", "sustainability", "ガイドライン"]
-published: false
+published: true
 publication_name: "wsgj"
 ---
 
@@ -65,7 +65,7 @@ Carbon Shiftingという言葉に聞き馴染みがなかったのですが、�
 
 https://aws.amazon.com/jp/blogs/aws-cloud-financial-management/updated-carbon-methodology-for-the-aws-customer-carbon-footprint-tool/
 
-また、Google Cloudではマシンのリージョンを選択するときに、二酸化炭素の排出量が少ないかどうかという表示が出るようになっているようです。
+また、Google Cloudではマシンのリージョンを選択するときに、二酸化炭素の排出量が少ない地域を強調する表示が出るようになっているようです。
 [Pick the Google Cloud region with the lowest CO2 | Google Cloud Blog](https://cloud.google.com/blog/topics/sustainability/pick-the-google-cloud-region-with-the-lowest-co2?hl=en)
 ![Google Cloudの「マシンの構成」という画面のリージョン選択ドロップダウンで、モントリオールやトロントには「低CO2」という表示がついていて、メキシコにはついていない。](/images/wsgj/google-cloud-region-co2.png)
 
