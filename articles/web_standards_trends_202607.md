@@ -305,7 +305,7 @@ Chrome 150 以降の Feature Status から利用されています。
 
 ### Blink: Baseline Features audit が Lighthouse に追加
 
-https://web.dev/blog/baseline-lighthouse-features-audit
+https://web.dev/blog/baseline-lighthouse-features-audit?hl=en
 
 Lighthouse で、ページが利用している Web Platform 機能の Baseline 対応状況を一覧できる Audit が追加されました。
 
