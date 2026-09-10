@@ -43,22 +43,22 @@ Resourcesとして紹介されているAWSの「[Optimize your container workloa
 
 ## クロール最適化とAIクローラー問題
 
-[4.6 Use automation wisely](https://www.w3.org/TR/web-sustainability-guidelines/#x4-6-use-automation-wisely) には、Task automation、Necessary tasks、Suspicious activity managementの3つのSuccess Criterionがあります。
+[4.6 Use automation wisely](https://www.w3.org/TR/web-sustainability-guidelines/#x4-6-use-automation-wisely) には、Task automation、Necessary tasks、Suspicious activity managementの3つの達成基準があります。
 
 ### Task automation / Necessary tasks
 
-タスクとインフラを効率的に自動化・スケールし、必要なときだけプロセスを実行するという内容です。リソースには「クロール最適化でサイトのサステナビリティが上がる」という記事があり、robots.txtで不要なクロールを避けることがトラフィック削減＝コスト削減＝サステナビリティに繋がるという話が紹介されていました。
+タスクとインフラを効率的に自動化・スケールし、必要なときだけプロセスを実行するという内容です。Resourcesには「クロール最適化でサイトのサステナビリティが上がる」という記事があり、robots.txtで不要なクロールを避けることがトラフィック削減＝コスト削減＝サステナビリティに繋がるという話が紹介されていました。
 参加メンバーからは「Vercelでページネーションのクエリパラメータ違いのURLを大量にクロールされて課金が跳ねた」といった実体験も共有され、日常のインフラコスト削減の工夫がそのままサステナビリティに直結するという再確認が今回もありました。
 
 ### Suspicious activity management
 
-今回一番盛り上がったのがこのSuccess Criterionです。望ましくない第三者クローラー・ボット・スクレーパーを制限しつつ、正当な検索エンジンや有用なクローラーはアクセスできる状態を保つ、という内容で、その中に次のような一文があります。
+今回一番盛り上がったのがこの達成基準です。望ましくない第三者クローラー・ボット・スクレーパーを制限しつつ、正当な検索エンジンや有用なクローラーはアクセスできる状態を保つ、という内容で、その中に次のような一文があります。
 
 > Consider that some scrapers may be used for beneficial purposes or to inform or train Large Language Models (LLMs).
 
 「beneficial purposes **or** to inform or train LLMs」という書き方になっており、「LLMの学習はbeneficial purposesに含まれるのか、それとも並列した別枠（＝あまり歓迎されていない扱い）なのか」という原文の解釈で議論になりました。わざわざ後半を書き添えているということは、後者寄りなのでは、という解釈で一致しました。
 
-今までAIに直接関連しているといえる達成基準が少なかったのですが、この達成基準のリソースには、AI関連の話題がついにたくさん登場しました。
+今までAIに直接関連しているといえる達成基準が少なかったのですが、この達成基準のResourcesには、AI関連の話題がついにたくさん登場しました。
 
 - [AI crawlers cause Wikimedia Commons bandwidth demands to surge 50% | TechCrunch](https://techcrunch.com/2025/04/02/ai-crawlers-cause-wikimedia-commons-bandwidth-demands-to-surge-50/)
   - もっとも高コストなトラフィックの65%がbotによるもので、しかも人気のないページ・アーカイブにも無差別にアクセスしてくるため、CDNのエッジキャッシュ的な最適化が効きづらいという記事
@@ -78,21 +78,20 @@ Resourcesとして紹介されているAWSの「[Optimize your container workloa
 
 Resourcesの中でIBMの「[ダークデータ](https://www.ibm.com/jp-ja/think/topics/dark-data)（組織が蓄積しているものの、ほとんど分析や意思決定に利用されないデータ）」という概念が紹介され、「消していいか誰も判断できず溜め込まれ続けるデータ」の話に共感が集まりました。ストレージを圧迫するだけでなく、不要なデータ処理によるエネルギー浪費にも繋がるという整理です。
 
-このあたりで「4章はずっと『不要なものを使うな・必要なときだけ動かせ』という同じ話の繰り返しだ」という指摘があり、次回以降は4章を通しで読み返す会はやらず、5章に軸足を移していく方針を確認しました。
+このあたりで「4章はずっと『不要なものを使うな・必要なときだけ動かせ』という同じ話の繰り返しだ」という指摘があり、次回以降は4章にこれ以上踏み込むことはせず、5章に軸足を移していく方針となりました。
 
 ## アクセシビリティステートメントとサステナビリティ声明の共通点
 
 [5.1 Have an ethical and sustainable product strategy](https://www.w3.org/TR/web-sustainability-guidelines/#x5-1-have-an-ethical-and-sustainable-product-strategy) は、倫理規範・製品ガイドライン・アクセシビリティ及び持続可能性に関する声明などの方針を策定・公開・維持し、バージョン管理を通じて透明性を確保することを求める達成基準です。
 
 Resourcesには「アクセシビリティステートメントの書き方」に関する記事があり、「どのガイドラインに準拠しているか」「どんな支援技術・環境でテストしたか」「問題を報告する連絡先」などが書かれていない声明は形骸化しているという指摘が紹介されていました。
-
-他の適当なサイトからコピペしないで、という記事も紹介されていました。
+他の適当なサイトからコピペしないで、というような記事もありました。
 [Don’t just borrow your accessibility statement for European Accessibility Act from some random site – Bogdan on Digital Accessibility (A11y)](https://cerovac.com/a11y/2025/02/dont-just-borrow-your-accessibility-statement-for-european-accessibility-act-from-some-random-site/)
 
 ## まとめと次回のお知らせ
 
-AIカテゴリーの達成基準は残り10個ほど（5.13、5.14、5.18、5.19、5.23、5.26など）となりました。次回もその続きを読み進めつつ、[CO2.js](https://www.thegreenwebfoundation.org/co2-js/)や [EcoGrader](https://ecograder.com/)など、前回や今回Resourceとして登場したツールを実際に動かしてみる回にできたらという話も出ています。
+AIカテゴリーの達成基準は残り5章から10個ほどとなりました。次回もその続きを読み進めつつ、[CO2.js](https://www.thegreenwebfoundation.org/co2-js/)や [EcoGrader](https://ecograder.com/)など、前回や今回Resourceとして登場したツールを実際に動かしてみる回にできたらという話も出ています。
 
-WSGを読む会に興味がある方は是非「読む会」のDiscordにご参加ください。
+WSGを読む会に興味がある方は是非Discordにご参加ください。
 
 https://discord.com/invite/TEAYemhAc
