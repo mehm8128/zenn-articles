@@ -94,4 +94,4 @@ AIカテゴリーの達成基準は残り5章から10個ほどとなりました
 
 WSGを読む会に興味がある方は是非Discordにご参加ください。
 
-https://discord.com/invite/TEAYemhAc
+https://discord.gg/QXemS58mwV
