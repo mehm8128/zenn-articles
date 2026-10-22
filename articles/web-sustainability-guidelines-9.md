@@ -3,31 +3,31 @@ title: "Web Sustainability Guidelinesを読む会 #9"
 emoji: "🥝"
 type: "idea"
 topics: ["W3C", "sustainability", "ガイドライン"]
-published: false
+published: true
 publication_name: "wsgj"
 ---
 
-これは [Web Sustainability Guidelines (WSG)](https://www.w3.org/TR/web-sustainability-guidelines/) を読む会の第9回のレポートです。Web Sustainability Guidelinesの概要については、[Web Sustainability Guidelinesとは](https://zenn.dev/wsgj/articles/1f79582f108e02) で説明しています。
+これは[Web Sustainability Guidelines (WSG)](https://www.w3.org/TR/web-sustainability-guidelines/)を読む会の第9回のレポートです。Web Sustainability Guidelinesの概要については、[Web Sustainability Guidelinesとは](https://zenn.dev/wsgj/articles/1f79582f108e02)で説明しています。
 
 ## #9で読んだ範囲
 
 今回も引き続き、Filtersの「AI」で絞り込んだガイドラインを読みました。
 
 - **5.23 Repair, reuse, refurbish, recycle or reduce e-waste**
-  - Success Criterion: E-waste management
+  - [Success Criterion: E-waste management](https://www.w3.org/TR/web-sustainability-guidelines/#e-waste-management)
   - ハードウェアや電子廃棄物の修理・再利用・再整備・責任あるリサイクルを、ユーザーによる修理の支援や認証されたサービスを通じて優先すること
 - **5.26 Create a business continuity and disaster recovery plan**
-  - Success Criterion: Plan of action
+  - [Success Criterion: Plan of action](https://www.w3.org/TR/web-sustainability-guidelines/#plan-of-action)
   - テスト済みのインシデント対応計画を維持し、リスクや復旧のプロセスについてユーザーに透明性高く伝えること
 
 ## 修理する権利とハードウェアの設計
 
 5.23のリソースには、[米国の多くの州で「修理する権利（Right to Repair）」が法制化されているという記事](http://404media.co/all-50-states-have-now-introduced-right-to-repair-legislation/)がありました。
 
-- 修理することが前提になっていない製品が増えると、金銭面だけでなく、修理を通して学ぶ機会や経験も失われていく
-  - 関連して、[太陽を創った少年　―僕はガレージの物理学者―](https://www.hayakawa-online.co.jp/shop/g/g0000612466/)という書籍が紹介されました
-- Dellの製品について、[USB-Cポートがはんだ付けではなくネジ止めで、壊れたら交換できるようになっているという投稿](https://www.theverge.com/2025/1/6/24335562/dells-new-usb-c-ports-use-screws-instead-of-solder-so-you-can-fix-them-yourself)が紹介されました。一方でAppleは、ユーザー自身で直せない印象が強い
+- 関連してDellの製品について、[USB-Cポートがはんだ付けではなくネジ止めで、壊れたら交換できるようになっているという投稿](https://www.theverge.com/2025/1/6/24335562/dells-new-usb-c-ports-use-screws-instead-of-solder-so-you-can-fix-them-yourself)が共有されました。一方でAppleは、ユーザー自身で直せない印象が強い
 - 修理する権利は「ユーザーが自分で直す権利」として語られることが多いが、法律になる背景には、独占によってサードパーティの修理業者のビジネスが成り立たなくなるという、経済的な権利の問題があるのではないかという話もありました
+- 修理することが前提になっていない製品が増えると、金銭面だけでなく、修理を通して学ぶ機会や経験も失われていく
+  - [太陽を創った少年　―僕はガレージの物理学者―](https://www.hayakawa-online.co.jp/shop/g/g0000612466/)という書籍が紹介されました
 
 また、5.23のリソースは3R（Reduce、Reuse、Recycle）に関するものが中心で、電子機器メーカー自身の取り組み事例は意外と少ないという話も出ました。
 
@@ -43,7 +43,7 @@ publication_name: "wsgj"
 
 ## クラウドの冗長化と地政学リスク
 
-AWSのドキュメントにあった、ディザスタリカバリを計画するときは災害の性質と地理的な影響の両方を考える、という話から、インフラが物理的に依存している「地理」へと話が広がりました。
+AWSのドキュメントにあった「ディザスタリカバリを計画するときは災害の性質と地理的な影響の両方を考える」という話から、インフラが物理的に依存している「地理」へと話が広がりました。
 
 - 海底ケーブルは、日本に陸揚げされるものが多いなど、国や地域によって事情が異なる。デジタルシルクロード構想のような動きもあり、データセンターや通信の要衝となる地域の地政学的なリスクも、災害リスクの一つと言えそう
 - 先端半導体の製造は10ステップほどあり、それを全て一つの国でまかなえる国はない。オランダの露光装置メーカーASMLや、日本の素材メーカーなど、世界中の企業が絡み合っている。この相互依存は戦争が起こりにくくなるという見方がある一方、どこかが止まると続けられなくなる脆さでもあり、意見が分かれました
@@ -54,7 +54,7 @@ AWSのドキュメントにあった、ディザスタリカバリを計画す�
 WSGはAPIが公開されており、各達成基準に付いているタグを確認できます。今回読んだ5.23と5.26では、一部の達成基準だけに「AI」タグが付いていました。
 
 - 5.23の他の達成基準は物理的なプロダクトの話で、AIタグが付いていないのに、特定の一つだけが対象になっている理由がわからない
-- 5.26は「行動計画（Plan of action）」だけがAIで、「オーディエンスへの周知（Audience awareness）」には付いていない
+- 5.26は"Plan of action"だけにAIタグがついており、"Audience awareness"には付いていない
 - AIによるサイバー攻撃などを、自然災害と同じく予測しにくい「災害」と捉える考え方はあるが、ガイドラインはそれより前から作られているので、それが理由とは限らない
 
 結局理由は分からないため、今後issueを立てるなどして質問・問題提起してみることにしました。
